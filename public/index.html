@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOINC Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f2f5;
+        }
+        .search-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .search-field {
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .search-field-with-button {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+        .search-field-main {
+            flex-grow: 1;
+        }
+        .translate-button {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            height: 36px;
+            margin-bottom: 10px;
+        }
+        .translate-button:hover {
+            background-color: #3367d6;
+        }
+        .suggestion-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: none;
+        }
+        .suggestion-item {
+            padding: 8px 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+        }
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+        .suggestion-item:hover {
+            background-color: #f5f5f5;
+        }
+        .search-field label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+            font-size: 14px;
+        }
+        .search-field input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .search-field input:focus {
+            outline: none;
+            border-color: #1a73e8;
+        }
+        .search-options {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .search-options label {
+            margin-left: 8px;
+            color: #666;
+            font-size: 14px;
+        }
+        .filters-container {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0;
+        }
+        .filters-header {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .search-options input[type="checkbox"] {
+            transform: scale(1.2);
+        }
+        .search-options .recommended {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+        .filter-note {
+            font-style: italic;
+            color: #666;
+            font-size: 12px;
+            margin-top: 8px;
+            padding-left: 25px;
+        }
+        .search-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 8px 16px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #1557b0;
+        }
+        button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+        #analyzeBtn {
+            background-color: #34a853;
+        }
+        #analyzeBtn:hover {
+            background-color: #2e8b57;
+        }
+        #analyzeBtn:disabled {
+            background-color: #cccccc;
+        }
+        .result-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .loinc-code {
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        .similarity-score {
+            background: #e8f0fe;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #1a73e8;
+        }
+        .result-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .result-field {
+            margin-bottom: 8px;
+        }
+        .field-label {
+            font-weight: bold;
+            color: #666;
+            font-size: 12px;
+        }
+        .field-value {
+            color: #333;
+            font-size: 14px;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+        .error {
+            color: #d9534f;
+            padding: 15px;
+            text-align: center;
+        }
+        .no-results {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+        .rank-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .rank-good {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        .rank-moderate {
+            background-color: #fff3e0;
+            color: #ef6c00;
+        }
+        .rank-poor {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+        .ai-analysis {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .ai-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .ai-header h3 {
+            margin: 0;
+            color: #34a853;
+            font-size: 18px;
+        }
+        .close-btn {
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 0;
+            margin: 0;
+        }
+        .close-btn:hover {
+            color: #333;
+            background: none;
+        }
+        .ai-content {
+            line-height: 1.5;
+        }
+        .ai-explanation {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #34a853;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            line-height: 1.3;
+        }
+        .ai-explanation br {
+            display: none;
+        }
+        .ai-explanation br + br {
+            display: block;
+            content: "";
+            margin-top: 10px;
+        }
+        .ai-explanation table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+            border: 2px solid #34a853;
+            background-color: white;
+        }
+        .ai-explanation th {
+            background-color: #34a853;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #dee2e6;
+        }
+        .ai-explanation td {
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            vertical-align: top;
+        }
+        .ai-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+            border: 2px solid #34a853;
+            background-color: white;
+        }
+        .ai-th {
+            background-color: #34a853;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #dee2e6;
+        }
+        .ai-td {
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            vertical-align: top;
+        }
+        .ai-tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .ai-tr:hover {
+            background-color: #e9ecef;
+        }
+        .ai-explanation p {
+            margin: 5px 0;
+        }
+        .ai-explanation pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #dee2e6;
+            margin: 10px 0;
+        }
+        .ai-result p {
+            margin: 5px 0;
+        }
+        .ai-conversation {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .conversation-history {
+            margin-bottom: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .user-message, .ai-message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .user-message {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+        }
+        .ai-message {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+        }
+        .ai-loading {
+            padding: 10px;
+            font-style: italic;
+            color: #666;
+        }
+        .ai-response {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #34a853;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            line-height: 1.3;
+        }
+        .ai-response br {
+            display: none;
+        }
+        .ai-response br + br {
+            display: block;
+            content: "";
+            margin-top: 10px;
+        }
+        .user-message p, .ai-message p {
+            margin: 5px 0;
+        }
+        .conversation-input {
+            display: flex;
+            gap: 10px;
+        }
+        .conversation-input textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .conversation-input button {
+            padding: 8px 16px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .conversation-input button:hover {
+            background: #1557b0;
+        }
+        .reset-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        .reset-button:hover {
+            background-color: #d32f2f;
+        }
+        .translate-loading {
+            display: none;
+            margin-left: 5px;
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+        .exact-match {
+            border: 2px solid #4CAF50;
+            background-color: #f1f8e9;
+        }
+        .exact-match .result-header {
+            background-color: #e8f5e9;
+        }
+        .exact-match .loinc-code {
+            font-size: 16px;
+            color: #2E7D32;
+        }
+        .exact-match .similarity-score {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align:center;font-size:1.3em;font-weight:bold;margin-bottom:18px;color:#1a73e8;">
+        Taiwan Top 100 LOINC 萬達人
+    </div>
+    <div class="search-container">
+        <div class="search-field">
+            <div class="search-field-with-button">
+                <div class="search-field-main">
+                    <label for="field1">Search Terms (space-separated):</label>
+                    <input type="text" id="field1" placeholder="e.g., creatine serum plasma">
+                </div>
+                <button class="translate-button" onclick="translateInput()">給我搜尋名稱的建議</button>
+            </div>
+            <span class="translate-loading" id="translateLoading">轉換中...</span>
+            <div class="suggestion-list" id="suggestionList"></div>
+        </div>
+        <div class="search-field">
+            <label for="field2">Must Have Terms (space-separated):</label>
+            <input type="text" id="field2" placeholder="e.g., serum creatine plasma">
+        </div>
+        <div class="filters-container">
+            <div class="filters-header">Rank Filters <span class="recommended">Recommended</span></div>
+            <div class="search-options">
+                <input type="checkbox" id="orderRankFilter" checked>
+                <label for="orderRankFilter">Only show Common Order Rank ≤ 300 (hide rank 0)</label>
+            </div>
+            <div class="search-options">
+                <input type="checkbox" id="testRankFilter" checked>
+                <label for="testRankFilter">Only show Common Test Rank ≤ 3000 (hide rank 0)</label>
+            </div>
+            <div class="filter-note">
+                Note: When both filters are disabled, search requires more specific terms
+            </div>
+        </div>
+        <div class="search-buttons">
+            <button onclick="search()">Search</button>
+            <button id="analyzeBtn" onclick="analyze()" disabled>請萬達人解釋搜尋結果</button>
+            <button onclick="resetAll()" class="reset-button">Reset All</button>
+        </div>
+    </div>
+    <div id="aiAnalysis" class="ai-analysis" style="display: none;">
+        <div class="ai-header">
+            <h3>AI Mapping Suggestions</h3>
+            <button class="close-btn" onclick="document.getElementById('aiAnalysis').style.display = 'none'">×</button>
+        </div>
+        <div id="aiContent" class="ai-content">
+            <div class="loading">Analyzing results with AI...</div>
+        </div>
+        <div id="aiConversation" class="ai-conversation" style="display: none;">
+            <div class="conversation-history" id="conversationHistory"></div>
+            <div class="conversation-input">
+                <textarea id="followupQuestion" placeholder="請輸入您的後續問題..." rows="2"></textarea>
+                <button id="askFollowupBtn" onclick="askFollowupQuestion()">送出問題</button>
+            </div>
+        </div>
+    </div>
+    <div id="results"></div>
+
+    <footer style="text-align:center;color:#888;font-size:1em;margin-top:40px;margin-bottom:10px;">
+        由台灣醫學資訊學會 (TAMI) 維護 - 林明錦 (Mark Lin2)
+    </footer>
+
+    <script>
+        let currentSearchResults = [];
+        let currentAnalysis = "";
+        let currentSearchTerms = "";
+        let currentMustHaveTerms = "";
+        
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+        
+        // Function to populate form from URL parameters
+        function populateFormFromUrl() {
+            console.log('populateFormFromUrl called');
+            const searchTerms = getUrlParameter('searchTerms');
+            const mustHaveTerms = getUrlParameter('mustHaveTerms');
+            const rankFilter1 = getUrlParameter('rankFilter1');
+            const rankFilter2 = getUrlParameter('rankFilter2');
+            
+            console.log('URL parameters:', { searchTerms, mustHaveTerms, rankFilter1, rankFilter2 });
+            
+            if (searchTerms) {
+                // Use a safer decoding approach that handles malformed URIs
+                let decodedTerms;
+                try {
+                    decodedTerms = decodeURIComponent(searchTerms);
+                } catch (e) {
+                    console.log('decodeURIComponent failed, using raw value:', e.message);
+                    decodedTerms = searchTerms;
+                }
+                console.log('Setting field1 to:', decodedTerms);
+                document.getElementById('field1').value = decodedTerms;
+            }
+            
+            if (mustHaveTerms) {
+                // Use a safer decoding approach that handles malformed URIs
+                let decodedMustHave;
+                try {
+                    decodedMustHave = decodeURIComponent(mustHaveTerms);
+                } catch (e) {
+                    console.log('decodeURIComponent failed, using raw value:', e.message);
+                    decodedMustHave = mustHaveTerms;
+                }
+                console.log('Setting field2 to:', decodedMustHave);
+                document.getElementById('field2').value = decodedMustHave;
+            }
+            
+            if (rankFilter1 !== null) {
+                console.log('Setting orderRankFilter to:', rankFilter1 === 'true');
+                document.getElementById('orderRankFilter').checked = rankFilter1 === 'true';
+            }
+            
+            if (rankFilter2 !== null) {
+                console.log('Setting testRankFilter to:', rankFilter2 === 'true');
+                document.getElementById('testRankFilter').checked = rankFilter2 === 'true';
+            }
+        }
+        
+        // Initialize form with URL parameters when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOMContentLoaded event fired');
+            populateFormFromUrl();
+        });
+        
+        // Also try to populate immediately if DOM is already loaded
+        if (document.readyState === 'loading') {
+            console.log('Document still loading, waiting for DOMContentLoaded');
+        } else {
+            console.log('Document already loaded, populating immediately');
+            populateFormFromUrl();
+        }
+        
+        // Reset all fields and results
+        function resetAll() {
+            // Clear input fields
+            document.getElementById('field1').value = '';
+            document.getElementById('field2').value = '';
+            
+            // Reset checkboxes to default (checked)
+            document.getElementById('orderRankFilter').checked = true;
+            document.getElementById('testRankFilter').checked = true;
+            
+            // Clear suggestion list
+            const suggestionList = document.getElementById('suggestionList');
+            suggestionList.innerHTML = '';
+            suggestionList.style.display = 'none';
+            
+            // Hide AI analysis
+            document.getElementById('aiAnalysis').style.display = 'none';
+            
+            // Clear results
+            document.getElementById('results').innerHTML = '';
+            
+            // Clear conversation history
+            document.getElementById('conversationHistory').innerHTML = '';
+            
+            // Clear followup question input
+            document.getElementById('followupQuestion').value = '';
+            
+            // Reset global variables
+            currentSearchResults = [];
+            currentAnalysis = "";
+            currentSearchTerms = "";
+            currentMustHaveTerms = "";
+            
+            // Disable analyze button
+            document.getElementById('analyzeBtn').disabled = true;
+            
+            console.log('All fields and results have been reset');
+        }
+        
+        // 處理單複數轉換
+        function normalizeTerm(term) {
+            // 移除尾部的 's' 或 'es'，用於處理簡單的英文單複數形式
+            // 例如: LYMPHOCYTES -> LYMPHOCYTE, VIRUSES -> VIRUS
+            if (term.endsWith('ies')) {
+                return term.substring(0, term.length - 3) + 'y';
+            } else if (term.endsWith('es')) {
+                return term.substring(0, term.length - 2);
+            } else if (term.endsWith('s') && !term.endsWith('ss')) {
+                return term.substring(0, term.length - 1);
+            }
+            return term;
+        }
+        
+        // Process search terms to handle compound terms like "HIV 1", "Hepatitis B", etc.
+        function processSearchTerms(rawInput) {
+            // Replace commas with spaces
+            const rawText = rawInput.replace(/,/g, ' ');
+            
+            // Common patterns to treat as compound terms
+            const patterns = [
+                /HIV\s+[0-9]/gi,            // HIV 1, HIV 2
+                /Hepatitis\s+[A-Z]/gi,      // Hepatitis A, Hepatitis B
+                /Type\s+[0-9A-Z]/gi,        // Type 1, Type A
+                /Grade\s+[0-9]/gi,          // Grade 1, Grade 2
+                /Class\s+[0-9A-Z]/gi,       // Class 1, Class A
+                /Group\s+[0-9A-Z]/gi,       // Group A, Group 1
+                /Stage\s+[0-9A-Z]/gi,       // Stage 1, Stage IV
+                /Phase\s+[0-9]/gi,          // Phase 1, Phase 2
+                /Level\s+[0-9]/gi,          // Level 1, Level 2
+                /Factor\s+[0-9A-Z]/gi       // Factor V, Factor 8
+            ];
+            
+            // Find all compound terms
+            let compoundTerms = [];
+            patterns.forEach(pattern => {
+                const matches = rawText.match(pattern);
+                if (matches) {
+                    compoundTerms = compoundTerms.concat(matches);
+                }
+            });
+            
+            // First split by compound terms to preserve them
+            let processedText = rawText;
+            compoundTerms.forEach((term, index) => {
+                // Replace compound term with a placeholder
+                processedText = processedText.replace(term, `__COMPOUND_${index}__`);
+            });
+            
+            // Split into individual terms
+            let terms = processedText.split(/\s+/).filter(term => term.length > 0);
+            
+            // Replace placeholders with compound terms
+            terms = terms.map(term => {
+                if (term.startsWith('__COMPOUND_')) {
+                    const index = parseInt(term.match(/__COMPOUND_(\d+)__/)[1]);
+                    return compoundTerms[index];
+                }
+                return term;
+            });
+            
+            // Filter out single-character terms that aren't part of compound terms
+            terms = terms.filter(term => term.length > 1 || compoundTerms.includes(term));
+            
+            return terms;
+        }
+        
+        async function translateInput() {
+            const userInput = document.getElementById('field1').value;
+            
+            if (!userInput || userInput.trim() === '') {
+                alert('請輸入要轉換的內容');
+                return;
+            }
+            
+            document.getElementById('translateLoading').style.display = 'inline';
+            
+            try {
+                const response = await fetch('/api/translate-input', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ userInput: userInput })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    alert('Translation error: ' + data.error);
+                } else {
+                    // Update the search field with the translated terms
+                    document.getElementById('field1').value = data.translatedTerms.join(' ');
+                    
+                    // If there are multiple terms, show them in the suggestion list
+                    if (data.translatedTerms.length > 1) {
+                        const suggestionList = document.getElementById('suggestionList');
+                        suggestionList.innerHTML = '';
+                        
+                        data.translatedTerms.forEach(term => {
+                            const div = document.createElement('div');
+                            div.className = 'suggestion-item';
+                            div.textContent = term;
+                            div.onclick = function() {
+                                document.getElementById('field1').value = term;
+                                suggestionList.style.display = 'none';
+                            };
+                            suggestionList.appendChild(div);
+                        });
+                        
+                        suggestionList.style.display = 'block';
+                    }
+                }
+            } catch (error) {
+                console.error('Translation error:', error);
+                alert('Translation failed: ' + error.message);
+            } finally {
+                document.getElementById('translateLoading').style.display = 'none';
+            }
+        }
+        
+        async function search() {
+            // 獲取並預處理輸入，移除逗號
+            const rawField1 = document.getElementById('field1').value;
+            const rawField2 = document.getElementById('field2').value;
+            
+            // Check if field1 is a LOINC code (format: numbers-numbers)
+            const loincCodePattern = /^\d+-\d+$/;
+            const isLoincCode = loincCodePattern.test(rawField1.trim());
+            
+            if (isLoincCode) {
+                console.log(`Detected LOINC code: ${rawField1.trim()}`);
+                // 直接使用 direct-loinc API 進行搜索
+                const loincCode = rawField1.trim();
+                
+                // 清除先前的分析
+                currentAnalysis = "";
+                document.getElementById('analyzeBtn').disabled = true;
+                
+                // 顯示搜索指示器
+                const resultsDiv = document.getElementById('results');
+                resultsDiv.innerHTML = '<div class="searching">Searching for LOINC code: ' + loincCode + '...</div>';
+                
+                try {
+                    const response = await fetch('/api/direct-loinc', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ loincCode: loincCode })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (!data.results || data.results.length === 0) {
+                        resultsDiv.innerHTML = `<div class="no-results">No results found for LOINC code: ${loincCode}</div>`;
+                        return;
+                    }
+                    
+                    // 保存搜索詞以供後續 AI 分析使用
+                    currentSearchTerms = loincCode;
+                    currentMustHaveTerms = "";
+                    
+                    // Generate a unique session ID for direct LOINC searches
+                    const directSessionId = 'direct-' + Date.now();
+                    
+                    // 保存結果以供 AI 分析，並添加 sessionId
+                    currentSearchResults = data.results.map(result => ({
+                        ...result,
+                        sessionId: directSessionId // Add sessionId to each result
+                    }));
+                    
+                    // 啟用分析按鈕
+                    document.getElementById('analyzeBtn').disabled = false;
+                    
+                    // 顯示結果
+                    displayResults(data.results);
+                } catch (error) {
+                    resultsDiv.innerHTML = '<div class="error">An error occurred while searching</div>';
+                    console.error('Search error:', error);
+                }
+                return;
+            }
+            
+            // Process search terms using the new function
+            let field1Terms = processSearchTerms(rawField1);
+            let field2Terms = processSearchTerms(rawField2);
+            
+            // Check if we have valid search terms
+            if (field1Terms.length === 0) {
+                alert('Please provide search terms with at least 2 characters');
+                return;
+            }
+            
+            // 增強搜索詞以包含可能的單複數形式
+            field1Terms = field1Terms.map(term => {
+                // 返回原始詞和標準化詞
+                return normalizeTerm(term);
+            });
+            
+            // Handle plurals for must-have terms
+            field2Terms = field2Terms.map(term => {
+                return normalizeTerm(term);
+            });
+            
+            // 重新組合搜索詞
+            const field1 = field1Terms.join(' ');
+            const field2 = field2Terms.join(' ');
+            
+            const orderRankFilter = document.getElementById('orderRankFilter').checked;
+            const testRankFilter = document.getElementById('testRankFilter').checked;
+            
+            // Check if both filters are off and search term is too generic
+            if (!orderRankFilter && !testRankFilter && field1Terms.length < 2 && field1Terms[0].length < 4) {
+                alert('With no filters applied, please use more specific search terms or apply rank filters');
+                return;
+            }
+            
+            // Save search terms for later use in AI analysis
+            currentSearchTerms = rawField1;
+            currentMustHaveTerms = rawField2;
+            
+            // Clear previous analysis
+            currentAnalysis = "";
+            document.getElementById('analyzeBtn').disabled = true;
+            
+            // Show searching indicator
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<div class="searching">Searching...</div>';
+            
+            try {
+                const response = await fetch('/api/search', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        field1: field1,
+                        field2: field2,
+                        useOrderRankFilter: orderRankFilter,
+                        useTestRankFilter: testRankFilter
+                    })
+                });
+                
+                const data = await response.json();
+
+                if (data.error) {
+                    resultsDiv.innerHTML = `<div class="error">${data.error}</div>`;
+                    return;
+                }
+
+                if (!data.results || data.results.length === 0) {
+                    if (data.message) {
+                        resultsDiv.innerHTML = `<div class="error" style="color:#d9534f;background:#fff3cd;border:1px solid #ffeeba;padding:16px;border-radius:8px;margin:20px 0;">${data.message}</div>`;
+                    } else {
+                        resultsDiv.innerHTML = '<div class="no-results">No results found</div>';
+                    }
+                    return;
+                }
+
+                // 存儲結果以供 AI 分析，並添加 sessionId
+                currentSearchResults = data.results.map(result => ({
+                    ...result,
+                    sessionId: data.sessionId // Add sessionId to each result
+                }));
+                
+                // 如果有結果則啟用分析按鈕
+                document.getElementById('analyzeBtn').disabled = false;
+
+                // 顯示結果
+                displayResults(data.results);
+            } catch (error) {
+                resultsDiv.innerHTML = '<div class="error">An error occurred while searching</div>';
+                console.error('Search error:', error);
+            }
+        }
+
+        async function analyze() {
+            if (!currentSearchResults || currentSearchResults.length === 0) {
+                alert('Please perform a search first');
+                return;
+            }
+
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            analyzeBtn.disabled = true;
+            analyzeBtn.textContent = 'Analyzing...';
+
+            try {
+                // Get the sessionId from the first result or generate a fallback one if missing
+                let sessionId = currentSearchResults[0]?.sessionId;
+                
+                // If sessionId is missing, generate a temporary one
+                if (!sessionId) {
+                    sessionId = 'temp-' + Date.now();
+                    console.log('Using generated sessionId:', sessionId);
+                    
+                    // Add sessionId to all results to ensure consistency
+                    currentSearchResults = currentSearchResults.map(result => ({
+                        ...result,
+                        sessionId: sessionId
+                    }));
+                }
+                
+                const response = fetch('/api/analyze', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        sessionId: sessionId,
+                        results: currentSearchResults,
+                        searchTerms: currentSearchTerms,
+                        mustHaveTerms: currentMustHaveTerms
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        throw new Error(data.error);
+                    }
+
+                    // Store the analysis
+                    currentAnalysis = data.summary;
+
+                    // Display the analysis
+                    const aiAnalysis = document.getElementById('aiAnalysis');
+                    const aiContent = document.getElementById('aiContent');
+                    
+                    // Show the AI analysis section
+                    aiAnalysis.style.display = 'block';
+                    
+                    // Update the content with proper table styling
+                    aiContent.innerHTML = `
+                        <div class="ai-explanation">${data.summary}</div>
+                    `;
+
+                    // Apply table styling after adding to DOM
+                    const tables = aiContent.querySelectorAll('table');
+                    tables.forEach(table => {
+                        if (!table.classList.contains('ai-table')) {
+                            table.classList.add('ai-table');
+                            if (!table.hasAttribute('border')) {
+                                table.setAttribute('border', '1');
+                            }
+                            if (!table.hasAttribute('cellspacing')) {
+                                table.setAttribute('cellspacing', '0');
+                            }
+                            if (!table.hasAttribute('cellpadding')) {
+                                table.setAttribute('cellpadding', '8');
+                            }
+                        }
+                        
+                        // Add classes to table elements
+                        table.querySelectorAll('tr').forEach(tr => {
+                            tr.classList.add('ai-tr');
+                        });
+                        
+                        table.querySelectorAll('th').forEach(th => {
+                            th.classList.add('ai-th');
+                        });
+                        
+                        table.querySelectorAll('td').forEach(td => {
+                            td.classList.add('ai-td');
+                        });
+                    });
+
+                    // Show the conversation section
+                    document.getElementById('aiConversation').style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Analysis error:', error);
+                    alert('Error during analysis: ' + error.message);
+                })
+                .finally(() => {
+                    analyzeBtn.disabled = false;
+                    analyzeBtn.textContent = '請萬達人解釋搜尋結果';
+                });
+            } catch (error) {
+                console.error('Analysis error:', error);
+                alert('Error during analysis: ' + error.message);
+                analyzeBtn.disabled = false;
+                analyzeBtn.textContent = '請萬達人解釋搜尋結果';
+            }
+        }
+
+        async function askFollowupQuestion() {
+            const question = document.getElementById('followupQuestion').value.trim();
+            
+            if (!question) {
+                alert('請輸入您的問題');
+                return;
+            }
+            
+            if (!currentSearchResults || currentSearchResults.length === 0) {
+                alert('Please perform a search first');
+                return;
+            }
+            
+            // Add the question to the conversation history
+            const historyDiv = document.getElementById('conversationHistory');
+            historyDiv.innerHTML += `
+                <div class="user-message">
+                    <strong>您的問題:</strong>
+                    <p>${question}</p>
+                </div>
+                <div class="ai-loading">AI 正在回答...</div>
+            `;
+            
+            // Clear the question input
+            document.getElementById('followupQuestion').value = '';
+            
+            // Scroll to the bottom of the conversation
+            historyDiv.scrollTop = historyDiv.scrollHeight;
+            
+            try {
+                // Get the sessionId from the first result or generate a fallback one if missing
+                let sessionId = currentSearchResults[0]?.sessionId;
+                
+                // If sessionId is missing, generate a temporary one
+                if (!sessionId) {
+                    sessionId = 'temp-' + Date.now();
+                    console.log('Using generated sessionId:', sessionId);
+                    
+                    // Add sessionId to all results to ensure consistency
+                    currentSearchResults = currentSearchResults.map(result => ({
+                        ...result,
+                        sessionId: sessionId
+                    }));
+                }
+                
+                // Send the followup question
+                const response = await fetch('/api/followup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        sessionId: sessionId,
+                        question: question,
+                        results: currentSearchResults,
+                        searchTerms: currentSearchTerms,
+                        mustHaveTerms: currentMustHaveTerms
+                    })
+                });
+                
+                const data = await response.json();
+                
+                // Remove the loading message
+                const loadingElem = historyDiv.querySelector('.ai-loading');
+                if (loadingElem) {
+                    loadingElem.remove();
+                }
+                
+                if (data.error) {
+                    historyDiv.innerHTML += `
+                        <div class="ai-message error">
+                            <p>${data.error}</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Add the AI response to the conversation history
+                historyDiv.innerHTML += `
+                    <div class="ai-message">
+                        <strong>AI 回答:</strong>
+                        <div class="ai-response">${data.answer}</div>
+                    </div>
+                `;
+                
+                // Apply table styling after adding to DOM
+                const tables = historyDiv.querySelectorAll('.ai-message:last-child table');
+                tables.forEach(table => {
+                    if (!table.classList.contains('ai-table')) {
+                        table.classList.add('ai-table');
+                        if (!table.hasAttribute('border')) {
+                            table.setAttribute('border', '1');
+                        }
+                        if (!table.hasAttribute('cellspacing')) {
+                            table.setAttribute('cellspacing', '0');
+                        }
+                        if (!table.hasAttribute('cellpadding')) {
+                            table.setAttribute('cellpadding', '8');
+                        }
+                    }
+                    
+                    // Ensure tbody exists
+                    if (!table.querySelector('tbody') && table.querySelectorAll('tr').length > 0) {
+                        const tbody = document.createElement('tbody');
+                        const rows = Array.from(table.querySelectorAll('tr'));
+                        // Only move rows that aren't in the header
+                        const bodyRows = rows.slice(1);
+                        bodyRows.forEach(row => {
+                            tbody.appendChild(row);
+                        });
+                        table.appendChild(tbody);
+                    }
+                    
+                    // Add classes to table elements
+                    table.querySelectorAll('tr').forEach(tr => {
+                        tr.classList.add('ai-tr');
+                    });
+                    
+                    table.querySelectorAll('th').forEach(th => {
+                        th.classList.add('ai-th');
+                    });
+                    
+                    table.querySelectorAll('td').forEach(td => {
+                        td.classList.add('ai-td');
+                    });
+                });
+                
+                // Scroll to the bottom of the conversation
+                historyDiv.scrollTop = historyDiv.scrollHeight;
+                
+            } catch (error) {
+                // Remove the loading message
+                const loadingElem = historyDiv.querySelector('.ai-loading');
+                if (loadingElem) {
+                    loadingElem.remove();
+                }
+                
+                historyDiv.innerHTML += `
+                    <div class="ai-message error">
+                        <p>處理您的問題時發生錯誤: ${error.message}</p>
+                    </div>
+                `;
+                console.error('Followup error:', error);
+            }
+        }
+
+        function displayAIAnalysis(aiAnalysis) {
+            if (!aiAnalysis) return;
+            const aiExplanationDiv = document.getElementById('ai-explanation');
+            
+            // Set innerHTML directly to render HTML content
+            aiExplanationDiv.innerHTML = aiAnalysis;
+            
+            // Ensure tables are displayed properly
+            const tables = aiExplanationDiv.querySelectorAll('table');
+            tables.forEach(table => {
+                if (!table.classList.contains('ai-table')) {
+                    table.classList.add('ai-table');
+                    table.setAttribute('border', '1');
+                    table.setAttribute('cellspacing', '0');
+                    table.setAttribute('cellpadding', '8');
+                }
+                
+                // Ensure tbody exists
+                if (!table.querySelector('tbody')) {
+                    const tbody = document.createElement('tbody');
+                    while (table.firstChild) {
+                        tbody.appendChild(table.firstChild);
+                    }
+                    table.appendChild(tbody);
+                }
+                
+                // Add classes to table elements
+                table.querySelectorAll('tr').forEach(tr => {
+                    tr.classList.add('ai-tr');
+                });
+                
+                table.querySelectorAll('th').forEach(th => {
+                    th.classList.add('ai-th');
+                });
+                
+                table.querySelectorAll('td').forEach(td => {
+                    td.classList.add('ai-td');
+                });
+            });
+            
+            document.getElementById('ai-section').style.display = 'block';
+        }
+
+        function displayResults(results) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = results.map(item => {
+                // Format order rank with color tags
+                let orderRankDisplay = '';
+                const orderRank = parseInt(item.commonOrderRank);
+                if (orderRank > 0 && orderRank <= 100) {
+                    orderRankDisplay = `<span class="rank-badge rank-good">${orderRank}</span>`;
+                } else if (orderRank > 100 && orderRank <= 300) {
+                    orderRankDisplay = `<span class="rank-badge rank-moderate">${orderRank}</span>`;
+                } else if (orderRank > 300) {
+                    orderRankDisplay = `<span class="rank-badge rank-poor">${orderRank}</span>`;
+                } else {
+                    orderRankDisplay = '0';
+                }
+                
+                // Format test rank with color tags
+                let testRankDisplay = '';
+                const testRank = parseInt(item.commonTestRank);
+                if (testRank > 0 && testRank <= 1000) {
+                    testRankDisplay = `<span class="rank-badge rank-good">${testRank}</span>`;
+                } else if (testRank > 1000 && testRank <= 3000) {
+                    testRankDisplay = `<span class="rank-badge rank-moderate">${testRank}</span>`;
+                } else if (testRank > 3000) {
+                    testRankDisplay = `<span class="rank-badge rank-poor">${testRank}</span>`;
+                } else {
+                    testRankDisplay = '0';
+                }
+                
+                return `
+                <div class="result-item">
+                    <div class="result-header">
+                        <span class="loinc-code">${item.loincNum}</span>
+                        <span class="similarity-score">${item.similarityScore.toFixed(2)}% match</span>
+                    </div>
+                    <div class="result-content">
+                        <div class="result-field">
+                            <div class="field-label">Component</div>
+                            <div class="field-value">${item.component}</div>
+                        </div>
+                        <div class="result-field">
+                            <div class="field-label">Related Names</div>
+                            <div class="field-value">${item.relatedNames2}</div>
+                        </div>
+                        <div class="result-field">
+                            <div class="field-label">Common Test Rank</div>
+                            <div class="field-value">${testRankDisplay}</div>
+                        </div>
+                        <div class="result-field">
+                            <div class="field-label">Common Order Rank</div>
+                            <div class="field-value">${orderRankDisplay}</div>
+                        </div>
+                        <div class="result-field">
+                            <div class="field-label">Long Common Name</div>
+                            <div class="field-value">${item.longCommonName}</div>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+        
+        // Final initialization - ensure this runs after everything is loaded
+        window.addEventListener('load', function() {
+            console.log('Window load event fired');
+            populateFormFromUrl();
+        });
+        
+        // Also try one more time after a short delay
+        setTimeout(function() {
+            console.log('Timeout initialization');
+            populateFormFromUrl();
+        }, 100);
+        
+        // Debug function to test URL parameters
+        function debugUrlParams() {
+            console.log('=== DEBUG URL PARAMETERS ===');
+            console.log('Current URL:', window.location.href);
+            console.log('Search params:', window.location.search);
+            
+            const searchTerms = getUrlParameter('searchTerms');
+            const mustHaveTerms = getUrlParameter('mustHaveTerms');
+            const rankFilter1 = getUrlParameter('rankFilter1');
+            const rankFilter2 = getUrlParameter('rankFilter2');
+            
+            console.log('Parsed parameters:', {
+                searchTerms,
+                mustHaveTerms,
+                rankFilter1,
+                rankFilter2
+            });
+            
+            if (searchTerms) {
+                console.log('Decoded searchTerms:', decodeURIComponent(searchTerms));
+            }
+            
+            console.log('Field1 value:', document.getElementById('field1').value);
+            console.log('Field2 value:', document.getElementById('field2').value);
+            console.log('OrderRankFilter checked:', document.getElementById('orderRankFilter').checked);
+            console.log('TestRankFilter checked:', document.getElementById('testRankFilter').checked);
+            
+            // Try to populate again
+            populateFormFromUrl();
+        }
+    </script>
+</body>
+</html>

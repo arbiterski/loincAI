@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOINC Search History</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/datatables@1.10.18/media/css/jquery.dataTables.min.css" rel="stylesheet">
+    <style>
+        .container { margin-top: 2rem; }
+        .stats-card { margin-bottom: 1rem; }
+        .table-responsive { margin-top: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">LOINC Search History</h1>
+        
+        <!-- Stats Cards -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card stats-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Searches</h5>
+                        <p class="card-text" id="totalSearches">Loading...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card stats-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Average Search Time</h5>
+                        <p class="card-text" id="avgSearchTime">Loading...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card stats-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Most Common Search</h5>
+                        <p class="card-text" id="mostCommonSearch">Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search History Table -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Search History</h5>
+                <div class="table-responsive">
+                    <table id="searchHistoryTable" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Search Terms</th>
+                                <th>Must Have Terms</th>
+                                <th>IP Address</th>
+                                <th>Results</th>
+                                <th>Search Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/datatables@1.10.18/media/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Initialize DataTable
+            const table = $('#searchHistoryTable').DataTable({
+                order: [[0, 'desc']], // Sort by time descending
+                pageLength: 25,
+                columns: [
+                    { data: 'created_at' },
+                    { data: 'search_terms' },
+                    { data: 'must_have_terms' },
+                    { data: 'ip_address' },
+                    { data: 'result_count' },
+                    { data: 'search_time_ms' }
+                ]
+            });
+
+            // Load search history
+            function loadSearchHistory() {
+                fetch('/api/logs')
+                    .then(response => response.json())
+                    .then(data => {
+                        table.clear();
+                        table.rows.add(data.logs);
+                        table.draw();
+                    })
+                    .catch(error => console.error('Error loading search history:', error));
+            }
+
+            // Load statistics
+            function loadStats() {
+                fetch('/api/logs/stats')
+                    .then(response => response.json())
+                    .then(data => {
+                        $('#totalSearches').text(data.totalSearches);
+                        $('#avgSearchTime').text(data.avgSearchTime + ' ms');
+                        $('#mostCommonSearch').text(data.mostCommonSearch);
+                    })
+                    .catch(error => console.error('Error loading stats:', error));
+            }
+
+            // Initial load
+            loadSearchHistory();
+            loadStats();
+
+            // Refresh data every 30 seconds
+            setInterval(() => {
+                loadSearchHistory();
+                loadStats();
+            }, 30000);
+        });
+    </script>
+</body>
+</html> 
