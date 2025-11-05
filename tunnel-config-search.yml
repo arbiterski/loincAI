@@ -1,0 +1,11 @@
+tunnel: e1fd089b-80ca-4f62-8429-e03d3fe62f4c
+credentials-file: ~/.cloudflared/e1fd089b-80ca-4f62-8429-e03d3fe62f4c.json
+
+ingress:
+  - hostname: search.loinc100.org
+    service: http://localhost:3002
+  - hostname: loinc100.org
+    service: http://localhost:7001
+  - hostname: docs.loinc100.org
+    service: http://localhost:7002
+  - service: http_status:404
