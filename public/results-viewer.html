@@ -1,0 +1,2588 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOINC 映射結果查看器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', 'PingFang TC', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .file-selector {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .file-selector h2 {
+            color: #1a73e8;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .file-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .file-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .file-list::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .file-list::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        .file-list::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .pagination-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .pagination-btn {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background: #1557b0;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+        }
+
+        .pagination-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .pagination-info {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .file-item {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .file-item:hover {
+            border-color: #1a73e8;
+            background: #e3f2fd;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(26, 115, 232, 0.2);
+        }
+
+        .file-item.selected {
+            border-color: #1a73e8;
+            background: #e3f2fd;
+        }
+
+        .file-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .file-name {
+            font-weight: bold;
+            color: #1a73e8;
+            flex-grow: 1;
+        }
+
+        .delete-btn-card {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 6px 8px;
+            border-radius: 50%;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+
+        .delete-btn-card:hover {
+            opacity: 1;
+            background: #d32f2f;
+            transform: scale(1.1);
+        }
+
+        .file-info {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: none;
+        }
+
+        .main-content.show {
+            display: block;
+        }
+
+        .content-header {
+            background: linear-gradient(135deg, #1a73e8, #4285f4);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .content-header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .content-header .timestamp {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .content-body {
+            padding: 0;
+        }
+
+        .section {
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-header {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid transparent;
+        }
+
+        .section-header:hover {
+            background: #e9ecef;
+        }
+
+        .section-header.active {
+            background: #e3f2fd;
+            border-left-color: #1a73e8;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1a73e8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            font-size: 1.5rem;
+        }
+
+        .expand-icon {
+            font-size: 1.5rem;
+            color: #666;
+            transition: transform 0.3s ease;
+        }
+
+        .expand-icon.expanded {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .section-content.expanded {
+            max-height: none;
+            padding: 30px;
+        }
+
+        .input-variables {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .variables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .variable-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #4caf50;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .variable-label {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .variable-value {
+            color: #333;
+            font-size: 1.1rem;
+            word-break: break-word;
+        }
+
+        .search-info {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .search-terms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .search-term {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2196f3;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .search-term-label {
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 8px;
+        }
+
+        .search-term-value {
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .loinc-results {
+            margin-bottom: 20px;
+        }
+
+        .loinc-card {
+            background: linear-gradient(135deg, #fff3e0, #ffcc02);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #ff9800;
+            box-shadow: 0 4px 12px rgba(255, 152, 0, 0.2);
+        }
+
+        .loinc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .loinc-code {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e65100;
+        }
+
+        .similarity-score {
+            background: #e65100;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .loinc-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .loinc-detail {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+        }
+
+        .loinc-detail-label {
+            font-weight: bold;
+            color: #e65100;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .loinc-detail-value {
+            color: #333;
+            line-height: 1.4;
+        }
+
+        /* 備註區域樣式 */
+        .notes-section {
+            margin-top: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            overflow: hidden;
+        }
+
+        .notes-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-bottom: 1px solid #e0e0e0;
+            cursor: pointer;
+        }
+
+        .notes-label {
+            font-weight: 600;
+            color: #495057;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .notes-toggle {
+            background: none;
+            border: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .notes-toggle:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .notes-content {
+            padding: 15px;
+            display: block;
+        }
+
+        .notes-content.collapsed {
+            display: none;
+        }
+
+        .notes-textarea {
+            width: 100%;
+            min-height: 80px;
+            max-height: 200px;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            resize: vertical;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .notes-textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+
+        .notes-textarea.modified {
+            border-color: #ffc107;
+            background-color: #fffbf0;
+        }
+
+        .notes-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .notes-status {
+            font-size: 0.85rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: #f8f9fa;
+            color: #6c757d;
+        }
+
+        .notes-status.saved {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .notes-status.modified {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .notes-timestamp {
+            font-size: 0.8rem;
+            color: #868e96;
+        }
+
+        /* 檔案備註區域樣式 */
+        .file-notes-section {
+            margin-top: 20px;
+            background: rgba(255, 248, 240, 0.8);
+            border-radius: 8px;
+            border: 1px solid #ffd54f;
+            overflow: hidden;
+        }
+
+        .file-notes-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background: linear-gradient(135deg, #fff8e1, #ffecb3);
+            border-bottom: 1px solid #ffd54f;
+            cursor: pointer;
+        }
+
+        .file-notes-label {
+            font-weight: 600;
+            color: #f57c00;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .file-notes-toggle {
+            background: none;
+            border: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+            color: #f57c00;
+        }
+
+        .file-notes-toggle:hover {
+            background: rgba(245, 124, 0, 0.1);
+        }
+
+        .file-notes-content {
+            padding: 15px;
+            display: block;
+        }
+
+        .file-notes-content.collapsed {
+            display: none;
+        }
+
+        .file-notes-textarea {
+            width: 100%;
+            min-height: 100px;
+            max-height: 300px;
+            padding: 12px;
+            border: 1px solid #ffcc02;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            resize: vertical;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background: #fffef7;
+        }
+
+        .file-notes-textarea:focus {
+            outline: none;
+            border-color: #ff9800;
+            box-shadow: 0 0 0 2px rgba(255, 152, 0, 0.25);
+        }
+
+        .file-notes-textarea.modified {
+            border-color: #ff5722;
+            background-color: #fff3e0;
+        }
+
+        .file-notes-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #ffecb3;
+        }
+
+        .file-notes-status {
+            font-size: 0.85rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: #fff8e1;
+            color: #e65100;
+        }
+
+        .file-notes-status.saved {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .file-notes-status.modified {
+            background: #fff3e0;
+            color: #d84315;
+        }
+
+        .file-notes-timestamp {
+            font-size: 0.8rem;
+            color: #bf360c;
+        }
+
+        .ai-analysis {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-radius: 10px;
+            padding: 25px;
+            line-height: 1.6;
+        }
+
+        .ai-analysis h2, .ai-analysis h3 {
+            color: #7b1fa2;
+            margin-bottom: 15px;
+        }
+
+        .ai-analysis h2 {
+            font-size: 1.5rem;
+            border-bottom: 2px solid #7b1fa2;
+            padding-bottom: 10px;
+        }
+
+        .ai-analysis h3 {
+            font-size: 1.2rem;
+            margin-top: 25px;
+        }
+
+        .ai-analysis p {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .ai-analysis ul, .ai-analysis ol {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+
+        .ai-analysis li {
+            margin-bottom: 8px;
+        }
+
+        .ai-analysis table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .ai-analysis th, .ai-analysis td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .ai-analysis th {
+            background: #7b1fa2;
+            color: white;
+            font-weight: bold;
+        }
+
+        .ai-analysis tr:hover {
+            background: #f5f5f5;
+        }
+
+        .conversation-history {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .conversation-message {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            line-height: 1.5;
+        }
+
+        .user-message {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+        }
+
+        .ai-message {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+
+        .export-btn {
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .export-btn.secondary {
+            background: linear-gradient(135deg, #2196f3, #42a5f5);
+        }
+
+        .export-btn.secondary:hover {
+            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.4);
+        }
+
+        .ask-stan-btn {
+            background: linear-gradient(135deg, #9c27b0, #ba68c8);
+        }
+
+        .ask-stan-btn:hover {
+            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.4);
+        }
+
+        .ask-stan-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #f44336;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .variables-grid,
+            .search-terms,
+            .loinc-details {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                padding: 15px 20px;
+            }
+
+            /* 備註區域響應式樣式 */
+            .notes-section {
+                margin-top: 10px;
+            }
+
+            .notes-header {
+                padding: 10px 12px;
+            }
+
+            .notes-label {
+                font-size: 0.9rem;
+            }
+
+            .notes-textarea {
+                min-height: 60px;
+                font-size: 0.85rem;
+                padding: 10px;
+            }
+
+            .notes-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+
+            .notes-status,
+            .notes-timestamp {
+                font-size: 0.8rem;
+            }
+
+            .section-content.expanded {
+                padding: 20px;
+            }
+
+            .export-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .metadata-info {
+            background: linear-gradient(135deg, #fff8e1, #ffecb3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffc107;
+        }
+
+        .metadata-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .metadata-item {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+        }
+
+        .metadata-label {
+            font-weight: bold;
+            color: #f57c00;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .metadata-value {
+            color: #333;
+        }
+
+        /* 檔案控制樣式 */
+        .file-controls {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .control-group label {
+            font-weight: bold;
+            color: #1a73e8;
+            font-size: 0.9rem;
+        }
+
+        .control-group select,
+        .control-group input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            min-width: 150px;
+        }
+
+        .control-group select:focus,
+        .control-group input:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+        }
+
+        .refresh-btn {
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(76, 175, 80, 0.4);
+            background: linear-gradient(135deg, #45a049, #5cb85c);
+        }
+
+        .refresh-btn:active {
+            transform: translateY(0);
+        }
+
+        .refresh-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        /* 表格檢視樣式 */
+        .file-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .file-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .file-table th {
+            background: linear-gradient(135deg, #1a73e8, #4285f4);
+            color: white;
+            padding: 15px 12px;
+            text-align: left;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .file-table th:hover {
+            background: linear-gradient(135deg, #1557b0, #3367d6);
+        }
+
+        .file-table .sort-icon {
+            margin-left: 5px;
+            font-size: 0.8rem;
+        }
+
+        .file-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: middle;
+        }
+
+        .file-table tbody tr {
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .file-table tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .file-table tbody tr.selected {
+            background-color: #e3f2fd;
+        }
+
+        .table-filename {
+            font-weight: bold;
+            color: #1a73e8;
+        }
+
+        .table-search-terms {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .table-rank {
+            text-align: center;
+            font-weight: bold;
+            color: #ff9800;
+        }
+
+        .table-local-id {
+            font-family: monospace;
+            color: #1a73e8;
+            font-weight: bold;
+        }
+
+        .table-local-code {
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #2e7d32;
+            font-weight: bold;
+        }
+
+        .table-loinc-codes {
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-family: monospace;
+            color: #d32f2f;
+            font-weight: bold;
+        }
+
+        .table-institution {
+            font-weight: bold;
+            color: #673ab7;
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .table-timestamp {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .table-file-notes {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .table-file-notes:hover {
+            white-space: normal;
+            word-wrap: break-word;
+        }
+
+        .table-actions {
+            text-align: center;
+        }
+
+        .view-btn {
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(76, 175, 80, 0.4);
+        }
+
+        .delete-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 6px 8px;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 8px;
+        }
+
+        .delete-btn:hover {
+            background: #d32f2f;
+            transform: translateY(-1px) scale(1.1);
+            box-shadow: 0 3px 8px rgba(244, 67, 54, 0.4);
+        }
+
+        .table-actions {
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .file-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .control-group {
+                width: 100%;
+            }
+
+            .control-group select,
+            .control-group input {
+                min-width: auto;
+                width: 100%;
+            }
+
+            .file-table {
+                overflow-x: auto;
+            }
+
+            .file-table table {
+                min-width: 800px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 LOINC 映射結果查看器</h1>
+            <p>查看和分析已儲存的 LOINC 映射結果</p>
+        </div>
+
+        <div class="file-selector">
+            <h2>📁 選擇要查看的結果檔案</h2>
+            
+            <!-- 排序和顯示選項 -->
+            <div class="file-controls">
+                <div class="control-group">
+                    <label for="institutionFilter">醫療機構:</label>
+                    <select id="institutionFilter" onchange="loadFileList()">
+                        <option value="all">所有機構</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="sortBy">排序依據:</label>
+                    <select id="sortBy" onchange="applyFiltersAndSort()">
+                        <option value="institution">醫療機構 (A-Z)</option>
+                        <option value="rank" selected>Rank (低到高)</option>
+                        <option value="rank-desc">Rank (高到低)</option>
+                        <option value="localId">Local ID (A-Z)</option>
+                        <option value="localCode">Local Code (A-Z)</option>
+                        <option value="loincCode">LOINC Code (A-Z)</option>
+                        <option value="searchTerms">搜尋詞語 (A-Z)</option>
+                        <option value="timestamp">建立時間 (新到舊)</option>
+                        <option value="timestamp-asc">建立時間 (舊到新)</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="viewMode">顯示模式:</label>
+                    <select id="viewMode" onchange="changeViewMode()">
+                        <option value="grid">卡片檢視</option>
+                        <option value="table" selected>表格檢視</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="filterText">篩選:</label>
+                    <input type="text" id="filterText" placeholder="搜尋檔案..." onkeyup="applyFiltersAndSort()">
+                </div>
+                
+                <div class="control-group">
+                    <label>&nbsp;</label>
+                    <button id="refreshBtn" class="refresh-btn" onclick="refreshFileList()" title="重新載入檔案列表">
+                        🔄 重新載入
+                    </button>
+                </div>
+            </div>
+            
+            <div id="fileList" class="file-list" style="display: none;">
+                <div class="loading">載入檔案列表中...</div>
+            </div>
+            
+            <!-- 表格檢視 -->
+            <div id="fileTable" class="file-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable('institution')">醫療機構 <span class="sort-icon">↕️</span></th>
+                            <th onclick="sortTable('rank')">Rank <span class="sort-icon">↕️</span></th>
+                            <th onclick="sortTable('localId')">Local ID <span class="sort-icon">↕️</span></th>
+                            <th onclick="sortTable('localCode')">Local Code <span class="sort-icon">↕️</span></th>
+                            <th onclick="sortTable('loincCode')">LOINC Code <span class="sort-icon">↕️</span></th>
+                            <th onclick="sortTable('searchTerms')">搜尋詞語 <span class="sort-icon">↕️</span></th>
+                            <th onclick="sortTable('fileNotes')">備註 <span class="sort-icon">↕️</span></th>
+                            <th onclick="sortTable('timestamp')">建立時間 <span class="sort-icon">↕️</span></th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="fileTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="mainContent" class="main-content">
+            <div class="content-header">
+                <h1 id="contentTitle">LOINC 映射結果</h1>
+                <div id="contentTimestamp" class="timestamp"></div>
+            </div>
+
+            <div class="content-body">
+                <!-- 輸入變數區段 -->
+                <div class="section">
+                    <div class="section-header active" onclick="toggleSection(this, 'inputVariables')">
+                        <div class="section-title">
+                            <span class="section-icon">📋</span>
+                            輸入變數總覽
+                        </div>
+                        <span class="expand-icon expanded">▼</span>
+                    </div>
+                    <div id="inputVariables" class="section-content expanded">
+                        <!-- 動態內容將在這裡生成 -->
+                    </div>
+                </div>
+
+                <!-- 搜尋資訊區段 -->
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection(this, 'searchInfo')">
+                        <div class="section-title">
+                            <span class="section-icon">🔍</span>
+                            搜尋條件
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div id="searchInfo" class="section-content">
+                        <!-- 動態內容將在這裡生成 -->
+                    </div>
+                </div>
+
+                <!-- 選擇的 LOINC 代碼區段 -->
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection(this, 'loincResults')">
+                        <div class="section-title">
+                            <span class="section-icon">🎯</span>
+                            選擇的 LOINC 代碼
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div id="loincResults" class="section-content">
+                        <!-- 動態內容將在這裡生成 -->
+                    </div>
+                </div>
+
+                <!-- AI 分析結果區段 -->
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection(this, 'aiAnalysis')">
+                        <div class="section-title">
+                            <span class="section-icon">🤖</span>
+                            AI 分析結果
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div id="aiAnalysis" class="section-content">
+                        <!-- 動態內容將在這裡生成 -->
+                    </div>
+                </div>
+
+                <!-- 對話歷史區段 -->
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection(this, 'conversationHistory')">
+                        <div class="section-title">
+                            <span class="section-icon">💬</span>
+                            AI 對話歷史
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div id="conversationHistory" class="section-content">
+                        <!-- 動態內容將在這裡生成 -->
+                    </div>
+                </div>
+
+                <!-- 檔案資訊區段 -->
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection(this, 'metadataInfo')">
+                        <div class="section-title">
+                            <span class="section-icon">ℹ️</span>
+                            檔案資訊 📝
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div id="metadataInfo" class="section-content">
+                        <!-- 動態內容將在這裡生成 -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="export-buttons">
+                <button class="export-btn" onclick="exportToJson()">
+                    📄 導出為 JSON
+                </button>
+                <button class="export-btn secondary" onclick="exportToPdf()">
+                    📑 導出為 PDF
+                </button>
+                <button class="export-btn secondary" onclick="printReport()">
+                    🖨️ 列印報告
+                </button>
+                <button class="export-btn ask-stan-btn" onclick="askStan()" id="askStanBtn" disabled>
+                    🤖 Ask Stan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentData = null;
+        let fileList = [];
+        let filteredFileList = [];
+        let currentSortField = 'rank';
+        let currentSortDirection = 'asc';
+
+        // 載入檔案列表
+        async function loadFileList() {
+            try {
+                const institutionFilter = document.getElementById('institutionFilter').value;
+                const queryParam = institutionFilter === 'all' ? '' : `?institution=${encodeURIComponent(institutionFilter)}`;
+                
+                const response = await fetch(`/api/get-saved-mappings${queryParam}`);
+                const data = await response.json();
+                
+                if (data.success && data.files) {
+                    fileList = data.files;
+                    filteredFileList = [...fileList];
+                    
+                    // 更新機構選擇器
+                    updateInstitutionFilter(data.institutions, data.currentInstitution);
+                    
+                    applyFiltersAndSort();
+                } else {
+                    document.getElementById('fileList').innerHTML = 
+                        '<div class="error">無法載入檔案列表: ' + (data.error || '未知錯誤') + '</div>';
+                }
+            } catch (error) {
+                console.error('載入檔案列表失敗:', error);
+                document.getElementById('fileList').innerHTML = 
+                    '<div class="error">載入檔案列表失敗: ' + error.message + '</div>';
+            }
+        }
+
+        // 重新載入檔案列表
+        async function refreshFileList() {
+            const refreshBtn = document.getElementById('refreshBtn');
+            const originalText = refreshBtn.textContent;
+            
+            try {
+                // 顯示載入狀態
+                refreshBtn.disabled = true;
+                refreshBtn.textContent = '🔄 載入中...';
+                
+                // 重新載入檔案列表
+                await loadFileList();
+                
+                // 顯示成功狀態
+                refreshBtn.textContent = '✅ 已更新';
+                setTimeout(() => {
+                    refreshBtn.textContent = originalText;
+                    refreshBtn.disabled = false;
+                }, 1500);
+                
+            } catch (error) {
+                console.error('重新載入失敗:', error);
+                refreshBtn.textContent = '❌ 失敗';
+                setTimeout(() => {
+                    refreshBtn.textContent = originalText;
+                    refreshBtn.disabled = false;
+                }, 2000);
+            }
+        }
+        
+        // 更新機構篩選器
+        function updateInstitutionFilter(institutions, currentInstitution) {
+            const select = document.getElementById('institutionFilter');
+            const currentValue = select.value;
+            
+            // 清除現有選項（除了"所有機構"）
+            while (select.children.length > 1) {
+                select.removeChild(select.lastChild);
+            }
+            
+            // 添加機構選項
+            institutions.forEach(institution => {
+                const option = document.createElement('option');
+                option.value = institution;
+                option.textContent = institution;
+                select.appendChild(option);
+            });
+            
+            // 設置當前選中的值
+            if (currentValue && institutions.includes(currentValue)) {
+                select.value = currentValue;
+            } else if (currentInstitution && currentInstitution !== 'all') {
+                select.value = currentInstitution;
+            }
+        }
+
+        // 篩選和排序函數
+        function applyFiltersAndSort() {
+            const filterText = document.getElementById('filterText').value.toLowerCase();
+            const sortBy = document.getElementById('sortBy').value;
+            
+            // 篩選檔案
+            filteredFileList = fileList.filter(file => {
+                if (!filterText) return true;
+                
+                const searchable = [
+                    file.filename,
+                    file.searchTerms || '',
+                    file.selectedLoincCodes?.join(' ') || ''
+                ].join(' ').toLowerCase();
+                
+                return searchable.includes(filterText);
+            });
+            
+            // 排序檔案
+            sortFileList(sortBy);
+            
+            // 顯示結果
+            const viewMode = document.getElementById('viewMode').value;
+            if (viewMode === 'table') {
+                displayFileTable(filteredFileList);
+            } else {
+                displayFileList(filteredFileList);
+            }
+        }
+        
+        // 排序函數
+        function sortFileList(sortBy) {
+            filteredFileList.sort((a, b) => {
+                let valueA, valueB;
+                
+                switch(sortBy) {
+                    case 'institution':
+                        valueA = (a.institution || '').toLowerCase();
+                        valueB = (b.institution || '').toLowerCase();
+                        return valueA.localeCompare(valueB);
+                    case 'rank':
+                        valueA = parseInt(a.rank) || 999999;
+                        valueB = parseInt(b.rank) || 999999;
+                        return valueA - valueB; // 低到高
+                    case 'rank-desc':
+                        valueA = parseInt(a.rank) || 999999;
+                        valueB = parseInt(b.rank) || 999999;
+                        return valueB - valueA; // 高到低
+                    case 'localId':
+                        valueA = (a.localId || '').toLowerCase();
+                        valueB = (b.localId || '').toLowerCase();
+                        return valueA.localeCompare(valueB);
+                    case 'localCode':
+                        valueA = (a.localCode || '').toLowerCase();
+                        valueB = (b.localCode || '').toLowerCase();
+                        return valueA.localeCompare(valueB);
+                    case 'loincCode':
+                        valueA = (a.loincCodes || '').toLowerCase();
+                        valueB = (b.loincCodes || '').toLowerCase();
+                        return valueA.localeCompare(valueB);
+                    case 'timestamp':
+                        valueA = new Date(a.timestamp);
+                        valueB = new Date(b.timestamp);
+                        return valueB - valueA; // 新到舊
+                    case 'timestamp-asc':
+                        valueA = new Date(a.timestamp);
+                        valueB = new Date(b.timestamp);
+                        return valueA - valueB; // 舊到新
+                    case 'searchTerms':
+                        valueA = (a.searchTerms || '').toLowerCase();
+                        valueB = (b.searchTerms || '').toLowerCase();
+                        return valueA.localeCompare(valueB);
+                    default:
+                        return 0;
+                }
+            });
+        }
+        
+        // 改變檢視模式
+        function changeViewMode() {
+            const viewMode = document.getElementById('viewMode').value;
+            const fileListDiv = document.getElementById('fileList');
+            const fileTableDiv = document.getElementById('fileTable');
+            const sortBy = document.getElementById('sortBy');
+            
+            if (viewMode === 'table') {
+                fileListDiv.style.display = 'none';
+                fileTableDiv.style.display = 'block';
+                // 啟用所有排序選項
+                for (let option of sortBy.options) {
+                    option.disabled = false;
+                }
+                displayFileTable(filteredFileList);
+            } else {
+                fileListDiv.style.display = 'grid';
+                fileTableDiv.style.display = 'none';
+                // 禁用 rank 排序選項（卡片檢視沒有詳細資料）
+                for (let option of sortBy.options) {
+                    if (option.value === 'rank' || option.value === 'rank-desc' || 
+                        option.value === 'localId' || option.value === 'localCode' || 
+                        option.value === 'loincCode') {
+                        option.disabled = true;
+                    } else {
+                        option.disabled = false;
+                    }
+                }
+                // 如果當前選擇的是被禁用的選項，切換到時間排序
+                if (sortBy.value === 'rank' || sortBy.value === 'rank-desc' || 
+                    sortBy.value === 'localId' || sortBy.value === 'localCode' || 
+                    sortBy.value === 'loincCode') {
+                    sortBy.value = 'timestamp';
+                    applyFiltersAndSort();
+                } else {
+                    displayFileList(filteredFileList);
+                }
+            }
+        }
+        
+        // 分頁變數
+        let currentPage = 0;
+        const itemsPerPage = 5;
+        let allFiles = [];
+
+        // 顯示檔案列表 (卡片檢視)
+        async function displayFileList(files) {
+            allFiles = files;
+            currentPage = 0;
+            const fileListDiv = document.getElementById('fileList');
+            
+            if (files.length === 0) {
+                fileListDiv.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📂</div>
+                        <h3>找不到符合條件的檔案</h3>
+                        <p>請調整篩選條件或檢查是否有已儲存的映射結果</p>
+                    </div>
+                `;
+                return;
+            }
+
+            renderFileList();
+        }
+
+        // 渲染檔案列表（分頁）
+        function renderFileList() {
+            const fileListDiv = document.getElementById('fileList');
+            const startIndex = currentPage * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const currentFiles = allFiles.slice(startIndex, endIndex);
+            
+            // 顯示當前頁面的檔案
+            fileListDiv.innerHTML = currentFiles.map(file => {
+                const date = new Date(file.timestamp).toLocaleString('zh-TW');
+                const searchTerms = file.searchTerms || '未指定';
+                const loincCount = file.selectedLoincCodes ? file.selectedLoincCodes.length : 0;
+                const fileSize = formatFileSize(file.size || 0);
+                
+                return `
+                    <div class="file-item" onclick="loadMappingData('${file.filename}')" data-filename="${file.filename}">
+                        <div class="file-item-header">
+                            <div class="file-name">${file.filename}</div>
+                            <button class="delete-btn-card" onclick="event.stopPropagation(); confirmDeleteFile('${file.filename}')" title="刪除檔案">
+                                🗑️
+                            </button>
+                        </div>
+                        <div class="file-info">
+                            <div>🏥 機構: ${file.institution || '未指定'}</div>
+                            <div>📅 ${date}</div>
+                            <div>🔍 搜尋詞: ${searchTerms}</div>
+                            <div>🎯 選擇代碼: ${loincCount} 個</div>
+                            <div>📄 檔案大小: ${fileSize}</div>
+                            <div class="file-notes-placeholder" data-filename="${file.filename}">📝 點擊查看備註</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // 添加分頁控制
+            const totalPages = Math.ceil(allFiles.length / itemsPerPage);
+            if (totalPages > 1) {
+                fileListDiv.innerHTML += `
+                    <div class="pagination-controls">
+                        <button onclick="previousPage()" ${currentPage === 0 ? 'disabled' : ''} class="pagination-btn">
+                            ← 上一頁
+                        </button>
+                        <span class="pagination-info">
+                            第 ${currentPage + 1} 頁，共 ${totalPages} 頁 (${allFiles.length} 個檔案)
+                        </span>
+                        <button onclick="nextPage()" ${currentPage >= totalPages - 1 ? 'disabled' : ''} class="pagination-btn">
+                            下一頁 →
+                        </button>
+                    </div>
+                `;
+            }
+            
+            // 備註將在點擊檔案時載入，避免性能問題
+        }
+
+        // 上一頁
+        function previousPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                // 根據當前視圖模式重新渲染
+                if (document.getElementById('fileList').style.display !== 'none') {
+                    renderFileList(); // 卡片視圖
+                } else {
+                    // 表格視圖：重新載入並排序所有檔案
+                    loadFileDetailsForTable(allFiles);
+                }
+            }
+        }
+
+        // 下一頁
+        function nextPage() {
+            const totalPages = Math.ceil(allFiles.length / itemsPerPage);
+            if (currentPage < totalPages - 1) {
+                currentPage++;
+                // 根據當前視圖模式重新渲染
+                if (document.getElementById('fileList').style.display !== 'none') {
+                    renderFileList(); // 卡片視圖
+                } else {
+                    // 表格視圖：重新載入並排序所有檔案
+                    loadFileDetailsForTable(allFiles);
+                }
+            }
+        }
+        
+        // 載入單個檔案的備註用於卡片檢視
+        async function loadFileNotesForCard(filename) {
+            try {
+                const response = await fetch(`/api/get-mapping-file/${filename}`);
+                const data = await response.json();
+                
+                if (data.success && data.data) {
+                    const fileNotes = data.data.fileNotes || '';
+                    const fileNotesPreview = fileNotes.length > 50 ? fileNotes.substring(0, 50) + '...' : fileNotes;
+                    
+                    // 更新對應卡片的備註顯示
+                    const placeholder = document.querySelector(`[data-filename="${filename}"] .file-notes-placeholder`);
+                    if (placeholder) {
+                        if (fileNotesPreview) {
+                            placeholder.innerHTML = `📝 備註: ${fileNotesPreview}`;
+                            placeholder.style.color = '';
+                        } else {
+                            placeholder.innerHTML = '📝 無備註';
+                            placeholder.style.color = '#999';
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error(`載入檔案 ${filename} 備註失敗:`, error);
+                const placeholder = document.querySelector(`[data-filename="${filename}"] .file-notes-placeholder`);
+                if (placeholder) {
+                    placeholder.innerHTML = '📝 無備註';
+                    placeholder.style.color = '#999';
+                }
+            }
+        }
+        
+        // 顯示檔案表格 (表格檢視)
+        function displayFileTable(files) {
+            const tableBody = document.getElementById('fileTableBody');
+            
+            if (files.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="8" style="text-align: center; padding: 40px; color: #666;">
+                            找不到符合條件的檔案
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            // 設置 allFiles 並重置分頁
+            allFiles = files;
+            currentPage = 0;
+            
+            // 載入檔案內容以取得詳細資訊
+            loadFileDetailsForTable(files);
+        }
+        
+        // 載入檔案詳細資訊用於表格顯示
+        async function loadFileDetailsForTable(files) {
+            const tableBody = document.getElementById('fileTableBody');
+            
+            // 顯示載入狀態
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="9" style="text-align: center; padding: 40px; color: #666;">
+                        載入詳細資訊中...
+                    </td>
+                </tr>
+            `;
+            
+            // 使用優化的 API，只載入排序所需的欄位
+            console.log(`開始載入 ${files.length} 個檔案的排序資料...`);
+            
+            try {
+                const filenames = files.map(file => file.filename);
+                const response = await fetch('/api/get-sorting-fields', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ filenames: filenames })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success && data.data) {
+                    const detailedFiles = data.data.map(file => ({
+                        ...file,
+                        timestamp: new Date(file.timestamp).toLocaleString('zh-TW')
+                    }));
+                    
+                    console.log(`載入完成，共 ${detailedFiles.length} 個有效檔案`);
+                    
+                    // 根據當前排序設定對詳細檔案進行全局排序
+                    const sortBy = document.getElementById('sortBy').value;
+                    sortDetailedFiles(detailedFiles, sortBy);
+                    
+                    // 全局排序後，只顯示當前頁面的檔案
+                    const startIndex = currentPage * itemsPerPage;
+                    const endIndex = startIndex + itemsPerPage;
+                    const currentPageFiles = detailedFiles.slice(startIndex, endIndex);
+                    
+                    // 顯示詳細表格
+                    renderDetailedTable(currentPageFiles);
+                } else {
+                    console.error('載入排序資料失敗:', data.error);
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td colspan="9" style="text-align: center; padding: 40px; color: #e74c3c;">
+                                載入失敗: ${data.error || '未知錯誤'}
+                            </td>
+                        </tr>
+                    `;
+                }
+            } catch (error) {
+                console.error('載入排序資料時發生錯誤:', error);
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="9" style="text-align: center; padding: 40px; color: #e74c3c;">
+                            載入失敗: ${error.message}
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+        
+        // 對詳細檔案進行排序
+        function sortDetailedFiles(detailedFiles, sortBy) {
+            detailedFiles.sort((a, b) => {
+                let valueA, valueB;
+                
+                switch(sortBy) {
+                    case 'institution':
+                        valueA = (a.institution || '').toLowerCase();
+                        valueB = (b.institution || '').toLowerCase();
+                        return valueA.localeCompare(valueB);
+                    case 'rank':
+                        // 確保正確解析數字，處理字符串和數字
+                        valueA = typeof a.rank === 'string' ? parseInt(a.rank, 10) : (a.rank || 999999);
+                        valueB = typeof b.rank === 'string' ? parseInt(b.rank, 10) : (b.rank || 999999);
+                        // 如果解析失敗，使用 999999
+                        if (isNaN(valueA)) valueA = 999999;
+                        if (isNaN(valueB)) valueB = 999999;
+                        return valueA - valueB; // 低到高
+                    case 'rank-desc':
+                        // 確保正確解析數字，處理字符串和數字
+                        valueA = typeof a.rank === 'string' ? parseInt(a.rank, 10) : (a.rank || 999999);
+                        valueB = typeof b.rank === 'string' ? parseInt(b.rank, 10) : (b.rank || 999999);
+                        // 如果解析失敗，使用 999999
+                        if (isNaN(valueA)) valueA = 999999;
+                        if (isNaN(valueB)) valueB = 999999;
+                        return valueB - valueA; // 高到低
+                    case 'localId':
+                        valueA = (a.localId || '').toLowerCase();
+                        valueB = (b.localId || '').toLowerCase();
+                        return valueA.localeCompare(valueB);
+                    case 'localCode':
+                        valueA = (a.localCode || '').toLowerCase();
+                        valueB = (b.localCode || '').toLowerCase();
+                        return valueA.localeCompare(valueB);
+                    case 'loincCode':
+                        valueA = (a.loincCodes || '').toLowerCase();
+                        valueB = (b.loincCodes || '').toLowerCase();
+                        return valueA.localeCompare(valueB);
+                    case 'searchTerms':
+                        valueA = (a.searchTerms || '').toLowerCase();
+                        valueB = (b.searchTerms || '').toLowerCase();
+                        return valueA.localeCompare(valueB);
+                    case 'fileNotes':
+                        valueA = (a.fileNotes || '').toLowerCase();
+                        valueB = (b.fileNotes || '').toLowerCase();
+                        return valueA.localeCompare(valueB);
+                    case 'timestamp':
+                        valueA = new Date(a.timestamp);
+                        valueB = new Date(b.timestamp);
+                        return valueB - valueA; // 新到舊
+                    case 'timestamp-asc':
+                        valueA = new Date(a.timestamp);
+                        valueB = new Date(b.timestamp);
+                        return valueA - valueB; // 舊到新
+                    default:
+                        return 0;
+                }
+            });
+        }
+
+        // 渲染詳細表格
+        function renderDetailedTable(detailedFiles) {
+            const tableBody = document.getElementById('fileTableBody');
+            
+            tableBody.innerHTML = detailedFiles.map(file => {
+                return `
+                    <tr onclick="loadMappingData('${file.filename}')" data-filename="${file.filename}">
+                        <td class="table-institution">${file.institution || '未指定'}</td>
+                        <td class="table-rank">${file.rank === 999999 ? '未指定' : file.rank}</td>
+                        <td class="table-local-id">${file.localId}</td>
+                        <td class="table-local-code" title="${file.localCode}">${file.localCode}</td>
+                        <td class="table-loinc-codes" title="${file.loincCodes}">${file.loincCodes}</td>
+                        <td class="table-search-terms" title="${file.searchTerms}">${file.searchTerms}</td>
+                        <td class="table-file-notes" title="${file.fileNotes}">
+                            ${file.fileNotesPreview ? `📝 ${file.fileNotesPreview}` : '無備註'}
+                        </td>
+                        <td class="table-timestamp">${file.timestamp}</td>
+                        <td class="table-actions">
+                            <button class="view-btn" onclick="event.stopPropagation(); loadMappingData('${file.filename}')">
+                                查看
+                            </button>
+                            <button class="delete-btn" onclick="event.stopPropagation(); confirmDeleteFile('${file.filename}')" title="刪除檔案">
+                                🗑️
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+            
+            // 添加分頁控制到表格下方
+            const totalPages = Math.ceil(allFiles.length / itemsPerPage);
+            if (totalPages > 1) {
+                const paginationDiv = document.createElement('div');
+                paginationDiv.className = 'pagination-controls';
+                paginationDiv.innerHTML = `
+                    <button onclick="previousPage()" ${currentPage === 0 ? 'disabled' : ''} class="pagination-btn">
+                        ← 上一頁
+                    </button>
+                    <span class="pagination-info">
+                        第 ${currentPage + 1} 頁，共 ${totalPages} 頁 (${allFiles.length} 個檔案)
+                    </span>
+                    <button onclick="nextPage()" ${currentPage >= totalPages - 1 ? 'disabled' : ''} class="pagination-btn">
+                        下一頁 →
+                    </button>
+                `;
+                
+                // 移除舊的分頁控制（如果存在）
+                const oldPagination = document.querySelector('.pagination-controls');
+                if (oldPagination) {
+                    oldPagination.remove();
+                }
+                
+                // 將分頁控制添加到表格容器中
+                const tableContainer = document.querySelector('#fileTable');
+                if (tableContainer) {
+                    tableContainer.appendChild(paginationDiv);
+                }
+            }
+        }
+        
+        // 表格排序
+        function sortTable(field) {
+            // 切換排序方向並設定下拉選單值
+            if (currentSortField === field) {
+                currentSortDirection = currentSortDirection === 'asc' ? 'desc' : 'asc';
+            } else {
+                currentSortField = field;
+                currentSortDirection = 'asc';
+            }
+            
+            // 更新下拉選單的值
+            const sortBy = document.getElementById('sortBy');
+            if (field === 'rank') {
+                sortBy.value = currentSortDirection === 'asc' ? 'rank' : 'rank-desc';
+            } else if (field === 'timestamp') {
+                sortBy.value = currentSortDirection === 'asc' ? 'timestamp-asc' : 'timestamp';
+            } else {
+                sortBy.value = field;
+            }
+            
+            // 更新排序圖示
+            updateSortIcons(field);
+            
+            // 重新載入並顯示表格
+            displayFileTable(filteredFileList);
+        }
+        
+        // 更新排序圖示
+        function updateSortIcons(activeField) {
+            const icons = document.querySelectorAll('.sort-icon');
+            icons.forEach(icon => {
+                icon.textContent = '↕️';
+            });
+            
+            const activeIcon = document.querySelector(`th[onclick*="${activeField}"] .sort-icon`);
+            if (activeIcon) {
+                activeIcon.textContent = currentSortDirection === 'asc' ? '↑' : '↓';
+            }
+        }
+        
+        // 格式化檔案大小
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+        }
+
+        // 載入映射資料
+        async function loadMappingData(filename) {
+            try {
+                // 設置當前檔案名稱供備註功能使用
+                currentFileName = filename;
+                
+                // 更新選中狀態 (卡片檢視)
+                document.querySelectorAll('.file-item').forEach(item => {
+                    item.classList.remove('selected');
+                });
+                
+                // 更新選中狀態 (表格檢視)
+                document.querySelectorAll('.file-table tbody tr').forEach(row => {
+                    row.classList.remove('selected');
+                });
+                
+                // 找到對應的元素並標記為選中
+                const targetCard = Array.from(document.querySelectorAll('.file-item')).find(item => 
+                    item.onclick && item.onclick.toString().includes(filename)
+                );
+                if (targetCard) targetCard.classList.add('selected');
+                
+                const targetRow = document.querySelector(`tr[data-filename="${filename}"]`);
+                if (targetRow) targetRow.classList.add('selected');
+
+                const response = await fetch(`/api/get-mapping-file/${filename}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    currentData = data.data;
+                    displayMappingData(currentData);
+                    document.getElementById('mainContent').classList.add('show');
+                } else {
+                    alert('載入檔案失敗: ' + (data.error || '未知錯誤'));
+                    // 載入失敗時禁用 Ask Stan 按鈕
+                    const askStanBtn = document.getElementById('askStanBtn');
+                    if (askStanBtn) {
+                        askStanBtn.disabled = true;
+                        askStanBtn.textContent = '🤖 Ask Stan';
+                        askStanBtn.style.background = '#cccccc';
+                    }
+                }
+            } catch (error) {
+                console.error('載入檔案失敗:', error);
+                alert('載入檔案失敗: ' + error.message);
+                // 載入失敗時禁用 Ask Stan 按鈕
+                const askStanBtn = document.getElementById('askStanBtn');
+                if (askStanBtn) {
+                    askStanBtn.disabled = true;
+                    askStanBtn.textContent = '🤖 Ask Stan';
+                    askStanBtn.style.background = '#cccccc';
+                }
+            }
+        }
+
+        // 顯示映射資料
+        function displayMappingData(data) {
+            // 更新標題和時間戳記
+            document.getElementById('contentTitle').textContent = 
+                `LOINC 映射結果 - ${data.search?.searchTerms || '未指定搜尋詞'}`;
+            
+            const timestamp = new Date(data.metadata?.timestamp || data.timestamp).toLocaleString('zh-TW');
+            document.getElementById('contentTimestamp').textContent = `建立時間: ${timestamp}`;
+
+            // 顯示輸入變數
+            displayInputVariables(data);
+            
+            // 顯示搜尋資訊
+            displaySearchInfo(data);
+            
+            // 顯示 LOINC 結果
+            displayLoincResults(data);
+            
+            // 顯示 AI 分析
+            displayAiAnalysis(data);
+            
+            // 顯示對話歷史
+            displayConversationHistory(data);
+            
+            // 顯示檔案資訊
+            displayMetadataInfo(data);
+            
+            // 啟用 Ask Stan 按鈕
+            const askStanBtn = document.getElementById('askStanBtn');
+            if (askStanBtn) {
+                askStanBtn.disabled = false;
+                askStanBtn.textContent = '🤖 Ask Stan';
+                askStanBtn.style.background = 'linear-gradient(135deg, #9c27b0, #ba68c8)';
+            }
+            
+            // 自動展開檔案資訊區域以顯示備註功能
+            const metadataSection = document.querySelector('[onclick*="metadataInfo"]');
+            const metadataContent = document.getElementById('metadataInfo');
+            if (metadataSection && metadataContent && !metadataContent.classList.contains('expanded')) {
+                metadataContent.classList.add('expanded');
+                metadataSection.classList.add('active');
+                const expandIcon = metadataSection.querySelector('.expand-icon');
+                if (expandIcon) expandIcon.classList.add('expanded');
+            }
+        }
+
+        // 顯示輸入變數
+        function displayInputVariables(data) {
+            const container = document.getElementById('inputVariables');
+            const labData = data.labDataContext;
+            
+            if (!labData || Object.keys(labData).length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <p>此結果沒有實驗室數據背景資訊</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const variableMap = {
+                labItemName: '檢測項目名稱',
+                labUnit: '測量單位',
+                labSampleType: '檢體類型',
+                labTotalRecords: '總記錄數',
+                labUniquePatients: '獨特患者數',
+                labMissingValues: '缺失值比例',
+                labMeanValue: '平均值',
+                labMedianValue: '中位數',
+                itemRank: '項目排名',
+                institution: '醫療機構',
+                institutionType: '機構類型',
+                institutionLocation: '機構位置',
+                itemId: '項目識別碼',
+                dataSource: '資料來源'
+            };
+
+            const variablesHtml = Object.entries(labData)
+                .filter(([key, value]) => key !== 'timestamp' && key !== 'source' && value)
+                .map(([key, value]) => `
+                    <div class="variable-item">
+                        <div class="variable-label">${variableMap[key] || key}</div>
+                        <div class="variable-value">${value}</div>
+                    </div>
+                `).join('');
+
+            container.innerHTML = `
+                <div class="input-variables">
+                    <h3>實驗室數據背景資訊</h3>
+                    <div class="variables-grid">
+                        ${variablesHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        // 顯示搜尋資訊
+        function displaySearchInfo(data) {
+            const container = document.getElementById('searchInfo');
+            const search = data.search || {};
+            
+            container.innerHTML = `
+                <div class="search-info">
+                    <h3>搜尋條件設定</h3>
+                    <div class="search-terms">
+                        <div class="search-term">
+                            <div class="search-term-label">搜尋詞語</div>
+                            <div class="search-term-value">${search.searchTerms || '未指定'}</div>
+                        </div>
+                        <div class="search-term">
+                            <div class="search-term-label">必須包含詞語</div>
+                            <div class="search-term-value">${search.mustHaveTerms || '未指定'}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 顯示 LOINC 結果
+        function displayLoincResults(data) {
+            const container = document.getElementById('loincResults');
+            const selectedDetails = data.selectedDetails || [];
+            
+            if (selectedDetails.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <p>沒有選擇的 LOINC 代碼</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const loincCardsHtml = selectedDetails.map(loinc => {
+                // 清理 component 中的 HTML 標籤
+                const cleanComponent = loinc.component ? loinc.component.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim() : 'N/A';
+                
+                return `
+                    <div class="loinc-card">
+                        <div class="loinc-header">
+                            <div class="loinc-code">${loinc.loincNum}</div>
+                            ${loinc.similarityScore ? `<div class="similarity-score">${loinc.similarityScore}% 相似度</div>` : ''}
+                        </div>
+                        <div class="loinc-details">
+                            <div class="loinc-detail">
+                                <div class="loinc-detail-label">完整名稱</div>
+                                <div class="loinc-detail-value">${cleanComponent}</div>
+                            </div>
+                            <div class="loinc-detail">
+                                <div class="loinc-detail-label">長名稱</div>
+                                <div class="loinc-detail-value">${loinc.longCommonName || 'N/A'}</div>
+                            </div>
+                            <div class="loinc-detail">
+                                <div class="loinc-detail-label">相關名稱</div>
+                                <div class="loinc-detail-value">${loinc.relatedNames2 || 'N/A'}</div>
+                            </div>
+                            <div class="loinc-detail">
+                                <div class="loinc-detail-label">常見測試排名</div>
+                                <div class="loinc-detail-value">${loinc.commonTestRank || '0'}</div>
+                            </div>
+                            <div class="loinc-detail">
+                                <div class="loinc-detail-label">常見訂單排名</div>
+                                <div class="loinc-detail-value">${loinc.commonOrderRank || '0'}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            container.innerHTML = `
+                <div class="loinc-results">
+                    <h3>選擇的 LOINC 代碼詳細資訊 (${selectedDetails.length} 個)</h3>
+                    ${loincCardsHtml}
+                </div>
+            `;
+        }
+
+        // 顯示 AI 分析
+        function displayAiAnalysis(data) {
+            const container = document.getElementById('aiAnalysis');
+            const analysis = data.aiAnalysis;
+            
+            if (!analysis) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <p>沒有 AI 分析結果</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // 將分析結果轉換為 HTML
+            const formattedAnalysis = analysis
+                .replace(/\n\n/g, '<br><br>')
+                .replace(/\n/g, '<br>');
+
+            container.innerHTML = `
+                <div class="ai-analysis">
+                    ${formattedAnalysis}
+                </div>
+            `;
+
+            // 修正表格樣式
+            const tables = container.querySelectorAll('table');
+            tables.forEach(table => {
+                if (!table.style.width) {
+                    table.style.width = '100%';
+                }
+            });
+        }
+
+        // 顯示對話歷史
+        function displayConversationHistory(data) {
+            const container = document.getElementById('conversationHistory');
+            const historyHtml = data.conversationHistory;
+            
+            if (!historyHtml || historyHtml.trim() === '') {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <p>沒有 AI 對話歷史</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="conversation-history">
+                    <h3>AI 對話記錄</h3>
+                    ${historyHtml}
+                </div>
+            `;
+        }
+
+        // 顯示檔案資訊
+        function displayMetadataInfo(data) {
+            const container = document.getElementById('metadataInfo');
+            const metadata = data.metadata || {};
+            
+            const metadataItems = [
+                { label: '檔案名稱', value: metadata.filename },
+                { label: '版本', value: metadata.version },
+                { label: '來源', value: metadata.source },
+                { label: '建立時間', value: metadata.timestamp ? new Date(metadata.timestamp).toLocaleString('zh-TW') : 'N/A' },
+                { label: '選擇代碼數', value: data.selectedLoincCodes ? data.selectedLoincCodes.length : 0 }
+            ].filter(item => item.value);
+
+            const metadataHtml = metadataItems.map(item => `
+                <div class="metadata-item">
+                    <div class="metadata-label">${item.label}</div>
+                    <div class="metadata-value">${item.value}</div>
+                </div>
+            `).join('');
+
+            container.innerHTML = `
+                <div class="metadata-info">
+                    <h3>檔案詳細資訊</h3>
+                    <div class="metadata-grid">
+                        ${metadataHtml}
+                    </div>
+                    
+                    <!-- 檔案備註區域 -->
+                    <div class="file-notes-section">
+                        <div class="file-notes-header">
+                            <label class="file-notes-label">📝 檔案備註</label>
+                            <span class="file-notes-toggle" onclick="toggleFileNotes()" title="展開/收起備註">
+                                <span id="file-notes-icon">▼</span>
+                            </span>
+                        </div>
+                        <div class="file-notes-content expanded" id="file-notes-content">
+                            <textarea 
+                                class="file-notes-textarea" 
+                                id="file-notes-textarea"
+                                placeholder="在此添加關於此 LOINC 映射檔案的備註、說明或觀察記錄..."
+                                onblur="saveFileNote(this.value)"
+                                oninput="markFileNoteAsModified()"
+                            >${data.fileNotes || ''}</textarea>
+                            <div class="file-notes-footer">
+                                <span class="file-notes-status" id="file-notes-status">
+                                    ${(data.fileNotes && data.fileNotes.trim()) ? '✅ 已保存' : '📝 可添加備註'}
+                                </span>
+                                <span class="file-notes-timestamp" id="file-notes-timestamp">
+                                    ${data.fileNotesTimestamp ? `更新於: ${new Date(data.fileNotesTimestamp).toLocaleString('zh-TW')}` : ''}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 切換區段展開/收合
+        function toggleSection(header, contentId) {
+            const content = document.getElementById(contentId);
+            const icon = header.querySelector('.expand-icon');
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                header.classList.remove('active');
+                icon.classList.remove('expanded');
+            } else {
+                content.classList.add('expanded');
+                header.classList.add('active');
+                icon.classList.add('expanded');
+            }
+        }
+
+        // 導出功能
+        function exportToJson() {
+            if (!currentData) {
+                alert('請先選擇一個檔案');
+                return;
+            }
+
+            const dataStr = JSON.stringify(currentData, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `loinc_mapping_export_${new Date().toISOString().slice(0, 19).replace(/[:.]/g, '-')}.json`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+
+        function exportToPdf() {
+            if (!currentData) {
+                alert('請先選擇一個檔案');
+                return;
+            }
+            
+            window.print();
+        }
+
+        function printReport() {
+            if (!currentData) {
+                alert('請先選擇一個檔案');
+                return;
+            }
+            
+            window.print();
+        }
+
+        // Ask Stan 功能
+        async function askStan() {
+            if (!currentData) {
+                alert('請先選擇一個檔案');
+                return;
+            }
+            
+            const askStanBtn = document.getElementById('askStanBtn');
+            const originalText = askStanBtn.textContent;
+            askStanBtn.disabled = true;
+            askStanBtn.textContent = '準備中...';
+            
+            try {
+                // 準備要發送給 Stan 的資料
+                const stanData = {
+                    timestamp: new Date().toISOString(),
+                    searchTerms: currentData.search?.searchTerms || '',
+                    mustHaveTerms: currentData.search?.mustHaveTerms || '',
+                    selectedLoincCodes: currentData.selectedLoincCodes || [],
+                    selectedDetails: currentData.selectedDetails || [],
+                    aiAnalysis: currentData.aiAnalysis || '',
+                    conversationHistory: currentData.conversationHistory || '',
+                    mappingNotes: currentData.fileNotes || '',
+                    fileNotes: currentData.fileNotes || '',
+                    labDataContext: currentData.labDataContext || null
+                };
+                
+                console.log('Preparing to ask Stan:', {
+                    selectedCount: stanData.selectedLoincCodes.length,
+                    searchTerms: stanData.searchTerms,
+                    hasAnalysis: !!stanData.aiAnalysis
+                });
+                
+                // 發送到伺服器並要求立即下載 PDF
+                const baseUrl = window.location.protocol + '//' + window.location.host;
+                const apiUrl = baseUrl + '/api/ask-stan?download=1';
+                console.log('Making request to:', apiUrl);
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ...stanData, download: true })
+                });
+
+                console.log('Response received:', {
+                    status: response.status,
+                    statusText: response.statusText,
+                    contentType: response.headers.get('content-type')
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const contentType = response.headers.get('content-type') || '';
+                if (contentType.includes('application/pdf')) {
+                    const blob = await response.blob();
+                    const disp = response.headers.get('content-disposition') || '';
+                    const m = /filename=\"?([^\";]+)\"?/i.exec(disp);
+                    const filename = m ? m[1] : `ask_stan_${Date.now()}.pdf`;
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = filename;
+                    document.body.appendChild(link);
+                    link.click();
+                    link.remove();
+                    URL.revokeObjectURL(link.href);
+                    askStanBtn.textContent = '已下載 PDF';
+                    askStanBtn.style.background = '#7b1fa2';
+                } else {
+                    const result = await response.json();
+                    if (result.success) {
+                        alert(`已成功發送給 Stan 並生成 PDF 報告！\n\nJSON 檔案: ${result.jsonFilename}\nPDF 檔案: ${result.pdfFilename || 'N/A'}`);
+                        askStanBtn.textContent = '已發送';
+                        askStanBtn.style.background = '#7b1fa2';
+                    } else {
+                        throw new Error(result.error || '發送失敗');
+                    }
+                }
+            } catch (error) {
+                console.error('Ask Stan error:', error);
+                console.error('Error details:', {
+                    name: error.name,
+                    message: error.message,
+                    stack: error.stack
+                });
+                alert('發送給 Stan 失敗: ' + error.message);
+                askStanBtn.textContent = originalText;
+                askStanBtn.disabled = false;
+            }
+        }
+
+        // 確認刪除檔案
+        function confirmDeleteFile(filename) {
+            if (confirm(`確定要刪除檔案 "${filename}" 嗎？\n\n此操作無法復原。`)) {
+                deleteFile(filename);
+            }
+        }
+        
+        // 刪除檔案
+        async function deleteFile(filename) {
+            try {
+                const response = await fetch(`/api/delete-mapping-file/${filename}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // 顯示成功訊息
+                    alert(`檔案已成功刪除！\n\n刪除的檔案數: ${data.deletedCount}\n${data.deletedPaths ? data.deletedPaths.join('\n') : ''}`);
+                    
+                    // 重新載入檔案列表
+                    await loadFileList();
+                    
+                    // 如果當前顯示的檔案被刪除，隱藏主內容
+                    if (currentData && currentData.metadata && currentData.metadata.filename === filename) {
+                        document.getElementById('mainContent').classList.remove('show');
+                        currentData = null;
+                    }
+                } else {
+                    alert(`刪除失敗: ${data.error}\n${data.message || ''}`);
+                }
+            } catch (error) {
+                console.error('刪除檔案時發生錯誤:', error);
+                alert(`刪除檔案時發生錯誤: ${error.message}`);
+            }
+        }
+
+        // 檔案備註功能相關函數
+        let currentFileName = '';
+        let fileNoteModified = false;
+
+        // 展開/收起檔案備註區域
+        function toggleFileNotes() {
+            const content = document.getElementById('file-notes-content');
+            const icon = document.getElementById('file-notes-icon');
+            
+            if (content.classList.contains('collapsed')) {
+                content.classList.remove('collapsed');
+                icon.textContent = '▼';
+            } else {
+                content.classList.add('collapsed');
+                icon.textContent = '▶';
+            }
+        }
+
+        // 標記檔案備註為已修改
+        function markFileNoteAsModified() {
+            const textarea = document.getElementById('file-notes-textarea');
+            const status = document.getElementById('file-notes-status');
+            
+            textarea.classList.add('modified');
+            status.textContent = '⏳ 修改中...';
+            status.className = 'file-notes-status modified';
+            
+            fileNoteModified = true;
+        }
+
+        // 保存檔案備註
+        async function saveFileNote(noteContent) {
+            if (!currentFileName) {
+                console.error('No file selected for saving file notes');
+                return;
+            }
+
+            const textarea = document.getElementById('file-notes-textarea');
+            const status = document.getElementById('file-notes-status');
+            const timestamp = document.getElementById('file-notes-timestamp');
+            
+            try {
+                // 顯示保存狀態
+                status.textContent = '💾 保存中...';
+                status.className = 'file-notes-status';
+                
+                const response = await fetch('/api/save-file-note', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        filename: currentFileName,
+                        note: noteContent.trim(),
+                        timestamp: new Date().toISOString()
+                    })
+                });
+
+                if (response.ok) {
+                    textarea.classList.remove('modified');
+                    status.textContent = noteContent.trim() ? '✅ 已保存' : '📝 可添加備註';
+                    status.className = noteContent.trim() ? 'file-notes-status saved' : 'file-notes-status';
+                    timestamp.textContent = `更新於: ${new Date().toLocaleString('zh-TW')}`;
+                    fileNoteModified = false;
+                } else {
+                    throw new Error('保存失敗');
+                }
+            } catch (error) {
+                console.error('Error saving file note:', error);
+                status.textContent = '❌ 保存失敗';
+                status.className = 'file-notes-status';
+            }
+        }
+
+        // 頁面載入時初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 設定預設檢視模式
+            document.getElementById('viewMode').value = 'table';
+            loadFileList();
+            // 初始化排序圖示
+            updateSortIcons('rank');
+            // 初始化檢視模式
+            changeViewMode();
+        });
+    </script>
+
+    <style media="print">
+        @media print {
+            body {
+                background: white !important;
+            }
+            
+            .file-selector,
+            .export-buttons {
+                display: none !important;
+            }
+            
+            .main-content {
+                display: block !important;
+                box-shadow: none !important;
+                margin: 0 !important;
+            }
+            
+            .section-content {
+                max-height: none !important;
+                padding: 20px 0 !important;
+            }
+            
+            .section-header {
+                cursor: default !important;
+            }
+            
+            .expand-icon {
+                display: none !important;
+            }
+        }
+    </style>
+</body>
+</html>

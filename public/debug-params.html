@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>URL Parameter Debug</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .param { margin: 10px 0; padding: 10px; background: #f0f0f0; border-radius: 5px; }
+        .value { font-weight: bold; color: #0066cc; }
+    </style>
+</head>
+<body>
+    <h1>URL Parameter Debug</h1>
+    <div id="params"></div>
+
+    <script>
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function displayParams() {
+            const params = [
+                'labItemName', 'labUnit', 'labSampleType', 'labTotalRecords', 'labUniquePatients',
+                'labMissingValues', 'labMeanValue', 'labMedianValue', 'itemRank', 'institution',
+                'institutionType', 'institutionLocation', 'itemId', 'dataSource', 'timestamp',
+                'searchTerms', 'mustHaveTerms', 'rankFilter1', 'rankFilter2'
+            ];
+
+            let html = '<h2>Parsed Parameters:</h2>';
+            params.forEach(param => {
+                const value = getUrlParameter(param);
+                html += `<div class="param">
+                    <strong>${param}:</strong> 
+                    <span class="value">${value || '(not found)'}</span>
+                </div>`;
+            });
+
+            // Show raw URL
+            html += `<div class="param">
+                <strong>Raw URL:</strong> 
+                <span class="value">${window.location.href}</span>
+            </div>`;
+
+            // Show search string
+            html += `<div class="param">
+                <strong>Search String:</strong> 
+                <span class="value">${window.location.search}</span>
+            </div>`;
+
+            document.getElementById('params').innerHTML = html;
+        }
+
+        // Run when page loads
+        document.addEventListener('DOMContentLoaded', displayParams);
+        if (document.readyState !== 'loading') {
+            displayParams();
+        }
+    </script>
+</body>
+</html>

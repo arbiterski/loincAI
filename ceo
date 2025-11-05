@@ -1,0 +1,102 @@
+#!/bin/bash
+
+# CEO 指令中心 - Dr. Mark Lin
+# 一站式 CEO 訓練與管理工具
+
+case "$1" in
+    "morning" | "start")
+        echo "🌅 啟動 CEO 晨間例行公事..."
+        ./ceo-morning-routine.sh
+        ;;
+    "evening" | "review")
+        echo "🌙 開始 CEO 晚間回顧..."
+        ./ceo-evening-review.sh
+        ;;
+    "mail")
+        echo "📧 檢查郵件..."
+        node check-gmail.js
+        ;;
+    "cal" | "calendar")
+        echo "📅 檢查行程..."
+        node check-calendar.js
+        ;;
+    "daily")
+        echo "📊 今日 CEO 完整儀表板..."
+        echo ""
+        echo "📧 重要郵件概覽："
+        node check-gmail.js | head -8
+        echo ""
+        echo "📅 今日行程概覽："
+        node check-calendar.js | head -8
+        echo ""
+        echo "🎯 執行 Coach 角色："
+        echo "- 創造未來時間比例檢查"
+        echo "- 阻力識別與解除機制"
+        echo ""
+        echo "📋 執行 Chief of Staff 角色："
+        echo "- KPI 儀表板更新"
+        echo "- 專案進度追蹤"
+        ;;
+    "status")
+        echo "📈 CEO 系統狀態檢查..."
+        echo "Gmail MCP: $(claude mcp list | grep gmail | awk '{print $NF}')"
+        echo "Calendar MCP: $(claude mcp list | grep gcal | awk '{print $NF}')"
+        echo "LOINC Server: $(ps aux | grep loinc-search-server | wc -l) processes"
+        ;;
+    "ai-system")
+        echo "🤖 整合 AI 助理系統..."
+        echo ""
+        echo "可用的 AI 角色："
+        echo "  我要開始今天的 coach             - Executive Coach"
+        echo "  我要啟動 Chief of Staff           - 專案管理"
+        echo "  我要開始今天的週檢視              - 週日檢視"
+        echo "  你來問我五個問題                  - 馬斯克式思考"
+        echo ""
+        echo "Trello 整合："
+        echo "  幫我看 Trello 本週關鍵三事"
+        echo "  幫我看理事長任期儀表板"
+        echo ""
+        ;;
+    "integration")
+        echo "🔗 LOINC 專案與 AI 系統整合狀態"
+        echo "=================================="
+        echo ""
+        echo "✅ 已整合服務："
+        echo "  Gmail MCP: $(claude mcp list 2>/dev/null | grep gmail | awk '{print $NF}')"
+        echo "  Calendar MCP: $(claude mcp list 2>/dev/null | grep gcal | awk '{print $NF}')"
+        echo "  LOINC Server: 本地運行中"
+        echo ""
+        echo "📋 主要看板："
+        echo "  Mark 個人助理: https://trello.com/b/dQW5re2h"
+        echo "  Team Mark: https://trello.com/b/iYz31GXX"
+        echo ""
+        echo "🎯 理事長目標 (2025-2027)："
+        echo "  50 家醫院 LOINC mapping"
+        echo "  5 個認證專家 + 50 個執行者"
+        echo "  1 個政策推動成功"
+        ;;
+    "help" | *)
+        echo "🎯 CEO 指令中心 - Dr. Mark Lin"
+        echo "=================================="
+        echo ""
+        echo "🌅 日常指令："
+        echo "  ceo morning     - 晨間戰略例行公事 (整合 AI Coach)"
+        echo "  ceo evening     - 晚間戰略回顧"
+        echo "  ceo mail        - 檢查重要郵件"
+        echo "  ceo cal         - 檢查行程安排"
+        echo "  ceo daily       - 今日完整概覽"
+        echo ""
+        echo "🤖 AI 系統："
+        echo "  ceo ai-system   - 顯示 AI 助理指令"
+        echo "  ceo integration - 顯示系統整合狀態"
+        echo "  ceo status      - 技術系統狀態檢查"
+        echo ""
+        echo "💡 建議每日使用順序："
+        echo "1. ceo morning  (早上 6:00-8:00) + AI Coach"
+        echo "2. ceo daily    (中午檢查)"
+        echo "3. ceo evening  (晚上 20:00-21:00)"
+        echo "4. 週日 21:00: 我要開始今天的週檢視"
+        echo ""
+        echo "🔗 完整 AI 系統文檔: /Users/arbiter/Dropbox/ai-assistant/README.md"
+        ;;
+esac

@@ -1,0 +1,423 @@
+/**
+ * LOINC.org.tw WordPress 專用樣式（修正版）
+ * 隱藏主題預設元素，使用我們的設計
+ */
+
+/* ==========================================================================
+   隱藏 WordPress 主題的 Header 和 Footer
+   ========================================================================== */
+
+/* 隱藏主題的 header */
+.wp-block-template-part:has(header):not(:has(.site-header)) {
+  display: none !important;
+}
+
+/* 隱藏主題的 footer（但保留我們自己的） */
+.wp-block-template-part:has(footer):not(:has(.site-footer)) {
+  display: none !important;
+}
+
+/* 移除所有 WordPress 的內邊距和外邊距 */
+.wp-site-blocks {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.wp-site-blocks > * {
+  margin-block-start: 0 !important;
+  margin-block-end: 0 !important;
+}
+
+/* 移除內容區的最大寬度限制 */
+.entry-content,
+.wp-block-post-content {
+  max-width: none !important;
+}
+
+.entry-content > * {
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* ==========================================================================
+   CSS 變數定義
+   ========================================================================== */
+
+:root {
+  /* 主色調 - 專業藍 */
+  --loinc-primary-blue: #0066CC;
+  --loinc-primary-blue-light: #3399FF;
+  --loinc-primary-blue-dark: #004499;
+
+  /* 輔助色 - 醫療綠 */
+  --loinc-secondary-green: #00A651;
+  --loinc-secondary-green-light: #66CC99;
+
+  /* 中性色 - 學術灰 */
+  --loinc-neutral-dark: #2C3E50;
+  --loinc-neutral-medium: #7F8C8D;
+  --loinc-neutral-light: #ECF0F1;
+  --loinc-neutral-white: #FFFFFF;
+
+  /* 強調色 */
+  --loinc-accent-orange: #F39C12;
+  --loinc-accent-red: #E74C3C;
+
+  /* 字體 */
+  --loinc-font-primary: 'Noto Sans TC', 'Microsoft JhengHei', -apple-system, BlinkMacSystemFont, sans-serif;
+  --loinc-font-heading: 'Noto Serif TC', 'Microsoft JhengHei', Georgia, serif;
+
+  /* 間距 */
+  --loinc-spacing-xs: 0.25rem;
+  --loinc-spacing-sm: 0.5rem;
+  --loinc-spacing-md: 1rem;
+  --loinc-spacing-lg: 1.5rem;
+  --loinc-spacing-xl: 2rem;
+  --loinc-spacing-2xl: 3rem;
+  --loinc-spacing-3xl: 4rem;
+
+  /* 圓角 */
+  --loinc-radius-sm: 4px;
+  --loinc-radius-md: 8px;
+  --loinc-radius-lg: 12px;
+
+  /* 陰影 */
+  --loinc-shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+  --loinc-shadow-md: 0 4px 6px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+  --loinc-shadow-lg: 0 10px 15px rgba(0,0,0,0.12), 0 4px 6px rgba(0,0,0,0.08);
+
+  /* 過渡 */
+  --loinc-transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   全局樣式
+   ========================================================================== */
+
+body {
+  font-family: var(--loinc-font-primary) !important;
+  color: var(--loinc-neutral-dark) !important;
+  line-height: 1.7 !important;
+  font-size: 16px !important;
+  background-color: var(--loinc-neutral-white) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ==========================================================================
+   Header (網站標頭)
+   ========================================================================== */
+
+.site-header {
+  background-color: var(--loinc-neutral-white) !important;
+  border-bottom: 2px solid var(--loinc-neutral-light) !important;
+  box-shadow: var(--loinc-shadow-sm) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  padding: var(--loinc-spacing-lg) 0 !important;
+}
+
+.site-title {
+  font-family: var(--loinc-font-heading) !important;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: var(--loinc-primary-blue-dark) !important;
+  margin: 0 !important;
+}
+
+.site-description {
+  font-size: 0.875rem !important;
+  color: var(--loinc-neutral-medium) !important;
+  margin: var(--loinc-spacing-xs) 0 0 0 !important;
+}
+
+/* 導航選單 */
+.main-navigation {
+  margin-top: var(--loinc-spacing-md) !important;
+}
+
+.main-navigation ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  gap: var(--loinc-spacing-xl) !important;
+  flex-wrap: wrap !important;
+}
+
+.main-navigation li {
+  margin: 0 !important;
+}
+
+.main-navigation a {
+  color: var(--loinc-neutral-dark) !important;
+  font-weight: 500 !important;
+  padding: var(--loinc-spacing-sm) var(--loinc-spacing-md) !important;
+  border-radius: var(--loinc-radius-sm) !important;
+  transition: var(--loinc-transition) !important;
+  text-decoration: none !important;
+}
+
+.main-navigation a:hover {
+  background-color: var(--loinc-primary-blue) !important;
+  color: var(--loinc-neutral-white) !important;
+  text-decoration: none !important;
+}
+
+.main-navigation .current-menu-item a {
+  background-color: var(--loinc-primary-blue-light) !important;
+  color: var(--loinc-neutral-white) !important;
+}
+
+/* ==========================================================================
+   內容區域
+   ========================================================================== */
+
+.site-content {
+  max-width: 1200px !important;
+  margin: var(--loinc-spacing-3xl) auto !important;
+  padding: 0 var(--loinc-spacing-xl) !important;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+
+.hero {
+  background: linear-gradient(135deg, #0066CC 0%, #3399FF 100%) !important;
+  color: white !important;
+  padding: 80px 0 !important;
+  text-align: center !important;
+  margin: 0 !important;
+}
+
+.hero h2 {
+  font-size: 2.5rem !important;
+  margin-bottom: 1rem !important;
+  color: white !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.hero p {
+  margin-bottom: 1rem !important;
+}
+
+/* ==========================================================================
+   卡片樣式
+   ========================================================================== */
+
+.card,
+article.card {
+  background: var(--loinc-neutral-white) !important;
+  border-radius: var(--loinc-radius-md) !important;
+  box-shadow: var(--loinc-shadow-sm) !important;
+  padding: var(--loinc-spacing-xl) !important;
+  margin-bottom: var(--loinc-spacing-2xl) !important;
+  transition: var(--loinc-transition) !important;
+}
+
+.card:hover {
+  box-shadow: var(--loinc-shadow-lg) !important;
+  transform: translateY(-4px) !important;
+}
+
+/* ==========================================================================
+   文章元素
+   ========================================================================== */
+
+.entry-meta {
+  color: var(--loinc-neutral-medium) !important;
+  font-size: 0.875rem !important;
+  margin-bottom: var(--loinc-spacing-lg) !important;
+  display: flex !important;
+  gap: var(--loinc-spacing-md) !important;
+  flex-wrap: wrap !important;
+}
+
+.entry-meta span {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: var(--loinc-spacing-xs) !important;
+}
+
+.entry-title {
+  margin-top: 0 !important;
+  font-size: 1.875rem !important;
+  color: var(--loinc-primary-blue-dark) !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.entry-title a {
+  color: var(--loinc-primary-blue-dark) !important;
+  text-decoration: none !important;
+}
+
+.entry-title a:hover {
+  color: var(--loinc-primary-blue) !important;
+}
+
+/* ==========================================================================
+   按鈕樣式
+   ========================================================================== */
+
+a.button,
+.btn {
+  background-color: var(--loinc-primary-blue) !important;
+  color: var(--loinc-neutral-white) !important;
+  padding: 12px 24px !important;
+  border-radius: var(--loinc-radius-md) !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  transition: var(--loinc-transition) !important;
+  border: none !important;
+  cursor: pointer !important;
+  font-size: 1rem !important;
+}
+
+a.button:hover,
+.btn:hover {
+  background-color: var(--loinc-primary-blue-light) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--loinc-shadow-md) !important;
+  color: var(--loinc-neutral-white) !important;
+  text-decoration: none !important;
+}
+
+.button-outline {
+  background-color: transparent !important;
+  border: 2px solid white !important;
+  color: white !important;
+}
+
+.button-outline:hover {
+  background-color: var(--loinc-primary-blue) !important;
+  color: var(--loinc-neutral-white) !important;
+  border-color: white !important;
+}
+
+/* Hero 區域內的白色按鈕 */
+.hero .button:not(.button-outline) {
+  background: white !important;
+  color: var(--loinc-primary-blue) !important;
+}
+
+.hero .button:not(.button-outline):hover {
+  background: var(--loinc-neutral-light) !important;
+  color: var(--loinc-primary-blue-dark) !important;
+}
+
+/* ==========================================================================
+   Footer (頁尾)
+   ========================================================================== */
+
+.site-footer {
+  background-color: var(--loinc-neutral-dark) !important;
+  color: var(--loinc-neutral-white) !important;
+  padding: var(--loinc-spacing-3xl) 0 var(--loinc-spacing-xl) !important;
+  margin-top: var(--loinc-spacing-3xl) !important;
+}
+
+.site-footer h3 {
+  color: white !important;
+  border: none !important;
+  padding: 0 !important;
+  margin-bottom: 1rem !important;
+}
+
+.site-footer p {
+  margin-bottom: 0.5rem !important;
+}
+
+.site-footer a {
+  color: var(--loinc-neutral-white) !important;
+  text-decoration: none !important;
+}
+
+.site-footer a:hover {
+  color: var(--loinc-primary-blue-light) !important;
+}
+
+.site-info {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 var(--loinc-spacing-xl) !important;
+  text-align: center !important;
+}
+
+.footer-navigation {
+  margin-bottom: var(--loinc-spacing-xl) !important;
+}
+
+.footer-navigation ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  gap: var(--loinc-spacing-xl) !important;
+  flex-wrap: wrap !important;
+}
+
+.footer-navigation li {
+  margin: 0 !important;
+}
+
+/* ==========================================================================
+   響應式設計
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .site-content {
+    max-width: 90% !important;
+  }
+
+  .hero h2 {
+    font-size: 2rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-navigation ul {
+    flex-direction: column !important;
+    gap: var(--loinc-spacing-sm) !important;
+  }
+
+  .card,
+  article.card {
+    padding: var(--loinc-spacing-lg) !important;
+  }
+
+  .hero h2 {
+    font-size: 1.75rem !important;
+  }
+
+  .footer-navigation ul {
+    flex-direction: column !important;
+    gap: var(--loinc-spacing-md) !important;
+  }
+}
+
+/* ==========================================================================
+   頁面載入動畫
+   ========================================================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card,
+article.card {
+  animation: fadeInUp 0.6s ease-out !important;
+}

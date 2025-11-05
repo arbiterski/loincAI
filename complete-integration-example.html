@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>完整的 AI Mapping Suggestions 集成範例</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .search-section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .btn.secondary {
+            background-color: #2196F3;
+        }
+        .btn.secondary:hover {
+            background-color: #1976D2;
+        }
+        .btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .loinc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .loinc-table th,
+        .loinc-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .loinc-table th {
+            background-color: #f2f2f2;
+        }
+        .loinc-table tr:hover {
+            background-color: #f5f5f5;
+        }
+        .suggested-loinc {
+            background-color: #e8f5e8 !important;
+            border-left: 4px solid #4CAF50 !important;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .status.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .analysis-section {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+        }
+        .analysis-section h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>完整的 AI Mapping Suggestions 集成範例</h1>
+        <p>這個範例展示如何在實際的 LOINC 搜尋頁面中集成自動選擇功能。</p>
+        
+        <!-- 搜尋區域 -->
+        <div class="search-section">
+            <h2>搜尋 LOINC 代碼</h2>
+            <input type="text" id="searchInput" class="search-input" placeholder="輸入搜尋詞彙，例如：Mean corpuscular hemoglobin pg Blood" value="Mean corpuscular hemoglobin pg Blood">
+            <button class="btn" onclick="performSearch()">搜尋</button>
+            <button class="btn secondary" onclick="getAIMappingSuggestions()">AI Mapping Suggestions</button>
+            <button class="btn" onclick="clearAll()">清除</button>
+        </div>
+        
+        <div class="status" id="status" style="display: none;"></div>
+        
+        <!-- 搜尋結果區域 -->
+        <div id="searchResults" style="display: none;">
+            <h2>搜尋結果</h2>
+            <div id="resultsCount"></div>
+            <table class="loinc-table" id="resultsTable">
+                <thead>
+                    <tr>
+                        <th>選擇</th>
+                        <th>LOINC 代碼</th>
+                        <th>成分</th>
+                        <th>檢體</th>
+                        <th>方法</th>
+                        <th>性質</th>
+                        <th>長通用名稱</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsBody">
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 選中的代碼區域 -->
+        <div id="selectedSection" style="display: none;">
+            <h3>選中的 LOINC 代碼：</h3>
+            <div id="selectedCodes"></div>
+        </div>
+        
+        <!-- AI 分析結果區域 -->
+        <div class="analysis-section" id="analysisSection" style="display: none;">
+            <h3>AI 分析結果</h3>
+            <div id="analysisContent"></div>
+        </div>
+    </div>
+
+    <!-- 引入自動選擇功能 -->
+    <script src="auto-select-loinc.js"></script>
+    
+    <script>
+        let selectedCodes = [];
+        let currentResults = [];
+        
+        // 模擬的 LOINC 數據
+        const mockLoincData = [
+            {
+                loincNum: "785-6",
+                component: "Erythrocyte mean corpuscular hemoglobin",
+                specimen: "RBC",
+                method: "Automated count",
+                property: "EntMass",
+                scale: "Qn",
+                time: "Pt",
+                longCommonName: "MCH [Entitic mass] by Automated count"
+            },
+            {
+                loincNum: "2888-6",
+                component: "Protein",
+                specimen: "Urine",
+                method: "",
+                property: "MCnc",
+                scale: "Qn",
+                time: "Pt",
+                longCommonName: "Protein [Mass/volume] in Urine"
+            },
+            {
+                loincNum: "2345-7",
+                component: "Glucose",
+                specimen: "Blood",
+                method: "",
+                property: "MCnc",
+                scale: "Qn",
+                time: "Pt",
+                longCommonName: "Glucose [Mass/volume] in Blood"
+            },
+            {
+                loincNum: "1558-6",
+                component: "Glucose",
+                specimen: "Blood",
+                method: "",
+                property: "MCnc",
+                scale: "Qn",
+                time: "Pt",
+                longCommonName: "Glucose [Mass/volume] in Blood"
+            }
+        ];
+        
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.trim();
+            if (!searchTerm) {
+                showNotification('請輸入搜尋詞彙', 'warning');
+                return;
+            }
+            
+            // 模擬搜尋結果
+            const results = mockLoincData.filter(item => 
+                item.component.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                item.longCommonName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                item.loincNum.includes(searchTerm)
+            );
+            
+            currentResults = results;
+            displayResults(results);
+            showNotification(`找到 ${results.length} 個結果`, 'success');
+        }
+        
+        function displayResults(results) {
+            const resultsSection = document.getElementById('searchResults');
+            const resultsTable = document.getElementById('resultsTable');
+            const resultsBody = document.getElementById('resultsBody');
+            const resultsCount = document.getElementById('resultsCount');
+            
+            resultsCount.textContent = `搜尋結果 (${results.length}項)`;
+            
+            resultsBody.innerHTML = '';
+            results.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><input type="checkbox" value="${item.loincNum}" onchange="handleCheckboxChange(this)"></td>
+                    <td>${item.loincNum}</td>
+                    <td>${item.component}</td>
+                    <td>${item.specimen}</td>
+                    <td>${item.method || '-'}</td>
+                    <td>${item.property}</td>
+                    <td>${item.longCommonName}</td>
+                `;
+                resultsBody.appendChild(row);
+            });
+            
+            resultsSection.style.display = 'block';
+        }
+        
+        function handleCheckboxChange(checkbox) {
+            const value = checkbox.value;
+            if (checkbox.checked) {
+                if (!selectedCodes.includes(value)) {
+                    selectedCodes.push(value);
+                }
+            } else {
+                selectedCodes = selectedCodes.filter(code => code !== value);
+            }
+            updateSelectedCodesDisplay();
+        }
+        
+        function updateSelectedCodesDisplay() {
+            const selectedSection = document.getElementById('selectedSection');
+            const display = document.getElementById('selectedCodes');
+            
+            if (selectedCodes.length > 0) {
+                selectedSection.style.display = 'block';
+                display.innerHTML = selectedCodes.map(code => 
+                    `<span style="background: #e8f5e8; padding: 4px 8px; margin: 2px; border-radius: 4px; display: inline-block;">${code}</span>`
+                ).join('');
+            } else {
+                selectedSection.style.display = 'none';
+            }
+        }
+        
+        async function getAIMappingSuggestions() {
+            if (selectedCodes.length === 0) {
+                showNotification('請先選擇一些 LOINC 代碼', 'warning');
+                return;
+            }
+            
+            const statusDiv = document.getElementById('status');
+            statusDiv.style.display = 'block';
+            statusDiv.className = 'status';
+            statusDiv.textContent = '正在發送 AI Mapping Suggestions 請求...';
+            
+            try {
+                const response = await fetch('/api/generate-mapping-suggestions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        sessionId: 'session-' + Date.now(),
+                        selectedLoincCodes: selectedCodes,
+                        originalSearchTerms: document.getElementById('searchInput').value.trim()
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.mappingAnalysis) {
+                    statusDiv.className = 'status success';
+                    statusDiv.textContent = 'AI Mapping Suggestions 成功！';
+                    
+                    // 顯示分析結果
+                    document.getElementById('analysisContent').innerHTML = 
+                        '<pre style="white-space: pre-wrap; font-family: Arial, sans-serif;">' + 
+                        result.mappingAnalysis + 
+                        '</pre>';
+                    document.getElementById('analysisSection').style.display = 'block';
+                    
+                    // 檢查是否有建議的 LOINC 代碼
+                    if (result.suggestedLoincCode) {
+                        console.log('AI 建議的 LOINC 代碼:', result.suggestedLoincCode);
+                        
+                        // 自動選中建議的 LOINC 代碼
+                        autoSelectSuggestedLoinc(result.suggestedLoincCode);
+                    } else {
+                        console.log('AI 沒有建議特定的 LOINC 代碼');
+                        showNotification('AI 沒有建議特定的 LOINC 代碼', 'info');
+                    }
+                } else {
+                    statusDiv.className = 'status error';
+                    statusDiv.textContent = 'AI Mapping Suggestions 失敗：' + (result.error || '未知錯誤');
+                }
+            } catch (error) {
+                statusDiv.className = 'status error';
+                statusDiv.textContent = '請求失敗：' + error.message;
+                console.error('AI Mapping Suggestions 請求失敗:', error);
+            }
+        }
+        
+        function clearAll() {
+            selectedCodes = [];
+            currentResults = [];
+            document.getElementById('searchInput').value = '';
+            document.getElementById('searchResults').style.display = 'none';
+            document.getElementById('selectedSection').style.display = 'none';
+            document.getElementById('analysisSection').style.display = 'none';
+            document.getElementById('status').style.display = 'none';
+            
+            // 清除所有 checkbox 的選中狀態
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                cb.checked = false;
+                cb.closest('tr')?.classList.remove('suggested-loinc');
+            });
+        }
+        
+        // 初始化
+        updateSelectedCodesDisplay();
+        
+        // 頁面載入時自動執行搜尋
+        window.addEventListener('load', function() {
+            console.log('頁面載入完成');
+            // 可以選擇是否自動執行搜尋
+            // performSearch();
+        });
+    </script>
+</body>
+</html>
+

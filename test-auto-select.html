@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>測試自動選擇 LOINC 代碼</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .loinc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .loinc-table th,
+        .loinc-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .loinc-table th {
+            background-color: #f2f2f2;
+        }
+        .loinc-table tr:hover {
+            background-color: #f5f5f5;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .btn.secondary {
+            background-color: #2196F3;
+        }
+        .btn.secondary:hover {
+            background-color: #1976D2;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .status.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .suggested-loinc {
+            background-color: #e8f5e8 !important;
+            border-left: 4px solid #4CAF50 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>測試自動選擇 LOINC 代碼功能</h1>
+        <p>這個頁面用於測試 AI Mapping Suggestions 的自動選擇功能。</p>
+        
+        <div class="status" id="status" style="display: none;"></div>
+        
+        <h2>LOINC 代碼列表</h2>
+        <table class="loinc-table">
+            <thead>
+                <tr>
+                    <th>選擇</th>
+                    <th>LOINC 代碼</th>
+                    <th>成分</th>
+                    <th>檢體</th>
+                    <th>方法</th>
+                    <th>性質</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox" value="785-6" onchange="handleCheckboxChange(this)"></td>
+                    <td>785-6</td>
+                    <td>Erythrocyte mean corpuscular hemoglobin</td>
+                    <td>RBC</td>
+                    <td>Automated count</td>
+                    <td>EntMass</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" value="2888-6" onchange="handleCheckboxChange(this)"></td>
+                    <td>2888-6</td>
+                    <td>Protein</td>
+                    <td>Urine</td>
+                    <td>-</td>
+                    <td>MCnc</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" value="2345-7" onchange="handleCheckboxChange(this)"></td>
+                    <td>2345-7</td>
+                    <td>Glucose</td>
+                    <td>Blood</td>
+                    <td>-</td>
+                    <td>MCnc</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <button class="btn" onclick="testAutoSelect7856()">測試自動選擇 785-6</button>
+        <button class="btn secondary" onclick="testAutoSelect28886()">測試自動選擇 2888-6</button>
+        <button class="btn" onclick="testAIMappingSuggestions()">測試 AI Mapping Suggestions</button>
+        <button class="btn" onclick="clearSelection()">清除選擇</button>
+        
+        <h3>選中的 LOINC 代碼：</h3>
+        <div id="selectedCodes"></div>
+        
+        <div class="status" id="analysisSection" style="display: none;">
+            <h3>AI 分析結果</h3>
+            <div id="analysisContent"></div>
+        </div>
+    </div>
+
+    <!-- 引入自動選擇功能 -->
+    <script src="auto-select-loinc.js"></script>
+    
+    <script>
+        let selectedCodes = [];
+        
+        function handleCheckboxChange(checkbox) {
+            const value = checkbox.value;
+            if (checkbox.checked) {
+                if (!selectedCodes.includes(value)) {
+                    selectedCodes.push(value);
+                }
+            } else {
+                selectedCodes = selectedCodes.filter(code => code !== value);
+            }
+            updateSelectedCodesDisplay();
+        }
+        
+        function updateSelectedCodesDisplay() {
+            const display = document.getElementById('selectedCodes');
+            if (selectedCodes.length > 0) {
+                display.innerHTML = selectedCodes.map(code => `<span style="background: #e8f5e8; padding: 4px 8px; margin: 2px; border-radius: 4px; display: inline-block;">${code}</span>`).join('');
+            } else {
+                display.innerHTML = '無';
+            }
+        }
+        
+        function clearSelection() {
+            selectedCodes = [];
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                cb.checked = false;
+                cb.closest('tr')?.classList.remove('suggested-loinc');
+            });
+            updateSelectedCodesDisplay();
+            document.getElementById('analysisSection').style.display = 'none';
+        }
+        
+        function testAutoSelect7856() {
+            console.log('測試自動選擇 785-6');
+            autoSelectSuggestedLoinc('785-6');
+        }
+        
+        function testAutoSelect28886() {
+            console.log('測試自動選擇 2888-6');
+            autoSelectSuggestedLoinc('2888-6');
+        }
+        
+        async function testAIMappingSuggestions() {
+            const statusDiv = document.getElementById('status');
+            statusDiv.style.display = 'block';
+            statusDiv.className = 'status';
+            statusDiv.textContent = '正在發送 AI Mapping Suggestions 請求...';
+            
+            try {
+                const response = await fetch('/api/generate-mapping-suggestions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        sessionId: 'test-session-' + Date.now(),
+                        selectedLoincCodes: selectedCodes,
+                        originalSearchTerms: "Mean corpuscular hemoglobin pg Blood"
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.mappingAnalysis) {
+                    statusDiv.className = 'status success';
+                    statusDiv.textContent = 'AI Mapping Suggestions 成功！';
+                    
+                    // 顯示分析結果
+                    document.getElementById('analysisContent').innerHTML = 
+                        '<pre style="white-space: pre-wrap; font-family: Arial, sans-serif;">' + 
+                        result.mappingAnalysis + 
+                        '</pre>';
+                    document.getElementById('analysisSection').style.display = 'block';
+                    
+                    // 檢查是否有建議的 LOINC 代碼
+                    if (result.suggestedLoincCode) {
+                        console.log('AI 建議的 LOINC 代碼:', result.suggestedLoincCode);
+                        
+                        // 自動選中建議的 LOINC 代碼
+                        autoSelectSuggestedLoinc(result.suggestedLoincCode);
+                    } else {
+                        console.log('AI 沒有建議特定的 LOINC 代碼');
+                        showNotification('AI 沒有建議特定的 LOINC 代碼', 'info');
+                    }
+                } else {
+                    statusDiv.className = 'status error';
+                    statusDiv.textContent = 'AI Mapping Suggestions 失敗：' + (result.error || '未知錯誤');
+                }
+            } catch (error) {
+                statusDiv.className = 'status error';
+                statusDiv.textContent = '請求失敗：' + error.message;
+                console.error('AI Mapping Suggestions 請求失敗:', error);
+            }
+        }
+        
+        // 初始化顯示
+        updateSelectedCodesDisplay();
+        
+        // 測試頁面載入時自動選擇 785-6
+        window.addEventListener('load', function() {
+            console.log('頁面載入完成，測試自動選擇功能');
+            setTimeout(() => {
+                autoSelectSuggestedLoinc('785-6');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
+

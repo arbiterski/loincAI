@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台灣標準醫學詞庫 - 由台灣醫學資訊學會 (TAMI) 維護</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+/**
+ * LOINC.org.tw 自定義樣式
+ * 專業學術型醫療資訊平台設計
+ */
+
+/* ==========================================================================
+   CSS 變數定義
+   ========================================================================== */
+
+:root {
+  /* 主色調 - 專業藍 */
+  --primary-blue: #0066CC;
+  --primary-blue-light: #3399FF;
+  --primary-blue-dark: #004499;
+
+  /* 輔助色 - 醫療綠 */
+  --secondary-green: #00A651;
+  --secondary-green-light: #66CC99;
+
+  /* 中性色 - 學術灰 */
+  --neutral-dark: #2C3E50;
+  --neutral-medium: #7F8C8D;
+  --neutral-light: #ECF0F1;
+  --neutral-white: #FFFFFF;
+
+  /* 強調色 */
+  --accent-orange: #F39C12;
+  --accent-red: #E74C3C;
+
+  /* 字體 */
+  --font-primary: 'Noto Sans TC', 'Microsoft JhengHei', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Noto Serif TC', 'Microsoft JhengHei', Georgia, serif;
+  --font-mono: 'Fira Code', 'Courier New', monospace;
+
+  /* 間距 */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+
+  /* 圓角 */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* 陰影 */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.12), 0 4px 6px rgba(0,0,0,0.08);
+
+  /* 過渡 */
+  --transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   全局樣式
+   ========================================================================== */
+
+body {
+  font-family: var(--font-primary);
+  color: var(--neutral-dark);
+  line-height: 1.7;
+  font-size: 16px;
+  background-color: var(--neutral-white);
+  margin: 0;
+  padding: 0;
+}
+
+/* 標題樣式 */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: var(--spacing-2xl);
+  margin-bottom: var(--spacing-lg);
+  color: var(--primary-blue-dark);
+}
+
+h1 {
+  font-size: 2.25rem; /* 36px */
+  border-bottom: 3px solid var(--primary-blue);
+  padding-bottom: var(--spacing-md);
+}
+
+h2 {
+  font-size: 1.875rem; /* 30px */
+  border-left: 4px solid var(--primary-blue);
+  padding-left: var(--spacing-md);
+}
+
+h3 {
+  font-size: 1.5rem; /* 24px */
+  color: var(--neutral-dark);
+}
+
+h4 {
+  font-size: 1.25rem; /* 20px */
+  color: var(--neutral-medium);
+}
+
+/* 段落樣式 */
+p {
+  margin-bottom: var(--spacing-lg);
+  font-size: 1rem;
+}
+
+/* 連結樣式 */
+a {
+  color: var(--primary-blue);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--primary-blue-light);
+  text-decoration: underline;
+}
+
+a:active {
+  color: var(--primary-blue-dark);
+}
+
+/* ==========================================================================
+   Header (網站標頭)
+   ========================================================================== */
+
+.site-header {
+  background-color: var(--neutral-white);
+  border-bottom: 2px solid var(--neutral-light);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: var(--spacing-lg) 0;
+}
+
+.site-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-blue-dark);
+  margin: 0;
+}
+
+.site-description {
+  font-size: 0.875rem;
+  color: var(--neutral-medium);
+  margin: var(--spacing-xs) 0 0 0;
+}
+
+/* 導航選單 */
+.main-navigation {
+  margin-top: var(--spacing-md);
+}
+
+.main-navigation ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: var(--spacing-xl);
+  flex-wrap: wrap;
+}
+
+.main-navigation li {
+  margin: 0;
+}
+
+.main-navigation a {
+  color: var(--neutral-dark);
+  font-weight: 500;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.main-navigation a:hover {
+  background-color: var(--primary-blue);
+  color: var(--neutral-white);
+  text-decoration: none;
+}
+
+.main-navigation .current-menu-item a {
+  background-color: var(--primary-blue-light);
+  color: var(--neutral-white);
+}
+
+/* ==========================================================================
+   內容區域
+   ========================================================================== */
+
+.site-content {
+  max-width: 1200px;
+  margin: var(--spacing-3xl) auto;
+  padding: 0 var(--spacing-xl);
+}
+
+/* 卡片樣式 */
+.card,
+article {
+  background: var(--neutral-white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-2xl);
+  transition: var(--transition);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+/* 文章標題 */
+.entry-title {
+  margin-top: 0;
+  font-size: 1.875rem;
+}
+
+.entry-title a {
+  color: var(--primary-blue-dark);
+  text-decoration: none;
+}
+
+.entry-title a:hover {
+  color: var(--primary-blue);
+}
+
+/* 文章元資訊 */
+.entry-meta {
+  color: var(--neutral-medium);
+  font-size: 0.875rem;
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.entry-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+/* 文章內容 */
+.entry-content {
+  line-height: 1.8;
+}
+
+.entry-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  margin: var(--spacing-xl) 0;
+}
+
+/* ==========================================================================
+   按鈕樣式
+   ========================================================================== */
+
+.button,
+.btn {
+  background-color: var(--primary-blue);
+  color: var(--neutral-white);
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: var(--transition);
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.button:hover,
+.btn:hover {
+  background-color: var(--primary-blue-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  color: var(--neutral-white);
+  text-decoration: none;
+}
+
+/* 次要按鈕 */
+.button-secondary {
+  background-color: var(--secondary-green);
+}
+
+.button-secondary:hover {
+  background-color: var(--secondary-green-light);
+}
+
+/* 外框按鈕 */
+.button-outline {
+  background-color: transparent;
+  border: 2px solid var(--primary-blue);
+  color: var(--primary-blue);
+}
+
+.button-outline:hover {
+  background-color: var(--primary-blue);
+  color: var(--neutral-white);
+}
+
+/* ==========================================================================
+   Footer (頁尾)
+   ========================================================================== */
+
+.site-footer {
+  background-color: var(--neutral-dark);
+  color: var(--neutral-white);
+  padding: var(--spacing-3xl) 0 var(--spacing-xl);
+  margin-top: var(--spacing-3xl);
+}
+
+.site-footer a {
+  color: var(--neutral-white);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--primary-blue-light);
+}
+
+.site-info {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-xl);
+  text-align: center;
+}
+
+.footer-navigation {
+  margin-bottom: var(--spacing-xl);
+}
+
+.footer-navigation ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-xl);
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   響應式設計
+   ========================================================================== */
+
+/* 平板 */
+@media (max-width: 1024px) {
+  .site-content {
+    max-width: 90%;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* 手機 */
+@media (max-width: 768px) {
+  :root {
+    --spacing-xl: 1.5rem;
+    --spacing-2xl: 2rem;
+    --spacing-3xl: 2.5rem;
+  }
+
+  .main-navigation ul {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .card,
+  article {
+    padding: var(--spacing-lg);
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .footer-navigation ul {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+}
+
+/* ==========================================================================
+   頁面載入動畫
+   ========================================================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card,
+article {
+  animation: fadeInUp 0.6s ease-out;
+}
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="site-content">
+            <div class="site-branding">
+                <h1 class="site-title">台灣標準醫學詞庫</h1>
+                <p class="site-description">Taiwan Medical Terminology Standards - 由台灣醫學資訊學會 (TAMI) 維護</p>
+            </div>
+
+            <nav class="main-navigation">
+                <ul>
+                    <li class="current-menu-item"><a href="#home">首頁</a></li>
+                    <li><a href="#about">關於 LOINC</a></li>
+                    <li><a href="#resources">教育資源</a></li>
+                    <li><a href="#news">最新消息</a></li>
+                    <li><a href="#tools">工具平台</a></li>
+                    <li><a href="#contact">聯絡我們</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="background: linear-gradient(135deg, #0066CC 0%, #3399FF 100%); color: white; padding: 80px 0; text-align: center;">
+        <div class="site-content">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: white;">推廣台灣 LOINC Top 100 標準</h2>
+            <p style="font-size: 1.25rem; margin-bottom: 2rem; color: rgba(255,255,255,0.9);">Promoting Taiwan LOINC Top 100 Standards</p>
+            <p style="font-size: 1.125rem; margin-bottom: 2.5rem; max-width: 800px; margin-left: auto; margin-right: auto; color: rgba(255,255,255,0.85);">
+                協助台灣醫療機構實施 LOINC 標準，提升醫療資訊互通性，建立以病人為中心的健康資訊生態系
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#about" class="button" style="background: white; color: #0066CC;">了解更多</a>
+                <a href="#resources" class="button button-outline" style="border-color: white; color: white;">開始學習</a>
+                <a href="#news" class="button button-outline" style="border-color: white; color: white;">最新消息</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="site-content">
+
+        <!-- Stats Section -->
+        <section id="stats" style="margin-top: 4rem; margin-bottom: 4rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+
+                <div class="card" style="text-align: center; padding: 2rem;">
+                    <div style="font-size: 3rem; font-weight: 700; color: #0066CC; margin-bottom: 0.5rem;">50+</div>
+                    <div style="font-size: 1.125rem; color: #7F8C8D;">合作醫院</div>
+                    <p style="font-size: 0.875rem; color: #7F8C8D; margin-top: 0.5rem;">參與 LOINC Top 100 推廣計畫</p>
+                </div>
+
+                <div class="card" style="text-align: center; padding: 2rem;">
+                    <div style="font-size: 3rem; font-weight: 700; color: #00A651; margin-bottom: 0.5rem;">200+</div>
+                    <div style="font-size: 1.125rem; color: #7F8C8D;">Mapping 項目</div>
+                    <p style="font-size: 0.875rem; color: #7F8C8D; margin-top: 0.5rem;">AI 輔助完成 Mapping</p>
+                </div>
+
+                <div class="card" style="text-align: center; padding: 2rem;">
+                    <div style="font-size: 3rem; font-weight: 700; color: #F39C12; margin-bottom: 0.5rem;">1000+</div>
+                    <div style="font-size: 1.125rem; color: #7F8C8D;">使用次數</div>
+                    <p style="font-size: 0.875rem; color: #7F8C8D; margin-top: 0.5rem;">LOINC 搜尋工具月使用量</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section id="news" style="margin-bottom: 4rem;">
+            <h2 style="text-align: center; margin-bottom: 3rem;">最新消息</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+
+                <!-- Article 1 -->
+                <article class="card">
+                    <div class="entry-meta">
+                        <span>📅 2025-10-21</span>
+                        <span>📁 LOINC</span>
+                    </div>
+                    <h3 class="entry-title">
+                        <a href="#">示範如何做 Taiwan LOINC Top 100 Mapping</a>
+                    </h3>
+                    <div class="entry-content">
+                        <p>本影片示範如何使用 AI 工具來協助實驗室診斷的 LOINC 編碼對應工作，一小時內可完成約一百個項目的對應...</p>
+                        <a href="#" class="button" style="margin-top: 1rem;">閱讀更多</a>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="card">
+                    <div class="entry-meta">
+                        <span>📅 2025-09-15</span>
+                        <span>📁 活動</span>
+                    </div>
+                    <h3 class="entry-title">
+                        <a href="#">JCMIT 2025 智慧醫療研討會</a>
+                    </h3>
+                    <div class="entry-content">
+                        <p>台灣醫學資訊學會將於 2025 年 11 月 17 日舉辦智慧醫療研討會，主題為 LOINC Top 100 標準化...</p>
+                        <a href="#" class="button" style="margin-top: 1rem;">閱讀更多</a>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="card">
+                    <div class="entry-meta">
+                        <span>📅 2025-08-20</span>
+                        <span>📁 教育</span>
+                    </div>
+                    <h3 class="entry-title">
+                        <a href="#">LOINC 教育訓練課程開放報名</a>
+                    </h3>
+                    <div class="entry-content">
+                        <p>針對醫療資訊人員設計的 LOINC 專業培訓課程，涵蓋基礎概念、Mapping 技巧、實作演練...</p>
+                        <a href="#" class="button" style="margin-top: 1rem;">閱讀更多</a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Tools Section -->
+        <section id="tools" style="margin-bottom: 4rem;">
+            <h2 style="text-align: center; margin-bottom: 3rem;">LOINC 工具與資源</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+                    <h3>LOINC 搜尋</h3>
+                    <p style="color: #7F8C8D;">AI 驅動的智慧搜尋系統，快速查詢 LOINC 代碼與相關資訊</p>
+                    <a href="#" class="button" style="margin-top: 1rem;">立即使用</a>
+                </div>
+
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🤖</div>
+                    <h3>AI Mapping 工具</h3>
+                    <p style="color: #7F8C8D;">AI 輔助 Mapping 建議，提升 LOINC 代碼對應效率</p>
+                    <a href="#" class="button" style="margin-top: 1rem;">開始 Mapping</a>
+                </div>
+
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">📚</div>
+                    <h3>教育訓練</h3>
+                    <p style="color: #7F8C8D;">LOINC Top 100 線上課程與教學資源</p>
+                    <a href="#" class="button" style="margin-top: 1rem;">開始學習</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section style="background: linear-gradient(135deg, #00A651 0%, #66CC99 100%); padding: 4rem 2rem; border-radius: 12px; text-align: center; color: white; margin-bottom: 4rem;">
+            <h2 style="color: white; margin-bottom: 1rem;">加入 LOINC Top 100 推廣計畫</h2>
+            <p style="font-size: 1.125rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                協助您的醫療機構實施國際標準，提升醫療資訊互通性
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#contact" class="button" style="background: white; color: #00A651;">聯絡我們</a>
+                <a href="#resources" class="button button-outline" style="border-color: white; color: white;">了解計畫</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="site-info">
+            <div style="margin-bottom: 2rem;">
+                <h3 style="color: white; margin-bottom: 1rem;">台灣醫學資訊學會 (TAMI)</h3>
+                <p style="color: rgba(255,255,255,0.7);">Taiwan Association for Medical Informatics</p>
+            </div>
+
+            <nav class="footer-navigation">
+                <ul>
+                    <li><a href="#about">關於我們</a></li>
+                    <li><a href="#privacy">隱私政策</a></li>
+                    <li><a href="#sitemap">網站地圖</a></li>
+                    <li><a href="#contact">聯絡我們</a></li>
+                </ul>
+            </nav>
+
+            <div style="padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.6);">
+                <p>&copy; 2025 台灣醫學資訊學會 (TAMI). All rights reserved.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+                    Powered by <a href="https://wordpress.org" style="color: #3399FF;">WordPress</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

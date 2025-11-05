@@ -1,0 +1,22 @@
+{
+  "reportDate": "2025-09-15T02:52:48.225Z",
+  "hospitals": {
+    "wanFang": {
+      "name": "萬芳醫院",
+      "mappedItems": 177,
+      "totalFiles": 203,
+      "top50Items": 30
+    },
+    "triService": {
+      "name": "三軍總醫院",
+      "mappedItems": 162,
+      "totalFiles": 193,
+      "top50Items": 32
+    }
+  },
+  "total": {
+    "mappedItems": 339,
+    "totalFiles": 396,
+    "uniqueLoincCodes": 255
+  }
+}

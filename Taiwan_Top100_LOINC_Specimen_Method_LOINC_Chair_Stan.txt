@@ -1,0 +1,15 @@
+Taiwan Top 100 LOINC Pilot Project – Specimen & Method Mapping
+English Summary
+1. Specimen: Blood vs. Serum/Plasma
+LOINC Principle: In LOINC, the system axis always refers to the specimen actually analyzed, not what was drawn. Ser/Plas is used when serum and plasma are interchangeable (same method, same reference range). Bld is used for whole blood (e.g., CBC, blood gases). Ser/Plas/Bld is used when all three are valid and equivalent (rare in US, but used internationally).  Best Practice: Laboratories should code according to the real specimen type.  Pragmatic Option: Since LIS defaults to 'blood', switching everything to true specimen would require significant workflow changes. A phased approach is reasonable: 1. Short-term: Use Ser/Plas/Bld as a compromise. 2. Validation Step: Compare average analyte values or reference ranges across labs. 3. Governance: Use evidence to persuade labs about risks of oversimplification.
+2. Methodless vs. Method-Specified Codes
+LOINC Principle: Methodless codes: General, simpler, easier to map, but may hide important differences. Method-specified codes: Preferred if method matters clinically or produces different reference ranges.  Best Practice: - Include method if known (in LOINC code or FHIR Observation.method). - Reference ranges are the best indicator for clinical comparability.  Pragmatic Strategy: 1. Start with methodless codes for simplicity. 2. Validate across labs by comparing values or reference ranges. 3. Update to method-specified codes if clinically significant. 4. Less important for population-level analytics, critical for patient-level trending.
+3. Recommended Pilot Project Path
+Phase 1: Quick Wins – Use ser/plas/bld and methodless codes, collect reference ranges. Phase 2: Validation – Compare lab values and reference ranges, find significant variations. Phase 3: Refinement – Update to specimen-accurate and method-specific codes as needed, establish national governance framework.
+中文摘要
+1. 檢體：血液 vs. 血清/血漿
+LOINC 原則： 標示的是實際被分析的檢體，而非抽取的檢體。 - 血清/血漿 (Ser/Plas)：檢測方法與參考值相同時可共用。 - 血液 (Bld)：僅限於全血檢測 (如血氣分析、血型判定)。 - Ser/Plas/Bld：少數檢驗三者皆通用。  最佳做法：實際用什麼檢體，就應標示對應的檢體類型。  務實建議： 1. 短期：若 LIS 一律登錄「血液」，可先暫用 Ser/Plas/Bld。 2. 驗證：收集各院參考值或平均檢測值，若差異顯著，再精確區分。 3. 治理：用比較結果作為推動檢體精確標示的佐證。
+2. 無方法碼 vs. 有方法碼
+LOINC 原則： - 無方法碼：簡單易用，但可能掩蓋不同方法的差異。 - 有方法碼：若方法不同且影響參考值，則應標示。  最佳做法： - 若已知方法，應在 LOINC code 或 Observation.method 中標示。 - 若包含參考值，可判斷不同方法是否可比。  務實建議： 1. 初期採用無方法碼，快速推動一致化。 2. 後續比較不同醫院參考值或平均值，若差異顯著再改用方法碼。 3. 若僅用於人口統計或研究，影響較小；若用於臨床追蹤，則很重要。
+3. 試辦策略
+第一階段：快速上線 – 檢體先用 Ser/Plas/Bld，採用無方法碼，收集各院參考值。 第二階段：驗證 – 分析各院檢測數值或參考值差異，找出需要精確區分的項目。 第三階段：精進治理 – 在需要的項目導入準確檢體與方法碼，建立跨院治理機制。

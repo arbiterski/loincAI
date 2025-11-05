@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>URL Parameter Test</title>
+</head>
+<body>
+    <h1>URL Parameter Test</h1>
+    <div>
+        <label for="field1">Search Terms:</label>
+        <input type="text" id="field1" placeholder="e.g., creatine serum plasma">
+    </div>
+    <div>
+        <label for="field2">Must Have Terms:</label>
+        <input type="text" id="field2" placeholder="e.g., serum creatine plasma">
+    </div>
+    <div>
+        <input type="checkbox" id="orderRankFilter">
+        <label for="orderRankFilter">Order Rank Filter</label>
+    </div>
+    <div>
+        <input type="checkbox" id="testRankFilter">
+        <label for="testRankFilter">Test Rank Filter</label>
+    </div>
+    
+    <div id="debug"></div>
+
+    <script>
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const value = urlParams.get(name);
+            console.log(`getUrlParameter('${name}') =`, value);
+            return value;
+        }
+
+        // Function to populate form from URL parameters
+        function populateFormFromUrl() {
+            console.log('populateFormFromUrl called');
+            console.log('Current URL:', window.location.href);
+            console.log('Search params:', window.location.search);
+            
+            // Get all lab data parameters
+            const labItemName = getUrlParameter('labItemName');
+            const labUnit = getUrlParameter('labUnit');
+            const labSampleType = getUrlParameter('labSampleType');
+            const searchTerms = getUrlParameter('searchTerms');
+            const mustHaveTerms = getUrlParameter('mustHaveTerms');
+            const rankFilter1 = getUrlParameter('rankFilter1');
+            const rankFilter2 = getUrlParameter('rankFilter2');
+            
+            console.log('URL parameters:', { searchTerms, mustHaveTerms, rankFilter1, rankFilter2 });
+            
+            if (searchTerms) {
+                let decodedTerms;
+                try {
+                    decodedTerms = decodeURIComponent(searchTerms);
+                } catch (e) {
+                    console.log('decodeURIComponent failed, using raw value:', e.message);
+                    decodedTerms = searchTerms;
+                }
+                console.log('Setting field1 to:', decodedTerms);
+                const field1Element = document.getElementById('field1');
+                if (field1Element) {
+                    field1Element.value = decodedTerms;
+                    console.log('field1 value set to:', field1Element.value);
+                } else {
+                    console.error('field1 element not found!');
+                }
+            }
+            
+            if (mustHaveTerms) {
+                let decodedMustHave;
+                try {
+                    decodedMustHave = decodeURIComponent(mustHaveTerms);
+                } catch (e) {
+                    console.log('decodeURIComponent failed, using raw value:', e.message);
+                    decodedMustHave = mustHaveTerms;
+                }
+                console.log('Setting field2 to:', decodedMustHave);
+                const field2Element = document.getElementById('field2');
+                if (field2Element) {
+                    field2Element.value = decodedMustHave;
+                    console.log('field2 value set to:', field2Element.value);
+                } else {
+                    console.error('field2 element not found!');
+                }
+            }
+            
+            if (rankFilter1 !== null) {
+                console.log('Setting orderRankFilter to:', rankFilter1 === 'true');
+                document.getElementById('orderRankFilter').checked = rankFilter1 === 'true';
+            }
+            
+            if (rankFilter2 !== null) {
+                console.log('Setting testRankFilter to:', rankFilter2 === 'true');
+                document.getElementById('testRankFilter').checked = rankFilter2 === 'true';
+            }
+            
+            // Update debug display
+            document.getElementById('debug').innerHTML = `
+                <h3>Debug Info:</h3>
+                <p>field1 value: "${document.getElementById('field1').value}"</p>
+                <p>field2 value: "${document.getElementById('field2').value}"</p>
+                <p>orderRankFilter checked: ${document.getElementById('orderRankFilter').checked}</p>
+                <p>testRankFilter checked: ${document.getElementById('testRankFilter').checked}</p>
+            `;
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOMContentLoaded event fired');
+            populateFormFromUrl();
+        });
+
+        // Also try immediately if DOM is already loaded
+        if (document.readyState === 'loading') {
+            console.log('Document still loading, waiting for DOMContentLoaded');
+        } else {
+            console.log('Document already loaded, populating immediately');
+            populateFormFromUrl();
+        }
+    </script>
+</body>
+</html>

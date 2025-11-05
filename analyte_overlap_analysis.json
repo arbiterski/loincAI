@@ -1,0 +1,2282 @@
+{
+  "timestamp": "2025-09-21T00:20:37.243Z",
+  "summary": {
+    "aaaUniqueAnalytes": 159,
+    "triUniqueAnalytes": 105,
+    "commonAnalytes": 69,
+    "totalUniqueAnalytes": 195,
+    "aaaOnlyAnalytes": 90,
+    "triOnlyAnalytes": 36,
+    "overlapPercentage": 52.3
+  },
+  "commonAnalytesList": [
+    {
+      "analyte": "Creatinine",
+      "aaaItems": [
+        {
+          "rank": 1,
+          "labName": "CREA",
+          "loincCode": "38483-4",
+          "loincName": "Creatinine [Mass/volume] in Blood",
+          "system": "Blood"
+        },
+        {
+          "rank": 48,
+          "labName": "CREA",
+          "loincCode": "2161-8",
+          "loincName": "Creatinine [Mass/volume] in Urine",
+          "system": "Urine"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 4,
+          "labName": "Creatinine",
+          "loincCode": "38483-4",
+          "loincName": "Creatinine [Mass/volume] in Blood",
+          "system": "Biochemist"
+        },
+        {
+          "rank": 25,
+          "labName": "Creatine",
+          "loincCode": "2160-0",
+          "loincName": "Creatinine [Mass/volume] in Serum or Plasma",
+          "system": "Creatinine-Blood CRIN 肌酸酐（血）"
+        },
+        {
+          "rank": 120,
+          "labName": "Creatinine",
+          "loincCode": "2160-0",
+          "loincName": "Creatinine [Mass/volume] in Serum or Plasma",
+          "system": "Creatinine"
+        },
+        {
+          "rank": 152,
+          "labName": "Urine Creatinine",
+          "loincCode": "2161-8",
+          "loincName": "Creatinine [Mass/volume] in Urine",
+          "system": "Urine bio."
+        }
+      ]
+    },
+    {
+      "analyte": "Glomerular filtration rate/1.73 sq M.predicted",
+      "aaaItems": [
+        {
+          "rank": 2,
+          "labName": "eGFR",
+          "loincCode": "69405-9",
+          "loincName": "Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 35,
+          "labName": "eGFR",
+          "loincCode": "77147-7",
+          "loincName": "Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (MDRD)",
+          "system": "Creatinine-Blood CRIN 肌酸酐（血）"
+        },
+        {
+          "rank": 85,
+          "labName": "eGFR",
+          "loincCode": "62238-1",
+          "loincName": "Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (CKD-EPI)",
+          "system": "Creatinine(blood肌酐酸)"
+        },
+        {
+          "rank": 159,
+          "labName": "eGFR",
+          "loincCode": "33914-3",
+          "loincName": "Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum or Plasma by Creatinine-based formula (MDRD)",
+          "system": "creatinine 血清肌酸酐"
+        }
+      ]
+    },
+    {
+      "analyte": "Alanine aminotransferase",
+      "aaaItems": [
+        {
+          "rank": 3,
+          "labName": "GPT(ALT)",
+          "loincCode": "1742-6",
+          "loincName": "Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 6,
+          "labName": "ALT",
+          "loincCode": "1742-6",
+          "loincName": "Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma",
+          "system": "Biochemist"
+        },
+        {
+          "rank": 99,
+          "labName": "S-GPT",
+          "loincCode": "1742-6",
+          "loincName": "Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma",
+          "system": "ALT (紅gel, 綠)"
+        },
+        {
+          "rank": 150,
+          "labName": "GPT/ALT",
+          "loincCode": "1742-6",
+          "loincName": "Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma",
+          "system": "GPT/ALT 血清麩胺酸丙酮酸轉氨基脢"
+        }
+      ]
+    },
+    {
+      "analyte": "Hemoglobin",
+      "aaaItems": [
+        {
+          "rank": 4,
+          "labName": "HGB",
+          "loincCode": "718-7",
+          "loincName": "Hemoglobin [Mass/volume] in Blood",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 10,
+          "labName": "Hb",
+          "loincCode": "718-7",
+          "loincName": "Hemoglobin [Mass/volume] in Blood",
+          "system": "Haematolog"
+        },
+        {
+          "rank": 51,
+          "labName": "Hemoglobin",
+          "loincCode": "718-7",
+          "loincName": "Hemoglobin [Mass/volume] in Blood",
+          "system": "CBC 全套血液檢查(紫)"
+        },
+        {
+          "rank": 52,
+          "labName": "Hemoglobin",
+          "loincCode": "718-7",
+          "loincName": "Hemoglobin [Mass/volume] in Blood",
+          "system": "CBC 全套血液檢查I (WBC等八項)"
+        },
+        {
+          "rank": 108,
+          "labName": "HGB",
+          "loincCode": "718-7",
+          "loincName": "Hemoglobin [Mass/volume] in Blood",
+          "system": "CBC I(含Platelet)"
+        }
+      ]
+    },
+    {
+      "analyte": "Leukocytes",
+      "aaaItems": [
+        {
+          "rank": 5,
+          "labName": "WBC",
+          "loincCode": "26464-8",
+          "loincName": "Leukocytes [#/volume] in Blood",
+          "system": "Blood"
+        },
+        {
+          "rank": 34,
+          "labName": "WBC(Sediment)",
+          "loincCode": "5821-4",
+          "loincName": "Leukocytes [#/area] in Urine sediment by Microscopy high power field",
+          "system": "Urine"
+        },
+        {
+          "rank": 182,
+          "labName": "WBC(Sediment)",
+          "loincCode": "46702-7",
+          "loincName": "Leukocytes [#/area] in Urine sediment by Automated count",
+          "system": "Foly urine"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 12,
+          "labName": "WBC",
+          "loincCode": "26464-8",
+          "loincName": "Leukocytes [#/volume] in Blood",
+          "system": "Haematolog"
+        },
+        {
+          "rank": 26,
+          "labName": "W.B.C",
+          "loincCode": "6690-2",
+          "loincName": "Leukocytes [#/volume] in Blood by Automated count",
+          "system": "CBC 全套血液檢查(紫)"
+        },
+        {
+          "rank": 34,
+          "labName": "W.B.C.",
+          "loincCode": "6690-2",
+          "loincName": "Leukocytes [#/volume] in Blood by Automated count",
+          "system": "CBC 全套血液檢查I (WBC等八項)"
+        },
+        {
+          "rank": 123,
+          "labName": "Strip WBC",
+          "loincCode": "58805-3",
+          "loincName": "Leukocytes [#/volume] in Urine by Automated test strip",
+          "system": "Urines"
+        },
+        {
+          "rank": 133,
+          "labName": "Urine WBC",
+          "loincCode": "51487-7",
+          "loincName": "Leukocytes [#/volume] in Urine by Automated count",
+          "system": "Urines"
+        },
+        {
+          "rank": 174,
+          "labName": "WBC",
+          "loincCode": "51487-7",
+          "loincName": "Leukocytes [#/volume] in Urine by Automated count",
+          "system": "Urine Routine 尿液一般檢驗(註明採檢時間)"
+        }
+      ]
+    },
+    {
+      "analyte": "Platelets",
+      "aaaItems": [
+        {
+          "rank": 6,
+          "labName": "Platelet",
+          "loincCode": "26515-7",
+          "loincName": "Platelets [#/volume] in Blood",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 19,
+          "labName": "PLT",
+          "loincCode": "777-3",
+          "loincName": "Platelets [#/volume] in Blood by Automated count",
+          "system": "Haematolog"
+        },
+        {
+          "rank": 32,
+          "labName": "PLT",
+          "loincCode": "26515-7",
+          "loincName": "Platelets [#/volume] in Blood",
+          "system": "CBC 全套血液檢查I (WBC等八項)"
+        },
+        {
+          "rank": 64,
+          "labName": "Platelet count",
+          "loincCode": "26515-7",
+          "loincName": "Platelets [#/volume] in Blood",
+          "system": "CBC 全套血液檢查(紫)"
+        }
+      ]
+    },
+    {
+      "analyte": "Erythrocytes",
+      "aaaItems": [
+        {
+          "rank": 7,
+          "labName": "RBC",
+          "loincCode": "26453-1",
+          "loincName": "Erythrocytes [#/volume] in Blood",
+          "system": "Blood"
+        },
+        {
+          "rank": 36,
+          "labName": "RBC(Sediment)",
+          "loincCode": "5808-1",
+          "loincName": "Erythrocytes [#/volume] in Urine sediment by Microscopy high power field",
+          "system": "Urine"
+        },
+        {
+          "rank": 188,
+          "labName": "RBC(Sediment)",
+          "loincCode": "46419-8",
+          "loincName": "Erythrocytes [#/area] in Urine sediment by Automated count",
+          "system": "Foly urine"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 9,
+          "labName": "RBC",
+          "loincCode": "789-8",
+          "loincName": "Erythrocytes [#/volume] in Blood by Automated count",
+          "system": "Haematolog"
+        },
+        {
+          "rank": 21,
+          "labName": "RBC",
+          "loincCode": "789-8",
+          "loincName": "Erythrocytes [#/volume] in Blood by Automated count",
+          "system": "CBC 全套血液檢查(紫)"
+        },
+        {
+          "rank": 132,
+          "labName": "Urine RBC",
+          "loincCode": "798-9",
+          "loincName": "Erythrocytes [#/volume] in Urine by Automated count",
+          "system": "Urines"
+        }
+      ]
+    },
+    {
+      "analyte": "Hematocritof Blood by Automated count",
+      "aaaItems": [
+        {
+          "rank": 8,
+          "labName": "HCT",
+          "loincCode": "4544-3",
+          "loincName": "Hematocrit [Volume Fraction] of Blood by Automated count",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 2,
+          "labName": "HCT",
+          "loincCode": "4544-3",
+          "loincName": "Hematocrit [Volume Fraction] of Blood by Automated count",
+          "system": "Haematolog"
+        },
+        {
+          "rank": 41,
+          "labName": "HCT",
+          "loincCode": "4544-3",
+          "loincName": "Hematocrit [Volume Fraction] of Blood by Automated count",
+          "system": "CBC 全套血液檢查I (WBC等八項)"
+        },
+        {
+          "rank": 78,
+          "labName": "Hct",
+          "loincCode": "4544-3",
+          "loincName": "Hematocrit [Volume Fraction] of Blood by Automated count",
+          "system": "CBC 全套血液檢查(紫)"
+        }
+      ]
+    },
+    {
+      "analyte": "MCHby Automated count",
+      "aaaItems": [
+        {
+          "rank": 10,
+          "labName": "MCH",
+          "loincCode": "785-6",
+          "loincName": "MCH [Entitic mass] by Automated count",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 43,
+          "labName": "MCH",
+          "loincCode": "785-6",
+          "loincName": "MCH [Entitic mass] by Automated count",
+          "system": "CBC 全套血液檢查(紫)"
+        }
+      ]
+    },
+    {
+      "analyte": "Erythrocyte distribution widthby Automated count",
+      "aaaItems": [
+        {
+          "rank": 12,
+          "labName": "RDW-CV",
+          "loincCode": "788-0",
+          "loincName": "Erythrocyte distribution width [Ratio] by Automated count",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 65,
+          "labName": "RDW",
+          "loincCode": "788-0",
+          "loincName": "Erythrocyte distribution width [Ratio] by Automated count",
+          "system": "CBC 全套血液檢查(紫)"
+        },
+        {
+          "rank": 195,
+          "labName": "RDW",
+          "loincCode": "788-0",
+          "loincName": "Erythrocyte distribution width [Ratio] by Automated count",
+          "system": "全套血液檢查 CBC-I"
+        }
+      ]
+    },
+    {
+      "analyte": "Glucose",
+      "aaaItems": [
+        {
+          "rank": 13,
+          "labName": "GLU(AC)",
+          "loincCode": "2339-0",
+          "loincName": "Glucose [Mass/volume] in Blood",
+          "system": "Blood"
+        },
+        {
+          "rank": 30,
+          "labName": "Glucose",
+          "loincCode": "2350-7",
+          "loincName": "Glucose [Mass/volume] in Urine",
+          "system": "Urine"
+        },
+        {
+          "rank": 58,
+          "labName": "Glu(random)",
+          "loincCode": "2339-0",
+          "loincName": "Glucose [Mass/volume] in Blood",
+          "system": "Blood"
+        },
+        {
+          "rank": 110,
+          "labName": "GLU(2hrs)",
+          "loincCode": "20436-2",
+          "loincName": "Glucose [Mass/volume] in Serum or Plasma --2 hours post dose glucose",
+          "system": "Blood"
+        },
+        {
+          "rank": 185,
+          "labName": "Glucose",
+          "loincCode": "41653-7",
+          "loincName": "Glucose [Mass/volume] in Capillary blood by Glucometer",
+          "system": "Foly urine"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 1,
+          "labName": "Glucose (PC/DEXTRO)",
+          "loincCode": "2345-7",
+          "loincName": "Glucose [Mass/volume] in Serum or Plasma",
+          "system": "Glu/Dextro"
+        },
+        {
+          "rank": 3,
+          "labName": "GLU(AC)",
+          "loincCode": "2345-7",
+          "loincName": "Glucose [Mass/volume] in Serum or Plasma",
+          "system": "Biochemist"
+        },
+        {
+          "rank": 15,
+          "labName": "血糖-扎針專用",
+          "loincCode": "2339-0",
+          "loincName": "Glucose [Mass/volume] in Blood",
+          "system": "病房專用-ONE Touch Glucose-Blood 血液葡萄糖"
+        },
+        {
+          "rank": 59,
+          "labName": "Glucose-AC(飯前)",
+          "loincCode": "2339-0",
+          "loincName": "Glucose [Mass/volume] in Blood",
+          "system": "Glucose-Blood 飯前血糖"
+        },
+        {
+          "rank": 87,
+          "labName": "Glucose(血糖機)",
+          "loincCode": "32016-8",
+          "loincName": "Glucose [Mass/volume] in Capillary blood",
+          "system": "Glucose (血糖機 )"
+        },
+        {
+          "rank": 103,
+          "labName": "Glu",
+          "loincCode": "2349-9",
+          "loincName": "Glucose [Presence] in Urine",
+          "system": "GENERAL URINE EXAMIN尿液一般檢驗"
+        },
+        {
+          "rank": 112,
+          "labName": "STRIP Glucose",
+          "loincCode": "5792-7",
+          "loincName": "Glucose [Mass/volume] in Urine by Test strip",
+          "system": "Urines"
+        },
+        {
+          "rank": 116,
+          "labName": "GLU(ER)",
+          "loincCode": "2345-7",
+          "loincName": "Glucose [Mass/volume] in Serum or Plasma",
+          "system": "Biochemist"
+        },
+        {
+          "rank": 141,
+          "labName": "Glucose(急診、住院血糖機專用)",
+          "loincCode": "2345-7",
+          "loincName": "Glucose [Mass/volume] in Serum or Plasma",
+          "system": "Glucose 急診,住院血糖機專用"
+        },
+        {
+          "rank": 161,
+          "labName": "ONE Touch Glucos不送檢驗科",
+          "loincCode": "41653-7",
+          "loincName": "Glucose [Mass/volume] in Capillary blood by Glucometer",
+          "system": "ONE Touch Glucos不送檢驗科"
+        }
+      ]
+    },
+    {
+      "analyte": "Cholesterol",
+      "aaaItems": [
+        {
+          "rank": 14,
+          "labName": "LDL-C",
+          "loincCode": "18262-6",
+          "loincName": "Cholesterol in LDL [Mass/volume] in Serum or Plasma by Direct assay",
+          "system": "Blood"
+        },
+        {
+          "rank": 28,
+          "labName": "CHOL",
+          "loincCode": "2093-3",
+          "loincName": "Cholesterol [Mass/volume] in Serum or Plasma",
+          "system": "Blood"
+        },
+        {
+          "rank": 47,
+          "labName": "HDL-C",
+          "loincCode": "2085-9",
+          "loincName": "Cholesterol in HDL [Mass/volume] in Serum or Plasma",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 8,
+          "labName": "Total Cholesterol",
+          "loincCode": "2093-3",
+          "loincName": "Cholesterol [Mass/volume] in Serum or Plasma",
+          "system": "Biochemist"
+        },
+        {
+          "rank": 44,
+          "labName": "LDL-Cholesterol",
+          "loincCode": "18262-6",
+          "loincName": "Cholesterol in LDL [Mass/volume] in Serum or Plasma by Direct assay",
+          "system": "Biochemist"
+        },
+        {
+          "rank": 53,
+          "labName": "Cholesterol",
+          "loincCode": "2093-3",
+          "loincName": "Cholesterol [Mass/volume] in Serum or Plasma",
+          "system": "cholesterol, total 總膽固醇"
+        },
+        {
+          "rank": 58,
+          "labName": "HDL-Cholesterol",
+          "loincCode": "2085-9",
+          "loincName": "Cholesterol in HDL [Mass/volume] in Serum or Plasma",
+          "system": "Biochemist"
+        },
+        {
+          "rank": 66,
+          "labName": "L.D.L. cholesterol",
+          "loincCode": "18262-6",
+          "loincName": "Cholesterol in LDL [Mass/volume] in Serum or Plasma by Direct assay",
+          "system": "L.D.L. cholesterol"
+        },
+        {
+          "rank": 90,
+          "labName": "H.D.L cholesterol",
+          "loincCode": "2085-9",
+          "loincName": "Cholesterol in HDL [Mass/volume] in Serum or Plasma",
+          "system": "H.D.L. cholesterol"
+        },
+        {
+          "rank": 143,
+          "labName": "CHOLESTEROL",
+          "loincCode": "14647-2",
+          "loincName": "Cholesterol [Moles/volume] in Serum or Plasma",
+          "system": "T.Cholesterol"
+        }
+      ]
+    },
+    {
+      "analyte": "Potassium",
+      "aaaItems": [
+        {
+          "rank": 15,
+          "labName": "K",
+          "loincCode": "6298-4",
+          "loincName": "Potassium [Moles/volume] in Blood",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 22,
+          "labName": "K",
+          "loincCode": "2823-3",
+          "loincName": "Potassium [Moles/volume] in Serum or Plasma",
+          "system": "Biochemist"
+        },
+        {
+          "rank": 40,
+          "labName": "K",
+          "loincCode": "2823-3",
+          "loincName": "Potassium [Moles/volume] in Serum or Plasma",
+          "system": "K"
+        },
+        {
+          "rank": 105,
+          "labName": "K-blood",
+          "loincCode": "2823-3",
+          "loincName": "Potassium [Moles/volume] in Serum or Plasma",
+          "system": "K-Blood (Potassium) 鉀(血)"
+        },
+        {
+          "rank": 118,
+          "labName": "Blood gas K",
+          "loincCode": "2823-3",
+          "loincName": "Potassium [Moles/volume] in Serum or Plasma",
+          "system": "Blood Gas"
+        }
+      ]
+    },
+    {
+      "analyte": "Triglyceride",
+      "aaaItems": [
+        {
+          "rank": 16,
+          "labName": "TRIG",
+          "loincCode": "3043-7",
+          "loincName": "Triglyceride [Mass/volume] in Blood",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 5,
+          "labName": "Triglyceride",
+          "loincCode": "2571-8",
+          "loincName": "Triglyceride [Mass/volume] in Serum or Plasma",
+          "system": "Biochemist"
+        },
+        {
+          "rank": 45,
+          "labName": "TG",
+          "loincCode": "2571-8",
+          "loincName": "Triglyceride [Mass/volume] in Serum or Plasma",
+          "system": "Triglyceride (TG)"
+        }
+      ]
+    },
+    {
+      "analyte": "Hemoglobin A1c/Hemoglobin.total",
+      "aaaItems": [
+        {
+          "rank": 17,
+          "labName": "HbA1c",
+          "loincCode": "4548-4",
+          "loincName": "Hemoglobin A1c/Hemoglobin.total in Blood",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 24,
+          "labName": "HbA1c",
+          "loincCode": "4548-4",
+          "loincName": "Hemoglobin A1c/Hemoglobin.total in Blood",
+          "system": "Biochemist"
+        },
+        {
+          "rank": 104,
+          "labName": "HbAlc (Hemoglobin A1c)",
+          "loincCode": "4548-4",
+          "loincName": "Hemoglobin A1c/Hemoglobin.total in Blood",
+          "system": "HbA1c (Hemoglobin A1c) 醣化血紅素"
+        }
+      ]
+    },
+    {
+      "analyte": "Sodium",
+      "aaaItems": [
+        {
+          "rank": 18,
+          "labName": "Na",
+          "loincCode": "2947-0",
+          "loincName": "Sodium [Moles/volume] in Blood",
+          "system": "Blood"
+        },
+        {
+          "rank": 193,
+          "labName": "Na",
+          "loincCode": "2955-3",
+          "loincName": "Sodium [Moles/volume] in Urine",
+          "system": "Urine"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 7,
+          "labName": "Blood gas Na",
+          "loincCode": "2951-2",
+          "loincName": "Sodium [Moles/volume] in Serum or Plasma",
+          "system": "Biochemist"
+        },
+        {
+          "rank": 42,
+          "labName": "Na",
+          "loincCode": "2951-2",
+          "loincName": "Sodium [Moles/volume] in Serum or Plasma",
+          "system": "Na"
+        },
+        {
+          "rank": 110,
+          "labName": "Na-blood",
+          "loincCode": "2947-0",
+          "loincName": "Sodium [Moles/volume] in Blood",
+          "system": "Na-Blood (Sodium) 鈉(血)"
+        }
+      ]
+    },
+    {
+      "analyte": "pH of Urine",
+      "aaaItems": [
+        {
+          "rank": 19,
+          "labName": "pH",
+          "loincCode": "2756-5",
+          "loincName": "pH of Urine",
+          "system": "Urine"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 62,
+          "labName": "PH",
+          "loincCode": "2756-5",
+          "loincName": "pH of Urine",
+          "system": "Urines"
+        },
+        {
+          "rank": 86,
+          "labName": "PH",
+          "loincCode": "2756-5",
+          "loincName": "pH of Urine",
+          "system": "GENERAL URINE EXAMIN尿液一般檢驗"
+        }
+      ]
+    },
+    {
+      "analyte": "Monocytes/100 leukocytes",
+      "aaaItems": [
+        {
+          "rank": 20,
+          "labName": "Monocyte",
+          "loincCode": "5905-5",
+          "loincName": "Monocytes/100 leukocytes in Blood by Automated count",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 39,
+          "labName": "MONO",
+          "loincCode": "26485-3",
+          "loincName": "Monocytes/100 leukocytes in Blood",
+          "system": "DC(WBC Differential Count) 白血球分類計數"
+        }
+      ]
+    },
+    {
+      "analyte": "Lymphocytes/100 leukocytes",
+      "aaaItems": [
+        {
+          "rank": 21,
+          "labName": "Lymphocyte",
+          "loincCode": "736-9",
+          "loincName": "Lymphocytes/100 leukocytes in Blood by Automated count",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 38,
+          "labName": "LYMP",
+          "loincCode": "26478-8",
+          "loincName": "Lymphocytes/100 leukocytes in Blood",
+          "system": "DC(WBC Differential Count) 白血球分類計數"
+        }
+      ]
+    },
+    {
+      "analyte": "Neutrophils/100 leukocytes",
+      "aaaItems": [
+        {
+          "rank": 22,
+          "labName": "Neutrophil(seg)",
+          "loincCode": "770-8",
+          "loincName": "Neutrophils/100 leukocytes in Blood by Automated count",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 48,
+          "labName": "NEUT",
+          "loincCode": "26511-6",
+          "loincName": "Neutrophils/100 leukocytes in Blood",
+          "system": "DC(WBC Differential Count) 白血球分類計數"
+        }
+      ]
+    },
+    {
+      "analyte": "Eosinophils/100 leukocytes",
+      "aaaItems": [
+        {
+          "rank": 24,
+          "labName": "Eosinophil",
+          "loincCode": "713-8",
+          "loincName": "Eosinophils/100 leukocytes in Blood by Automated count",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 30,
+          "labName": "Eosinophil",
+          "loincCode": "26450-7",
+          "loincName": "Eosinophils/100 leukocytes in Blood",
+          "system": "Haematolog"
+        },
+        {
+          "rank": 47,
+          "labName": "EOSI",
+          "loincCode": "26450-7",
+          "loincName": "Eosinophils/100 leukocytes in Blood",
+          "system": "DC(WBC Differential Count) 白血球分類計數"
+        }
+      ]
+    },
+    {
+      "analyte": "Basophils/100 leukocytes",
+      "aaaItems": [
+        {
+          "rank": 25,
+          "labName": "Basophil",
+          "loincCode": "706-2",
+          "loincName": "Basophils/100 leukocytes in Blood by Automated count",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 49,
+          "labName": "BASO",
+          "loincCode": "30180-4",
+          "loincName": "Basophils/100 leukocytes in Blood",
+          "system": "DC(WBC Differential Count) 白血球分類計數"
+        }
+      ]
+    },
+    {
+      "analyte": "Aspartate aminotransferase",
+      "aaaItems": [
+        {
+          "rank": 26,
+          "labName": "GOT(AST)",
+          "loincCode": "1920-8",
+          "loincName": "Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 20,
+          "labName": "AST",
+          "loincCode": "1920-8",
+          "loincName": "Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma",
+          "system": "Biochemist"
+        },
+        {
+          "rank": 128,
+          "labName": "GOT",
+          "loincCode": "1920-8",
+          "loincName": "Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma",
+          "system": "AST (紅gel, 綠)"
+        }
+      ]
+    },
+    {
+      "analyte": "Urea nitrogen",
+      "aaaItems": [
+        {
+          "rank": 27,
+          "labName": "BUN",
+          "loincCode": "6299-2",
+          "loincName": "Urea nitrogen [Mass/volume] in Blood",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 23,
+          "labName": "BUN",
+          "loincCode": "3094-0",
+          "loincName": "Urea nitrogen [Mass/volume] in Serum or Plasma",
+          "system": "Biochemist"
+        },
+        {
+          "rank": 50,
+          "labName": "BUN",
+          "loincCode": "3094-0",
+          "loincName": "Urea nitrogen [Mass/volume] in Serum or Plasma",
+          "system": "BUN"
+        },
+        {
+          "rank": 89,
+          "labName": "Bun",
+          "loincCode": "6299-2",
+          "loincName": "Urea nitrogen [Mass/volume] in Blood",
+          "system": "Bun, blood urea nitrogen 血中尿素氮"
+        }
+      ]
+    },
+    {
+      "analyte": "Urate",
+      "aaaItems": [
+        {
+          "rank": 29,
+          "labName": "URCA",
+          "loincCode": "98981-4",
+          "loincName": "Urate [Mass/volume] in Blood",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 46,
+          "labName": "Uric Acid",
+          "loincCode": "3084-1",
+          "loincName": "Urate [Mass/volume] in Serum or Plasma",
+          "system": "Biochemist"
+        },
+        {
+          "rank": 54,
+          "labName": "Uric Acid",
+          "loincCode": "3084-1",
+          "loincName": "Urate [Mass/volume] in Serum or Plasma",
+          "system": "Uric acid"
+        }
+      ]
+    },
+    {
+      "analyte": "Protein",
+      "aaaItems": [
+        {
+          "rank": 31,
+          "labName": "Protein",
+          "loincCode": "2888-6",
+          "loincName": "Protein [Mass/volume] in Urine",
+          "system": "Urine"
+        },
+        {
+          "rank": 75,
+          "labName": "TP",
+          "loincCode": "2888-6",
+          "loincName": "Protein [Mass/volume] in Urine",
+          "system": "Urine"
+        },
+        {
+          "rank": 191,
+          "labName": "Protein",
+          "loincCode": "2888-6",
+          "loincName": "Protein [Mass/volume] in Urine",
+          "system": "Foly urine"
+        },
+        {
+          "rank": 196,
+          "labName": "Protein",
+          "loincCode": "2881-1",
+          "loincName": "Protein [Mass/volume] in Body fluid",
+          "system": "Pleural effusion"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 95,
+          "labName": "PRO",
+          "loincCode": "2888-6",
+          "loincName": "Protein [Mass/volume] in Urine",
+          "system": "GENERAL URINE EXAMIN尿液一般檢驗"
+        },
+        {
+          "rank": 111,
+          "labName": "Urine Protein",
+          "loincCode": "2888-6",
+          "loincName": "Protein [Mass/volume] in Urine",
+          "system": "Urines"
+        },
+        {
+          "rank": 148,
+          "labName": "Others",
+          "loincCode": "2888-6",
+          "loincName": "Protein [Mass/volume] in Urine",
+          "system": "Urine Routine(含SD)/尿液常規檢查(含尿沉渣)"
+        },
+        {
+          "rank": 184,
+          "labName": "PH",
+          "loincCode": "2888-6",
+          "loincName": "Protein [Mass/volume] in Urine",
+          "system": "Urine Routine(含SD)/尿液常規檢查(含尿沉渣)"
+        },
+        {
+          "rank": 198,
+          "labName": "Protein",
+          "loincCode": "2888-6",
+          "loincName": "Protein [Mass/volume] in Urine",
+          "system": "Urine Routine 尿液一般檢驗(註明採檢時間)"
+        }
+      ]
+    },
+    {
+      "analyte": "Bacteria identified",
+      "aaaItems": [
+        {
+          "rank": 32,
+          "labName": "Bacteria",
+          "loincCode": "630-4",
+          "loincName": "Bacteria identified in Urine by Culture",
+          "system": "Urine"
+        },
+        {
+          "rank": 190,
+          "labName": "Bacteria",
+          "loincCode": "630-4",
+          "loincName": "Bacteria identified in Urine by Culture",
+          "system": "Foly urine"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 71,
+          "labName": "Bacteria",
+          "loincCode": "630-4",
+          "loincName": "Bacteria identified in Urine by Culture",
+          "system": "GENERAL URINE EXAMIN尿液一般檢驗"
+        },
+        {
+          "rank": 134,
+          "labName": "Bacteria",
+          "loincCode": "630-4",
+          "loincName": "Bacteria identified in Urine by Culture",
+          "system": "Urines"
+        }
+      ]
+    },
+    {
+      "analyte": "Crystals",
+      "aaaItems": [
+        {
+          "rank": 33,
+          "labName": "Crystal",
+          "loincCode": "38459-4",
+          "loincName": "Crystals [#/area] in Urine sediment by Microscopy high power field",
+          "system": "Urine"
+        },
+        {
+          "rank": 192,
+          "labName": "Crystal",
+          "loincCode": "5782-8",
+          "loincName": "Crystals [type] in Urine sediment by Light microscopy",
+          "system": "Foly urine"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 72,
+          "labName": "Crystal",
+          "loincCode": "53319-0",
+          "loincName": "Crystals [Presence] in Urine by Automated",
+          "system": "GENERAL URINE EXAMIN尿液一般檢驗"
+        },
+        {
+          "rank": 142,
+          "labName": "Crystal",
+          "loincCode": "53319-0",
+          "loincName": "Crystals [Presence] in Urine by Automated",
+          "system": "Urines"
+        }
+      ]
+    },
+    {
+      "analyte": "Epithelial cells",
+      "aaaItems": [
+        {
+          "rank": 35,
+          "labName": "Epithelial Cell",
+          "loincCode": "5787-7",
+          "loincName": "Epithelial cells [#/area] in Urine sediment by Microscopy high power field",
+          "system": "Urine"
+        },
+        {
+          "rank": 189,
+          "labName": "Epithelial Cell",
+          "loincCode": "5787-7",
+          "loincName": "Epithelial cells [#/area] in Urine sediment by Microscopy high power field",
+          "system": "Foly urine"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 75,
+          "labName": "EP cell",
+          "loincCode": "5787-7",
+          "loincName": "Epithelial cells [#/area] in Urine sediment by Microscopy high power field",
+          "system": "GENERAL URINE EXAMIN尿液一般檢驗"
+        },
+        {
+          "rank": 131,
+          "labName": "epith.cells",
+          "loincCode": "30383-4",
+          "loincName": "Epithelial cells [#/volume] in Urine",
+          "system": "Urines"
+        }
+      ]
+    },
+    {
+      "analyte": "Casts",
+      "aaaItems": [
+        {
+          "rank": 37,
+          "labName": "Cast",
+          "loincCode": "9842-6",
+          "loincName": "Casts [#/area] in Urine sediment by Microscopy low power field",
+          "system": "Urine"
+        },
+        {
+          "rank": 187,
+          "labName": "Cast",
+          "loincCode": "58436-7",
+          "loincName": "Casts [Type] in Urine sediment by Light microscopy",
+          "system": "Foly urine"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 73,
+          "labName": "Cast",
+          "loincCode": "9842-6",
+          "loincName": "Casts [#/area] in Urine sediment by Microscopy low power field",
+          "system": "GENERAL URINE EXAMIN尿液一般檢驗"
+        },
+        {
+          "rank": 114,
+          "labName": "Urine Cast",
+          "loincCode": "43755-8",
+          "loincName": "Casts [#/area] in Urine sediment by Automated count",
+          "system": "Urines"
+        },
+        {
+          "rank": 176,
+          "labName": "Cast2",
+          "loincCode": "9842-6",
+          "loincName": "Casts [#/area] in Urine sediment by Microscopy low power field",
+          "system": "Urine Routine 尿液一般檢驗(註明採檢時間)"
+        }
+      ]
+    },
+    {
+      "analyte": "Leukocyte esterase",
+      "aaaItems": [
+        {
+          "rank": 38,
+          "labName": "Leukoccyte esterase",
+          "loincCode": "5799-2",
+          "loincName": "Leukocyte esterase [Presence] in Urine by Test strip",
+          "system": "Urine"
+        },
+        {
+          "rank": 177,
+          "labName": "Leukoccyte esterase",
+          "loincCode": "5799-2",
+          "loincName": "Leukocyte esterase [Presence] in Urine by Test strip",
+          "system": "Foly urine"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 130,
+          "labName": "Leukocyte esterase",
+          "loincCode": "5799-2",
+          "loincName": "Leukocyte esterase [Presence] in Urine by Test strip",
+          "system": "GENERAL URINE EXAMIN尿液一般檢驗"
+        }
+      ]
+    },
+    {
+      "analyte": "Nitrite",
+      "aaaItems": [
+        {
+          "rank": 39,
+          "labName": "Nitrite",
+          "loincCode": "32710-6",
+          "loincName": "Nitrite [Presence] in Urine",
+          "system": "Urine"
+        },
+        {
+          "rank": 176,
+          "labName": "Nitrite",
+          "loincCode": "5802-4",
+          "loincName": "Nitrite [Presence] in Urine by Test strip",
+          "system": "Foly urine"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 69,
+          "labName": "NIT",
+          "loincCode": "32710-6",
+          "loincName": "Nitrite [Presence] in Urine",
+          "system": "GENERAL URINE EXAMIN尿液一般檢驗"
+        },
+        {
+          "rank": 122,
+          "labName": "Nitrite",
+          "loincCode": "5802-4",
+          "loincName": "Nitrite [Presence] in Urine by Test strip",
+          "system": "Urines"
+        }
+      ]
+    },
+    {
+      "analyte": "Color of Urine",
+      "aaaItems": [
+        {
+          "rank": 42,
+          "labName": "Color",
+          "loincCode": "5778-6",
+          "loincName": "Color of Urine",
+          "system": "Urine"
+        },
+        {
+          "rank": 179,
+          "labName": "Color",
+          "loincCode": "5778-6",
+          "loincName": "Color of Urine",
+          "system": "Foly urine"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 61,
+          "labName": "Color",
+          "loincCode": "5778-6",
+          "loincName": "Color of Urine",
+          "system": "GENERAL URINE EXAMIN尿液一般檢驗"
+        },
+        {
+          "rank": 106,
+          "labName": "Colour",
+          "loincCode": "5778-6",
+          "loincName": "Color of Urine",
+          "system": "Urines"
+        }
+      ]
+    },
+    {
+      "analyte": "Bilirubin.total",
+      "aaaItems": [
+        {
+          "rank": 43,
+          "labName": "Bilirubin",
+          "loincCode": "1977-8",
+          "loincName": "Bilirubin.total [Presence] in Urine",
+          "system": "Urine"
+        },
+        {
+          "rank": 49,
+          "labName": "TBIL",
+          "loincCode": "42719-5",
+          "loincName": "Bilirubin.total [Mass/volume] in Blood",
+          "system": "Blood"
+        },
+        {
+          "rank": 178,
+          "labName": "Bilirubin",
+          "loincCode": "5770-3",
+          "loincName": "Bilirubin.total [Presence] in Urine by Test strip",
+          "system": "Foly urine"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 83,
+          "labName": "Total Bilirubin",
+          "loincCode": "1975-2",
+          "loincName": "Bilirubin.total [Mass/volume] in Serum or Plasma",
+          "system": "Biochemist"
+        },
+        {
+          "rank": 113,
+          "labName": "Bilirubin Total",
+          "loincCode": "1975-2",
+          "loincName": "Bilirubin.total [Mass/volume] in Serum or Plasma",
+          "system": "Bilirubin Total 膽紅素總量"
+        },
+        {
+          "rank": 129,
+          "labName": "Urine Bilirubin",
+          "loincCode": "1975-2",
+          "loincName": "Bilirubin.total [Mass/volume] in Serum or Plasma",
+          "system": "Urines"
+        },
+        {
+          "rank": 153,
+          "labName": "BIL",
+          "loincCode": "1977-8",
+          "loincName": "Bilirubin.total [Presence] in Urine",
+          "system": "GENERAL URINE EXAMIN尿液一般檢驗"
+        },
+        {
+          "rank": 157,
+          "labName": "BIL",
+          "loincCode": "1977-8",
+          "loincName": "Bilirubin.total [Presence] in Urine",
+          "system": "Urine Routine(含SD)/尿液常規檢查(含尿沉渣)"
+        }
+      ]
+    },
+    {
+      "analyte": "Specific gravity of Urine",
+      "aaaItems": [
+        {
+          "rank": 44,
+          "labName": "Specific gravity",
+          "loincCode": "2965-2",
+          "loincName": "Specific gravity of Urine",
+          "system": "Urine"
+        },
+        {
+          "rank": 180,
+          "labName": "Specific gravity",
+          "loincCode": "2965-2",
+          "loincName": "Specific gravity of Urine",
+          "system": "Foly urine"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 126,
+          "labName": "Specific Gravity",
+          "loincCode": "2965-2",
+          "loincName": "Specific gravity of Urine",
+          "system": "Urines"
+        },
+        {
+          "rank": 164,
+          "labName": "Sp.gr",
+          "loincCode": "2965-2",
+          "loincName": "Specific gravity of Urine",
+          "system": "GENERAL URINE EXAMIN尿液一般檢驗"
+        },
+        {
+          "rank": 177,
+          "labName": "SG",
+          "loincCode": "2965-2",
+          "loincName": "Specific gravity of Urine",
+          "system": "Urine Routine(含SD)/尿液常規檢查(含尿沉渣)"
+        }
+      ]
+    },
+    {
+      "analyte": "Urobilinogen",
+      "aaaItems": [
+        {
+          "rank": 45,
+          "labName": "Urobilinogen",
+          "loincCode": "19161-9",
+          "loincName": "Urobilinogen [Units/volume] in Urine by Test strip",
+          "system": "Urine"
+        },
+        {
+          "rank": 186,
+          "labName": "Urobilinogen",
+          "loincCode": "5818-0",
+          "loincName": "Urobilinogen [Presence] in Urine by Test strip",
+          "system": "Foly urine"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 109,
+          "labName": "UBG",
+          "loincCode": "3107-0",
+          "loincName": "Urobilinogen [Mass/volume] in Urine",
+          "system": "GENERAL URINE EXAMIN尿液一般檢驗"
+        },
+        {
+          "rank": 144,
+          "labName": "Urobilinogen",
+          "loincCode": "19161-9",
+          "loincName": "Urobilinogen [Units/volume] in Urine by Test strip",
+          "system": "Urines"
+        }
+      ]
+    },
+    {
+      "analyte": "Ketones",
+      "aaaItems": [
+        {
+          "rank": 46,
+          "labName": "Ketone body",
+          "loincCode": "2514-8",
+          "loincName": "Ketones [Presence] in Urine by Test strip",
+          "system": "Urine"
+        },
+        {
+          "rank": 184,
+          "labName": "Ketone body",
+          "loincCode": "2514-8",
+          "loincName": "Ketones [Presence] in Urine by Test strip",
+          "system": "Foly urine"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 107,
+          "labName": "Ket",
+          "loincCode": "2514-8",
+          "loincName": "Ketones [Presence] in Urine by Test strip",
+          "system": "Urine Routine(含SD)/尿液常規檢查(含尿沉渣)"
+        }
+      ]
+    },
+    {
+      "analyte": "C reactive protein",
+      "aaaItems": [
+        {
+          "rank": 50,
+          "labName": "C-reactive protein",
+          "loincCode": "1988-5",
+          "loincName": "C reactive protein [Mass/volume] in Serum or Plasma",
+          "system": "Blood"
+        },
+        {
+          "rank": 83,
+          "labName": "hsCRP",
+          "loincCode": "71426-1",
+          "loincName": "C reactive protein [Mass/volume] in Blood by High sensitivity method",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 63,
+          "labName": "CRP",
+          "loincCode": "1988-5",
+          "loincName": "C reactive protein [Mass/volume] in Serum or Plasma",
+          "system": "Biochemist"
+        },
+        {
+          "rank": 139,
+          "labName": "CRP",
+          "loincCode": "30522-7",
+          "loincName": "C reactive protein [Mass/volume] in Serum or Plasma by High sensitivity method",
+          "system": "CRP (紅頭Gel管)"
+        },
+        {
+          "rank": 181,
+          "labName": "CRP(quantitative)",
+          "loincCode": "1988-5",
+          "loincName": "C reactive protein [Mass/volume] in Serum or Plasma",
+          "system": "CRP   C反應性蛋白 (紅gel, 綠)"
+        }
+      ]
+    },
+    {
+      "analyte": "Creatine kinase",
+      "aaaItems": [
+        {
+          "rank": 51,
+          "labName": "CK",
+          "loincCode": "2157-6",
+          "loincName": "Creatine kinase [Enzymatic activity/volume] in Serum or Plasma",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 115,
+          "labName": "CK",
+          "loincCode": "2157-6",
+          "loincName": "Creatine kinase [Enzymatic activity/volume] in Serum or Plasma",
+          "system": "Biochemist"
+        },
+        {
+          "rank": 121,
+          "labName": "CPK",
+          "loincCode": "2157-6",
+          "loincName": "Creatine kinase [Enzymatic activity/volume] in Serum or Plasma",
+          "system": "CPK"
+        }
+      ]
+    },
+    {
+      "analyte": "INR",
+      "aaaItems": [
+        {
+          "rank": 54,
+          "labName": "INR",
+          "loincCode": "34714-6",
+          "loincName": "INR in Blood by Coagulation assay",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 55,
+          "labName": "INR",
+          "loincCode": "34714-6",
+          "loincName": "INR in Blood by Coagulation assay",
+          "system": "APTT PT"
+        }
+      ]
+    },
+    {
+      "analyte": "Prothrombin time (PT)",
+      "aaaItems": [
+        {
+          "rank": 55,
+          "labName": "Mean Normal Prothrombin Time",
+          "loincCode": "5964-2",
+          "loincName": "Prothrombin time (PT) in Blood by Coagulation assay",
+          "system": "Blood"
+        },
+        {
+          "rank": 56,
+          "labName": "PT",
+          "loincCode": "5964-2",
+          "loincName": "Prothrombin time (PT) in Blood by Coagulation assay",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 91,
+          "labName": "PT MNPT",
+          "loincCode": "5902-2",
+          "loincName": "Prothrombin time (PT)",
+          "system": "APTT PT"
+        },
+        {
+          "rank": 92,
+          "labName": "PT (pt)",
+          "loincCode": "5902-2",
+          "loincName": "Prothrombin time (PT)",
+          "system": "APTT PT"
+        },
+        {
+          "rank": 168,
+          "labName": "Prothrombin time",
+          "loincCode": "5902-2",
+          "loincName": "Prothrombin time (PT)",
+          "system": "Prothrombin time 凝血脢原時間(一段式)"
+        }
+      ]
+    },
+    {
+      "analyte": "Thyrotropin",
+      "aaaItems": [
+        {
+          "rank": 57,
+          "labName": "TSH",
+          "loincCode": "3015-5",
+          "loincName": "Thyrotropin [Units/volume] in Blood",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 68,
+          "labName": "TSH",
+          "loincCode": "3016-3",
+          "loincName": "Thyrotropin [Units/volume] in Serum or Plasma",
+          "system": "甲狀腺"
+        }
+      ]
+    },
+    {
+      "analyte": "Calcium",
+      "aaaItems": [
+        {
+          "rank": 59,
+          "labName": "CA",
+          "loincCode": "49765-1",
+          "loincName": "Calcium [Mass/volume] in Blood",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 180,
+          "labName": "Ca",
+          "loincCode": "17861-6",
+          "loincName": "Calcium [Mass/volume] in Serum or Plasma",
+          "system": "Calcium (Serum) (紅gel, 綠)"
+        }
+      ]
+    },
+    {
+      "analyte": "Bicarbonatestandard",
+      "aaaItems": [
+        {
+          "rank": 60,
+          "labName": "HCO3std(vein)",
+          "loincCode": "19232-8",
+          "loincName": "Bicarbonate [Moles/volume] standard in Venous blood",
+          "system": "Vein GAS"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 77,
+          "labName": "Blood gas HCO3-std",
+          "loincCode": "19230-2",
+          "loincName": "Bicarbonate [Moles/volume] standard in Arterial blood",
+          "system": "Blood Gas"
+        },
+        {
+          "rank": 189,
+          "labName": "VBGA HCO3-std",
+          "loincCode": "19230-2",
+          "loincName": "Bicarbonate [Moles/volume] standard in Arterial blood",
+          "system": "Blood Gas"
+        }
+      ]
+    },
+    {
+      "analyte": "Base excess",
+      "aaaItems": [
+        {
+          "rank": 61,
+          "labName": "BE(B)V",
+          "loincCode": "105092-1",
+          "loincName": "Base excess in Venous blood",
+          "system": "Vein GAS"
+        },
+        {
+          "rank": 63,
+          "labName": "BE(ecf)V",
+          "loincCode": "105092-1",
+          "loincName": "Base excess in Venous blood",
+          "system": "Vein GAS"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 70,
+          "labName": "BE",
+          "loincCode": "11555-0",
+          "loincName": "Base excess in Blood by calculation",
+          "system": "Blood Gas"
+        },
+        {
+          "rank": 101,
+          "labName": "Blood gas BE(ecf)",
+          "loincCode": "60840-6",
+          "loincName": "Base excess in Extracellular fluid by calculation",
+          "system": "Blood Gas"
+        },
+        {
+          "rank": 187,
+          "labName": "VBGA BE(ecf)",
+          "loincCode": "11555-0",
+          "loincName": "Base excess in Blood by calculation",
+          "system": "Blood Gas"
+        },
+        {
+          "rank": 188,
+          "labName": "VBGA BE(B)",
+          "loincCode": "1926-5",
+          "loincName": "Base excess in Capillary blood by calculation",
+          "system": "Blood Gas"
+        }
+      ]
+    },
+    {
+      "analyte": "Carbon dioxide, total",
+      "aaaItems": [
+        {
+          "rank": 62,
+          "labName": "ctCO2(vein)",
+          "loincCode": "2027-1",
+          "loincName": "Carbon dioxide, total [Moles/volume] in Venous blood",
+          "system": "Vein GAS"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 160,
+          "labName": "Blood gas ctCO2",
+          "loincCode": "20565-8",
+          "loincName": "Carbon dioxide, total [Moles/volume] in Blood",
+          "system": "Blood Gas"
+        },
+        {
+          "rank": 185,
+          "labName": "VBGA ctCO2",
+          "loincCode": "20565-8",
+          "loincName": "Carbon dioxide, total [Moles/volume] in Blood",
+          "system": "Blood Gas"
+        }
+      ]
+    },
+    {
+      "analyte": "Carbon dioxide",
+      "aaaItems": [
+        {
+          "rank": 64,
+          "labName": "pCO2V",
+          "loincCode": "2021-4",
+          "loincName": "Carbon dioxide [Partial pressure] in Venous blood",
+          "system": "Vein GAS"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 56,
+          "labName": "PCO2",
+          "loincCode": "2019-8",
+          "loincName": "Carbon dioxide [Partial pressure] in Arterial blood",
+          "system": "Blood Gas"
+        },
+        {
+          "rank": 178,
+          "labName": "PCO2",
+          "loincCode": "2021-4",
+          "loincName": "Carbon dioxide [Partial pressure] in Venous blood",
+          "system": "Vein Blood Gas(註明採檢時間)"
+        },
+        {
+          "rank": 186,
+          "labName": "VBGA PvCO2",
+          "loincCode": "2019-8",
+          "loincName": "Carbon dioxide [Partial pressure] in Arterial blood",
+          "system": "Blood Gas"
+        }
+      ]
+    },
+    {
+      "analyte": "Bicarbonate",
+      "aaaItems": [
+        {
+          "rank": 65,
+          "labName": "HCO3act(vein)",
+          "loincCode": "14627-4",
+          "loincName": "Bicarbonate [Moles/volume] in Venous blood",
+          "system": "Vein GAS"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 82,
+          "labName": "Blood gas HCO3-act",
+          "loincCode": "1960-4",
+          "loincName": "Bicarbonate [Moles/volume] in Arterial blood",
+          "system": "Blood Gas"
+        },
+        {
+          "rank": 191,
+          "labName": "VBGA HCO3",
+          "loincCode": "1959-6",
+          "loincName": "Bicarbonate [Moles/volume] in Blood",
+          "system": "Blood Gas"
+        }
+      ]
+    },
+    {
+      "analyte": "Oxygenadjusted to patient's actual temperature",
+      "aaaItems": [
+        {
+          "rank": 66,
+          "labName": "pO2(vein)",
+          "loincCode": "19258-3",
+          "loincName": "Oxygen [Partial pressure] adjusted to patient's actual temperature in Venous blood",
+          "system": "Vein GAS"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 193,
+          "labName": "VBGA PvO2",
+          "loincCode": "19254-2",
+          "loincName": "Oxygen [Partial pressure] adjusted to patient's actual temperature in Blood",
+          "system": "Blood Gas"
+        }
+      ]
+    },
+    {
+      "analyte": "Oxygen saturation",
+      "aaaItems": [
+        {
+          "rank": 67,
+          "labName": "O2sat(vein)",
+          "loincCode": "2711-0",
+          "loincName": "Oxygen saturation in Venous blood",
+          "system": "Vein GAS"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 100,
+          "labName": "Blood gas so2",
+          "loincCode": "2708-6",
+          "loincName": "Oxygen saturation in Arterial blood",
+          "system": "Blood Gas"
+        },
+        {
+          "rank": 190,
+          "labName": "VBGA so2",
+          "loincCode": "20564-1",
+          "loincName": "Oxygen saturation in Blood",
+          "system": "Blood Gas"
+        }
+      ]
+    },
+    {
+      "analyte": "Albumin",
+      "aaaItems": [
+        {
+          "rank": 68,
+          "labName": "ALB",
+          "loincCode": "1747-5",
+          "loincName": "Albumin [Mass/volume] in Body fluid",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 80,
+          "labName": "Albumin",
+          "loincCode": "1751-7",
+          "loincName": "Albumin [Mass/volume] in Serum or Plasma",
+          "system": "Albumin"
+        },
+        {
+          "rank": 97,
+          "labName": "Albumin",
+          "loincCode": "1751-7",
+          "loincName": "Albumin [Mass/volume] in Serum or Plasma",
+          "system": "Biochemist"
+        }
+      ]
+    },
+    {
+      "analyte": "Microalbumin",
+      "aaaItems": [
+        {
+          "rank": 69,
+          "labName": "Urine microalbumin",
+          "loincCode": "14957-5",
+          "loincName": "Microalbumin [Mass/volume] in Urine",
+          "system": "Urine"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 79,
+          "labName": "Microalbumin",
+          "loincCode": "14957-5",
+          "loincName": "Microalbumin [Mass/volume] in Urine",
+          "system": "Urine bio."
+        }
+      ]
+    },
+    {
+      "analyte": "Thyroxine (T4) free",
+      "aaaItems": [
+        {
+          "rank": 71,
+          "labName": "Free T4",
+          "loincCode": "3024-7",
+          "loincName": "Thyroxine (T4) free [Mass/volume] in Serum or Plasma",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 74,
+          "labName": "Free T4",
+          "loincCode": "3024-7",
+          "loincName": "Thyroxine (T4) free [Mass/volume] in Serum or Plasma",
+          "system": "甲狀腺"
+        }
+      ]
+    },
+    {
+      "analyte": "Phosphate",
+      "aaaItems": [
+        {
+          "rank": 72,
+          "labName": "P",
+          "loincCode": "2774-8",
+          "loincName": "Phosphate [Mass/volume] in Blood",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 183,
+          "labName": "P",
+          "loincCode": "2777-1",
+          "loincName": "Phosphate [Mass/volume] in Serum or Plasma",
+          "system": "P-blood (Phosphoras) 磷"
+        }
+      ]
+    },
+    {
+      "analyte": "Troponin I.cardiac",
+      "aaaItems": [
+        {
+          "rank": 74,
+          "labName": "Troponin I",
+          "loincCode": "42757-5",
+          "loincName": "Troponin I.cardiac [Mass/volume] in Blood",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 67,
+          "labName": "Troponin I",
+          "loincCode": "10839-9",
+          "loincName": "Troponin I.cardiac [Mass/volume] in Serum or Plasma",
+          "system": "Biochemist"
+        }
+      ]
+    },
+    {
+      "analyte": "Lactate",
+      "aaaItems": [
+        {
+          "rank": 76,
+          "labName": "Lactate",
+          "loincCode": "32693-4",
+          "loincName": "Lactate [Moles/volume] in Blood",
+          "system": "Blood"
+        },
+        {
+          "rank": 170,
+          "labName": "LA 1",
+          "loincCode": "32693-4",
+          "loincName": "Lactate [Moles/volume] in Blood",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 140,
+          "labName": "Blood gas Lac",
+          "loincCode": "32693-4",
+          "loincName": "Lactate [Moles/volume] in Blood",
+          "system": "Blood Gas"
+        }
+      ]
+    },
+    {
+      "analyte": "Protein/Creatinine",
+      "aaaItems": [
+        {
+          "rank": 77,
+          "labName": "Urine protein/creatinine ratio",
+          "loincCode": "2890-2",
+          "loincName": "Protein/Creatinine [Mass Ratio] in Urine",
+          "system": "Urine"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 166,
+          "labName": "UPCR",
+          "loincCode": "34366-5",
+          "loincName": "Protein/Creatinine [Ratio] in Urine",
+          "system": "Creatinine-urine CRIN 肌酸酐（尿）"
+        }
+      ]
+    },
+    {
+      "analyte": "Alkaline phosphatase",
+      "aaaItems": [
+        {
+          "rank": 79,
+          "labName": "ALP",
+          "loincCode": "6768-6",
+          "loincName": "Alkaline phosphatase [Enzymatic activity/volume] in Serum or Plasma",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 182,
+          "labName": "Alkaline Phosphatase",
+          "loincCode": "6768-6",
+          "loincName": "Alkaline phosphatase [Enzymatic activity/volume] in Serum or Plasma",
+          "system": "Biochemist"
+        }
+      ]
+    },
+    {
+      "analyte": "Magnesium",
+      "aaaItems": [
+        {
+          "rank": 80,
+          "labName": "MG",
+          "loincCode": "19123-9",
+          "loincName": "Magnesium [Mass/volume] in Serum or Plasma",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 147,
+          "labName": "Magnesium",
+          "loincCode": "19123-9",
+          "loincName": "Magnesium [Mass/volume] in Serum or Plasma",
+          "system": "Biochemist"
+        },
+        {
+          "rank": 200,
+          "labName": "MG",
+          "loincCode": "19123-9",
+          "loincName": "Magnesium [Mass/volume] in Serum or Plasma",
+          "system": "Mg (Magnesium) 鎂"
+        }
+      ]
+    },
+    {
+      "analyte": "Gamma glutamyl transferase",
+      "aaaItems": [
+        {
+          "rank": 88,
+          "labName": "GGT",
+          "loincCode": "2324-2",
+          "loincName": "Gamma glutamyl transferase [Enzymatic activity/volume] in Serum or Plasma",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 162,
+          "labName": "r-GT",
+          "loincCode": "2324-2",
+          "loincName": "Gamma glutamyl transferase [Enzymatic activity/volume] in Serum or Plasma",
+          "system": "Biochemist"
+        }
+      ]
+    },
+    {
+      "analyte": "Cancer Ag 19-9",
+      "aaaItems": [
+        {
+          "rank": 89,
+          "labName": "CA-199",
+          "loincCode": "24108-3",
+          "loincName": "Cancer Ag 19-9 [Units/volume] in Serum or Plasma",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 163,
+          "labName": "CA19-9",
+          "loincCode": "2009-9",
+          "loincName": "Cancer Ag 19-9 [Presence] in Serum or Plasma",
+          "system": "腫瘤"
+        }
+      ]
+    },
+    {
+      "analyte": "Occult blood panel - Stool by Immunoassay",
+      "aaaItems": [
+        {
+          "rank": 92,
+          "labName": "New Immu Occult Blood(國健局計劃)",
+          "loincCode": "57803-9",
+          "loincName": "Occult blood panel - Stool by Immunoassay",
+          "system": "Stool"
+        },
+        {
+          "rank": 175,
+          "labName": "Occult blood",
+          "loincCode": "57803-9",
+          "loincName": "Occult blood panel - Stool by Immunoassay",
+          "system": "Foly urine"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 124,
+          "labName": "Urine Occult Blood",
+          "loincCode": "57803-9",
+          "loincName": "Occult blood panel - Stool by Immunoassay",
+          "system": "Urines"
+        }
+      ]
+    },
+    {
+      "analyte": "Chloride",
+      "aaaItems": [
+        {
+          "rank": 121,
+          "labName": "Cl",
+          "loincCode": "2075-0",
+          "loincName": "Chloride [Moles/volume] in Serum or Plasma",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 81,
+          "labName": "Cl",
+          "loincCode": "2075-0",
+          "loincName": "Chloride [Moles/volume] in Serum or Plasma",
+          "system": "Biochemist"
+        }
+      ]
+    },
+    {
+      "analyte": "Calcium.ionized",
+      "aaaItems": [
+        {
+          "rank": 141,
+          "labName": "Plasma free Ca++",
+          "loincCode": "1995-0",
+          "loincName": "Calcium.ionized [Moles/volume] in Serum or Plasma",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 84,
+          "labName": "Free Calcium",
+          "loincCode": "17863-2",
+          "loincName": "Calcium.ionized [Mass/volume] in Serum or Plasma",
+          "system": "Biochemist"
+        },
+        {
+          "rank": 119,
+          "labName": "Blood gas iCa",
+          "loincCode": "49936-8",
+          "loincName": "Calcium.ionized [Moles/volume] in Blood",
+          "system": "Blood Gas"
+        }
+      ]
+    },
+    {
+      "analyte": "Procalcitonin",
+      "aaaItems": [
+        {
+          "rank": 142,
+          "labName": "Procalcitonin",
+          "loincCode": "75241-0",
+          "loincName": "Procalcitonin [Mass/volume] in Serum or Plasma by Immunoassay",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 155,
+          "labName": "PCT",
+          "loincCode": "33959-8",
+          "loincName": "Procalcitonin [Mass/volume] in Serum or Plasma",
+          "system": "CBCⅠ(WBC, RBC,Hb,Hct,PLT,MCV,MCH,MCHC) 全套血液檢查Ⅰ(八項)"
+        }
+      ]
+    },
+    {
+      "analyte": "Metamyelocytes",
+      "aaaItems": [
+        {
+          "rank": 146,
+          "labName": "Metamyelocyte",
+          "loincCode": "40651-2",
+          "loincName": "Metamyelocytes [Presence] in Blood",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 170,
+          "labName": "Metamyeloctye",
+          "loincCode": "30433-7",
+          "loincName": "Metamyelocytes [#/volume] in Blood",
+          "system": "DC(WBC Differential Count) 白血球分類計數"
+        }
+      ]
+    },
+    {
+      "analyte": "Myelocytes",
+      "aaaItems": [
+        {
+          "rank": 157,
+          "labName": "Myelocyte",
+          "loincCode": "30446-9",
+          "loincName": "Myelocytes [#/volume] in Blood",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 171,
+          "labName": "Myelocyte",
+          "loincCode": "30446-9",
+          "loincName": "Myelocytes [#/volume] in Blood",
+          "system": "DC(WBC Differential Count) 白血球分類計數"
+        }
+      ]
+    },
+    {
+      "analyte": "Band form neutrophils",
+      "aaaItems": [
+        {
+          "rank": 158,
+          "labName": "Neutrophil(band)",
+          "loincCode": "26507-4",
+          "loincName": "Band form neutrophils [#/volume] in Blood",
+          "system": "Blood"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 169,
+          "labName": "Band form Neutrophil",
+          "loincCode": "26507-4",
+          "loincName": "Band form neutrophils [#/volume] in Blood",
+          "system": "DC(WBC Differential Count) 白血球分類計數"
+        }
+      ]
+    },
+    {
+      "analyte": "Other elements",
+      "aaaItems": [
+        {
+          "rank": 194,
+          "labName": "Other",
+          "loincCode": "58442-5",
+          "loincName": "Other elements [Identifier] in Urine sediment by Light microscopy",
+          "system": "Urine"
+        }
+      ],
+      "triItems": [
+        {
+          "rank": 199,
+          "labName": "Others",
+          "loincCode": "58442-5",
+          "loincName": "Other elements [Identifier] in Urine sediment by Light microscopy",
+          "system": "GENERAL URINE EXAMIN尿液一般檢驗"
+        }
+      ]
+    }
+  ]
+}

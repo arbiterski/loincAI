@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minimal URL Test</title>
+</head>
+<body>
+    <h1>Minimal URL Parameter Test</h1>
+    <input type="text" id="field1" placeholder="Search Terms">
+    <input type="text" id="field2" placeholder="Must Have Terms">
+    <input type="checkbox" id="orderRankFilter">
+    <input type="checkbox" id="testRankFilter">
+    
+    <div id="debug"></div>
+
+    <script>
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function populateForm() {
+            console.log('populateForm called');
+            
+            const searchTerms = getUrlParameter('searchTerms');
+            const mustHaveTerms = getUrlParameter('mustHaveTerms');
+            const rankFilter1 = getUrlParameter('rankFilter1');
+            const rankFilter2 = getUrlParameter('rankFilter2');
+            
+            console.log('Parameters:', { searchTerms, mustHaveTerms, rankFilter1, rankFilter2 });
+            
+            if (searchTerms) {
+                document.getElementById('field1').value = searchTerms;
+            }
+            if (mustHaveTerms) {
+                document.getElementById('field2').value = mustHaveTerms;
+            }
+            if (rankFilter1 !== null) {
+                document.getElementById('orderRankFilter').checked = rankFilter1 === 'true';
+            }
+            if (rankFilter2 !== null) {
+                document.getElementById('testRankFilter').checked = rankFilter2 === 'true';
+            }
+            
+            // Show debug info
+            document.getElementById('debug').innerHTML = `
+                <p>field1: ${document.getElementById('field1').value}</p>
+                <p>field2: ${document.getElementById('field2').value}</p>
+                <p>orderRankFilter: ${document.getElementById('orderRankFilter').checked}</p>
+                <p>testRankFilter: ${document.getElementById('testRankFilter').checked}</p>
+            `;
+        }
+
+        // Run when page loads
+        document.addEventListener('DOMContentLoaded', populateForm);
+        if (document.readyState !== 'loading') {
+            populateForm();
+        }
+    </script>
+</body>
+</html>

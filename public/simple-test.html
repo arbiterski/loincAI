@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple URL Parameter Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .result { margin: 10px 0; padding: 10px; background: #f0f0f0; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Simple URL Parameter Test</h1>
+    <div id="results"></div>
+
+    <script>
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function showResults() {
+            const searchTerms = getUrlParameter('searchTerms');
+            const rankFilter1 = getUrlParameter('rankFilter1');
+            const rankFilter2 = getUrlParameter('rankFilter2');
+            
+            document.getElementById('results').innerHTML = `
+                <div class="result">
+                    <strong>searchTerms:</strong> ${searchTerms || '(not found)'}
+                </div>
+                <div class="result">
+                    <strong>rankFilter1:</strong> ${rankFilter1 || '(not found)'}
+                </div>
+                <div class="result">
+                    <strong>rankFilter2:</strong> ${rankFilter2 || '(not found)'}
+                </div>
+                <div class="result">
+                    <strong>Full URL:</strong> ${window.location.href}
+                </div>
+                <div class="result">
+                    <strong>Search String:</strong> ${window.location.search}
+                </div>
+            `;
+        }
+
+        // Run immediately
+        showResults();
+        
+        // Also run when DOM is ready
+        document.addEventListener('DOMContentLoaded', showResults);
+    </script>
+</body>
+</html>

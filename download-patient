@@ -1,0 +1,1308 @@
+{
+  "stage": [],
+  "plan": [],
+  "chemo_toxicity": null,
+  "rt": [],
+  "rt_toxicity": [],
+  "response": [],
+  "opds": [
+    {
+      "fee_no": "O01501408",
+      "chr_no": "16084346",
+      "id_no": "S102291676",
+      "name": "邱國志",
+      "sex": 1,
+      "birthdate": "1941-02-23",
+      "date": "2021-03-22",
+      "doc_id": "86126",
+      "dept_id": "0400",
+      "dept_room": "2106",
+      "first_opd_date": "2021-01-21",
+      "diag": [
+        "I68.8",
+        "J44.0",
+        "E11.9",
+        "I10",
+        "E78.2"
+      ],
+      "diagnosis": [
+        {
+          "code": "I68.8"
+        },
+        {
+          "code": "J44.0"
+        },
+        {
+          "code": "E11.9"
+        },
+        {
+          "code": "I10"
+        },
+        {
+          "code": "E78.2"
+        }
+      ],
+      "type": "09",
+      "shift": "2",
+      "seq": "039",
+      "note": {
+        "H": "DM, HTN, hyperlipidemia, mulriple lacunar infarction, COPD, r/o Vascular dementia,  L't psoas abscess s/p drain",
+        "S": "poor memory, small step gait, repeat same question >",
+        "O": "150/80/82\r\nclear consciosuness\r\ndysarthria\r\nMP: full. small step gait\r\nbrain MR: recent left corona radiata infarction + old lacunes 2021-2\r\nECD: 33%/32% diameter stenosis at right ICA/left carotid bulb. \r\n2021-2 > f/u 1 yr\r\nMMSE / CDR: \r\nlab:",
+        "P": "aspirin by infection"
+      }
+    },
+    {
+      "fee_no": "O01502336",
+      "chr_no": "16084346",
+      "id_no": "S102291676",
+      "name": "邱國志",
+      "sex": 1,
+      "birthdate": "1941-02-23",
+      "date": "2021-03-22",
+      "doc_id": "96003",
+      "dept_id": "0700",
+      "dept_room": "2048",
+      "first_opd_date": "2021-01-21",
+      "diag": [
+        "A41.9",
+        "M60.052",
+        "J44.0"
+      ],
+      "diagnosis": [
+        {
+          "code": "A41.9"
+        },
+        {
+          "code": "M60.052"
+        },
+        {
+          "code": "J44.0"
+        }
+      ],
+      "type": "04",
+      "shift": "1",
+      "seq": "023",
+      "note": {
+        "H": "Allergy: sulfa drug",
+        "S": "20210322: recent hospitalization for L't psoas abscess s/p drain twice (1/21~3/15) with episode of stroke",
+        "O": "20210322: L't lower abdomen drain wound healing well, no more tenderness, afebrile",
+        "P": null
+      }
+    },
+    {
+      "fee_no": "O01533338",
+      "chr_no": "16084346",
+      "id_no": "S102291676",
+      "name": "邱國志",
+      "sex": 1,
+      "birthdate": "1941-02-23",
+      "date": "2021-03-29",
+      "doc_id": "86126",
+      "dept_id": "0400",
+      "dept_room": "2106",
+      "first_opd_date": "2021-01-21",
+      "diag": [
+        "I68.8",
+        "J44.0",
+        "E11.9",
+        "I10",
+        "E78.2"
+      ],
+      "diagnosis": [
+        {
+          "code": "I68.8"
+        },
+        {
+          "code": "J44.0"
+        },
+        {
+          "code": "E11.9"
+        },
+        {
+          "code": "I10"
+        },
+        {
+          "code": "E78.2"
+        }
+      ],
+      "type": "04",
+      "shift": "2",
+      "seq": "043",
+      "note": {
+        "H": "DM, HTN, hyperlipidemia, mulriple lacunar infarction, COPD, r/o Vascular dementia,  L't psoas abscess s/p drain, r/o gout, 兆如",
+        "S": "poor memory, small step gait, repeat same question > right ankle pain r/o gout",
+        "O": "150/80/82\r\nclear consciosuness\r\ndysarthria\r\nMP: full. small step gait\r\nbrain MR: recent left corona radiata infarction + old lacunes 2021-2\r\nECD: 33%/32% diameter stenosis at right ICA/left carotid bulb. \r\n2021-2 > f/u 1 yr\r\nMMSE / CDR",
+        "P": null
+      }
+    },
+    {
+      "fee_no": "O00538949",
+      "chr_no": "16084346",
+      "id_no": "S102291676",
+      "name": "邱國志",
+      "sex": 1,
+      "birthdate": "1941-02-23",
+      "date": "2021-05-10",
+      "doc_id": "94401",
+      "dept_id": "0300",
+      "dept_room": "A025",
+      "first_opd_date": "2021-01-21",
+      "diag": [
+        "J84.112"
+      ],
+      "diagnosis": [
+        {
+          "code": "J84.112"
+        }
+      ],
+      "type": "09",
+      "shift": "1",
+      "seq": "010",
+      "note": {
+        "H": "Smoking 1 PPD for 50 years\r\nCOPD, IPF. \r\nDM, HTN, dyslipidemia under medications\r\nBPH \r\nDrug allergy denied \r\n106 pneumococcal shot",
+        "S": "IPF, COPD. Left psoas muscle abscess 1.9 cm. focal dilation of left common iliac a. (2.5cm).",
+        "O": "BT 37.1\r\nBP 126/64\r\nBS coarse \r\n\r\nTSH, free T4 WNL.",
+        "P": "Arrange PFT and cardiac echo. \r\nArrange AIR. \r\nArrange CVS later. \r\nHigher CEA 9.11. Recheck later."
+      }
+    },
+    {
+      "fee_no": "O00540345",
+      "chr_no": "16084346",
+      "id_no": "S102291676",
+      "name": "邱國志",
+      "sex": 1,
+      "birthdate": "1941-02-23",
+      "date": "2021-05-10",
+      "doc_id": "104210",
+      "dept_id": "0C00",
+      "dept_room": "2054",
+      "first_opd_date": "2021-01-21",
+      "diag": [
+        "D89.89"
+      ],
+      "diagnosis": [
+        {
+          "code": "D89.89"
+        }
+      ],
+      "type": "09",
+      "shift": "1",
+      "seq": "046",
+      "note": {
+        "H": "PMH: T2DM + HTN + dyslipidemia + COPD f/u at VGHTP\r\nallergy: NKA; family Hx: sister- SLE",
+        "S": "2021/1/21~3/15 CVA + Left psoas muscle abscess -> 4/18~5/1 pneumonia + pericardial effusion + IPF",
+        "O": "dry eye(+), dry mouth(+), oral ulcer(-), malar rashes(-), photosensitivity(-)\r\nalopecia(-), bil. hands morning stiffness(+/-), active synovitis(-)\r\nmyalgia(-), proximal muscle weakness(-), DM sign ex. Gottron(-)\r\nRaynaud(-), levedo reticularis(-), scleroderma(-), skin soft and warm ~\r\n\r\n(2021/01/22) HbA1c 10.1(+++), Legionella Ab 100X(-), Cryptococcal Ag (-), Aspergillus Ag (-)\r\n(01/29) Anti-ENA 0.11(-), IgE 62.10, RF 44.4(+), C3 115, C4 22.8\r\n(04/19) CEA 9.11(+++), CA-153=14.9, CA-199=30.7\r\n[2021/4/18 Chest CT] Fibrotic changes of bilateral lungs and patchy ground glass opacities over bilateral lungs, superiposed infectious process cannot be ruled ou",
+        "P": "do IPF & SLE survey"
+      }
+    },
+    {
+      "fee_no": "O00841499",
+      "chr_no": "16084346",
+      "id_no": "S102291676",
+      "name": "邱國志",
+      "sex": 1,
+      "birthdate": "1941-02-23",
+      "date": "2021-08-10",
+      "doc_id": "86126",
+      "dept_id": "0400",
+      "dept_room": "2106",
+      "first_opd_date": "2021-01-21",
+      "diag": [
+        "I68.8",
+        "J44.0",
+        "E11.9",
+        "I10",
+        "E78.2"
+      ],
+      "diagnosis": [
+        {
+          "code": "I68.8"
+        },
+        {
+          "code": "J44.0"
+        },
+        {
+          "code": "E11.9"
+        },
+        {
+          "code": "I10"
+        },
+        {
+          "code": "E78.2"
+        }
+      ],
+      "type": "04",
+      "shift": "1",
+      "seq": "077",
+      "note": {
+        "H": "DM, HTN, hyperlipidemia, mulriple lacunar infarction, COPD, r/o Vascular dementia,  L't psoas abscess s/p drain, r/o gout, 兆如 > home,",
+        "S": "poor memory, small step gait, repeat same question > right ankle pain r/o mentality improved after going home / high RF by AIR",
+        "O": "150/80/82\r\nclear consciosuness\r\ndysarthria\r\nMP: full. small step gait\r\nbrain MR: recent left corona radiata infarction + old lacunes 2021-2\r\nECD: 33%/32% diameter stenosis at right ICA/left carotid bulb. \r\n2021-2 > f/u 1 yr\r\nMMSE / CDR : hesitate\r\nlab",
+        "P": null
+      }
+    },
+    {
+      "fee_no": "O00876831",
+      "chr_no": "16084346",
+      "id_no": "S102291676",
+      "name": "邱國志",
+      "sex": 1,
+      "birthdate": "1941-02-23",
+      "date": "2021-08-31",
+      "doc_id": "86126",
+      "dept_id": "0400",
+      "dept_room": "2222",
+      "first_opd_date": "2021-01-21",
+      "diag": [
+        "I68.8",
+        "J44.0",
+        "E11.9",
+        "I10",
+        "E78.2"
+      ],
+      "diagnosis": [
+        {
+          "code": "I68.8"
+        },
+        {
+          "code": "J44.0"
+        },
+        {
+          "code": "E11.9"
+        },
+        {
+          "code": "I10"
+        },
+        {
+          "code": "E78.2"
+        }
+      ],
+      "type": "08",
+      "shift": "1",
+      "seq": "048",
+      "note": {
+        "H": null,
+        "S": "poor memory, small step gait, repeat same question > right ankle pain r/o mentality improved after going home / high RF by AIR",
+        "O": null,
+        "P": null
+      }
+    },
+    {
+      "fee_no": "O01002845",
+      "chr_no": "16084346",
+      "id_no": "S102291676",
+      "name": "邱國志",
+      "sex": 1,
+      "birthdate": "1941-02-23",
+      "date": "2021-10-01",
+      "doc_id": "86126",
+      "dept_id": "0400",
+      "dept_room": "2222",
+      "first_opd_date": "2021-01-21",
+      "diag": [
+        "I68.8",
+        "J44.0",
+        "E11.9",
+        "I10",
+        "E78.2"
+      ],
+      "diagnosis": [
+        {
+          "code": "I68.8"
+        },
+        {
+          "code": "J44.0"
+        },
+        {
+          "code": "E11.9"
+        },
+        {
+          "code": "I10"
+        },
+        {
+          "code": "E78.2"
+        }
+      ],
+      "type": "08",
+      "shift": "1",
+      "seq": "080",
+      "note": {
+        "H": null,
+        "S": "poor memory, small step gait, repeat same question > right ankle pain r/o mentality improved after going home / high RF by AIR",
+        "O": null,
+        "P": null
+      }
+    },
+    {
+      "fee_no": "O01110321",
+      "chr_no": "16084346",
+      "id_no": "S102291676",
+      "name": "邱國志",
+      "sex": 1,
+      "birthdate": "1941-02-23",
+      "date": "2021-11-02",
+      "doc_id": "86126",
+      "dept_id": "0400",
+      "dept_room": "2105",
+      "first_opd_date": "2021-01-21",
+      "diag": [
+        "I68.8",
+        "J44.0",
+        "E11.9",
+        "I10",
+        "E78.2"
+      ],
+      "diagnosis": [
+        {
+          "code": "I68.8"
+        },
+        {
+          "code": "J44.0"
+        },
+        {
+          "code": "E11.9"
+        },
+        {
+          "code": "I10"
+        },
+        {
+          "code": "E78.2"
+        }
+      ],
+      "type": "04",
+      "shift": "1",
+      "seq": "055",
+      "note": {
+        "H": "DM, HTN, hyperlipidemia, mulriple lacunar infarction, COPD, r/o Vascular dementia,  L't psoas abscess s/p drain, r/o gout, 兆如 > home, gout",
+        "S": "poor memory, small step gait, repeat same question > right ankle pain r/o mentality improved after going home / high RF by AIR > tremor",
+        "O": "150/80/82 > 156/81/106\r\nclear consciosuness\r\ndysarthria; MP: full. small step gait\r\nbrain MR: recent left corona radiata infarction + old lacunes 2021-2\r\nECD: 33%/32% diameter stenosis at right ICA/left carotid bulb. \r\n2021-2 > f/u 1 yr\r\nMMSE / CDR : hesitate\r\nlab:",
+        "P": null
+      }
+    },
+    {
+      "fee_no": "O02331911",
+      "chr_no": "16084346",
+      "id_no": "S102291676",
+      "name": "邱國志",
+      "sex": 1,
+      "birthdate": "1941-02-23",
+      "date": "2021-11-25",
+      "doc_id": "86126",
+      "dept_id": "0400",
+      "dept_room": "2222",
+      "first_opd_date": "2021-01-21",
+      "diag": [
+        "I68.8",
+        "J44.0",
+        "E11.9",
+        "I10",
+        "E78.2"
+      ],
+      "diagnosis": [
+        {
+          "code": "I68.8"
+        },
+        {
+          "code": "J44.0"
+        },
+        {
+          "code": "E11.9"
+        },
+        {
+          "code": "I10"
+        },
+        {
+          "code": "E78.2"
+        }
+      ],
+      "type": "08",
+      "shift": "1",
+      "seq": "108",
+      "note": {
+        "H": null,
+        "S": "poor memory, small step gait, repeat same question > right ankle pain r/o mentality improved after going home / high RF by AIR > tremor",
+        "O": null,
+        "P": null
+      }
+    },
+    {
+      "fee_no": "O02408321",
+      "chr_no": "16084346",
+      "id_no": "S102291676",
+      "name": "邱國志",
+      "sex": 1,
+      "birthdate": "1941-02-23",
+      "date": "2021-12-22",
+      "doc_id": "86126",
+      "dept_id": "0400",
+      "dept_room": "2222",
+      "first_opd_date": "2021-01-21",
+      "diag": [
+        "I68.8",
+        "J44.0",
+        "E11.9",
+        "I10",
+        "E78.2"
+      ],
+      "diagnosis": [
+        {
+          "code": "I68.8"
+        },
+        {
+          "code": "J44.0"
+        },
+        {
+          "code": "E11.9"
+        },
+        {
+          "code": "I10"
+        },
+        {
+          "code": "E78.2"
+        }
+      ],
+      "type": "08",
+      "shift": "1",
+      "seq": "174",
+      "note": {
+        "H": null,
+        "S": "poor memory, small step gait, repeat same question > right ankle pain r/o mentality improved after going home / high RF by AIR > tremor",
+        "O": null,
+        "P": null
+      }
+    },
+    {
+      "fee_no": "O11315720",
+      "chr_no": "16084346",
+      "id_no": "S102291676",
+      "name": "邱國志",
+      "sex": 1,
+      "birthdate": "1941-02-23",
+      "date": "2022-01-24",
+      "doc_id": "86126",
+      "dept_id": "0400",
+      "dept_room": "2106",
+      "first_opd_date": "2021-01-21",
+      "diag": [
+        "I68.8",
+        "J44.0",
+        "E11.9",
+        "I10",
+        "E78.2"
+      ],
+      "diagnosis": [
+        {
+          "code": "I68.8"
+        },
+        {
+          "code": "J44.0"
+        },
+        {
+          "code": "E11.9"
+        },
+        {
+          "code": "I10"
+        },
+        {
+          "code": "E78.2"
+        }
+      ],
+      "type": "04",
+      "shift": "2",
+      "seq": "068",
+      "note": {
+        "H": "DM, HTN, hyperlipidemia, mulriple lacunar infarction, COPD, r/o Vascular dementia,  L't psoas abscess s/p drain, r/o gout, 兆如 > home, gout",
+        "S": "poor memory, small step gait, repeat same question > right ankle pain r/o mentality improved after going home / high RF by AIR > tremor > left leg eczema",
+        "O": "150/80/82 > 156/81/106\r\nclear consciosuness\r\ndysarthria; MP: full. small step gait\r\nbrain MR: recent left corona radiata infarction + old lacunes 2021-2\r\nECD: 33%/32% diameter stenosis at right ICA/left carotid bulb. \r\n2021-2 > f/u 1 yr\r\nMMSE / CDR : hesitate\r\nlab:",
+        "P": null
+      }
+    },
+    {
+      "fee_no": "O10201138",
+      "chr_no": "16084346",
+      "id_no": "S102291676",
+      "name": "邱國志",
+      "sex": 1,
+      "birthdate": "1941-02-23",
+      "date": "2022-02-16",
+      "doc_id": "86126",
+      "dept_id": "0400",
+      "dept_room": "2222",
+      "first_opd_date": "2021-01-21",
+      "diag": [
+        "I68.8",
+        "J44.0",
+        "E11.9",
+        "I10",
+        "E78.2"
+      ],
+      "diagnosis": [
+        {
+          "code": "I68.8"
+        },
+        {
+          "code": "J44.0"
+        },
+        {
+          "code": "E11.9"
+        },
+        {
+          "code": "I10"
+        },
+        {
+          "code": "E78.2"
+        }
+      ],
+      "type": "08",
+      "shift": "1",
+      "seq": "002",
+      "note": {
+        "H": null,
+        "S": "poor memory, small step gait, repeat same question > right ankle pain r/o mentality improved after going home / high RF by AIR > tremor > left leg eczema",
+        "O": null,
+        "P": null
+      }
+    },
+    {
+      "fee_no": "O10346645",
+      "chr_no": "16084346",
+      "id_no": "S102291676",
+      "name": "邱國志",
+      "sex": 1,
+      "birthdate": "1941-02-23",
+      "date": "2022-03-09",
+      "doc_id": "86126",
+      "dept_id": "0400",
+      "dept_room": "2106",
+      "first_opd_date": "2021-01-21",
+      "diag": [
+        "I68.8",
+        "J44.0",
+        "E11.9",
+        "I10",
+        "E78.2"
+      ],
+      "diagnosis": [
+        {
+          "code": "I68.8"
+        },
+        {
+          "code": "J44.0"
+        },
+        {
+          "code": "E11.9"
+        },
+        {
+          "code": "I10"
+        },
+        {
+          "code": "E78.2"
+        }
+      ],
+      "type": "04",
+      "shift": "2",
+      "seq": "074",
+      "note": {
+        "H": "DM, HTN, hyperlipidemia, mulriple lacunar infarction, COPD, r/o Vascular dementia,  L't psoas abscess s/p drain, r/o gout, 兆如 > home, gout",
+        "S": "poor memory, small step gait, repeat same question > right ankle pain r/o mentality improved after going home / high RF by AIR > tremor > left leg eczema > low back refer to bil legs",
+        "O": "150/80/82 > 156/81/106 > 148/86/90\r\nclear consciosuness\r\ndysarthria; MP: full. small step gait\r\nbrain MR: recent left corona radiata infarction + old lacunes 2021-2\r\nECD: 33%/32% diameter stenosis at right ICA/left carotid bulb. \r\n2021-2 > f/u 1 yr\r\nMMSE / CDR : hesitate\r\nL spine X:\r\nNCV:",
+        "P": "increase Methycobal / Linicor / Amaryl"
+      }
+    },
+    {
+      "fee_no": "O11553681",
+      "chr_no": "16084346",
+      "id_no": "S102291676",
+      "name": "邱國志",
+      "sex": 1,
+      "birthdate": "1941-02-23",
+      "date": "2022-03-30",
+      "doc_id": "86126",
+      "dept_id": "0400",
+      "dept_room": "2106",
+      "first_opd_date": "2021-01-21",
+      "diag": [
+        "I68.8",
+        "J44.0",
+        "E11.9",
+        "I10",
+        "E78.2"
+      ],
+      "diagnosis": [
+        {
+          "code": "I68.8"
+        },
+        {
+          "code": "J44.0"
+        },
+        {
+          "code": "E11.9"
+        },
+        {
+          "code": "I10"
+        },
+        {
+          "code": "E78.2"
+        }
+      ],
+      "type": "09",
+      "shift": "2",
+      "seq": "054",
+      "note": {
+        "H": "DM, HTN, hyperlipidemia, mulriple lacunar infarction, COPD, r/o Vascular dementia,  L't psoas abscess s/p drain, r/o gout, 兆如 > home, gout",
+        "S": "poor memory, small step gait, repeat same question > right ankle pain r/o mentality improved after going home / high RF by AIR > tremor > left leg eczema",
+        "O": "150/80/82 > 156/81/106\r\nconsciosuness: confused\r\ndysarthria; right central facial palsy, MP: full. small step gait\r\nbrain MR: recent left corona radiata infarction + old lacunes 2021-2\r\nECD: 33%/32% diameter stenosis at right ICA/left carotid bulb. \r\n2021-2 > f/u 1 yr\r\nMMSE / CDR : hesitate\r\nL spine X: L2/3 spondylolisthesis 2022-3 >>\r\nNCV: bil L radiculopathy >>\r\nrefer to ER for brain CT / lab test",
+        "P": "slurred speech / general weakness for 5 days r/o recurent stroke or delirium"
+      }
+    },
+    {
+      "fee_no": "O10651883",
+      "chr_no": "16084346",
+      "id_no": "S102291676",
+      "name": "邱國志",
+      "sex": 1,
+      "birthdate": "1941-02-23",
+      "date": "2022-06-13",
+      "doc_id": "88128",
+      "dept_id": "X000",
+      "dept_room": "2210",
+      "first_opd_date": "2021-01-21",
+      "diag": [],
+      "diagnosis": [],
+      "type": "09",
+      "shift": "2",
+      "seq": "005",
+      "note": {
+        "H": null,
+        "S": null,
+        "O": null,
+        "P": null
+      }
+    }
+  ],
+  "surgery": [],
+  "patho": [
+    {
+      "raw": {
+        "ID": "M21-00528",
+        "TYPE": "cyto",
+        "CHR_NO": "16084346",
+        "ID_NO": "S102291676",
+        "FEE_NO": "I1001464",
+        "DOC_ID": "96003",
+        "IN_DATE": "2021-02-01",
+        "REPORT_DATE": "2021-02-02",
+        "REPORT_TIME": "16:39:29",
+        "LAST_UPDATED_TIME": "2021-02-02 16:39:29",
+        "SITE_CODE": "W010",
+        "STATUS_CODE": "4",
+        "CYTO_RESULT_TEXT": "Presence of numerous neutrophils, macrophages and lymphocytes.",
+        "CYTO_SOURCE_TEXT_1": "",
+        "CYTO_SOURCE_TEXT_2": "",
+        "CYTO_SOURCE_TEXT_3": "abscess drainage",
+        "CLINICAL_NOTE": "",
+        "DOC_NAME": "黃文彰",
+        "DOC_LICENSE": "病解專醫字第397號",
+        "CYTO_SOURCE_FLAG_1": "N",
+        "CYTO_SOURCE_FLAG_2": "N",
+        "CYTO_SOURCE_FLAG_3": "N",
+        "CYTO_SOURCE_FLAG_4": "N",
+        "CYTO_SOURCE_FLAG_5": "N",
+        "CYTO_SOURCE_FLAG_6": "N",
+        "CYTO_SOURCE_FLAG_7": "N",
+        "CYTO_SOURCE_FLAG_8": "N",
+        "CYTO_SOURCE_FLAG_9": "N",
+        "CYTO_SOURCE_FLAG_10": "N",
+        "CYTO_SOURCE_FLAG_11": "N",
+        "CYTO_SOURCE_FLAG_12": "N",
+        "CYTO_SOURCE_FLAG_13": "N",
+        "CYTO_SOURCE_FLAG_14": "N",
+        "CYTO_SOURCE_FLAG_15": "N",
+        "CYTO_SOURCE_FLAG_16": "Y",
+        "CYTO_SOURCE_FLAG_17": "N",
+        "CYTO_SOURCE_FLAG_18": "N",
+        "CYTO_SOURCE_FLAG_19": "N",
+        "CYTO_SOURCE_FLAG_20": "N",
+        "CYTO_SOURCE_FLAG_21": "N",
+        "CYTO_SOURCE_FLAG_24": null,
+        "CYTO_SOURCE_FLAG_25": null,
+        "CYTO_SOURCE_FLAG_26": null,
+        "CYTO_SOURCE_FLAG_27": null,
+        "CYTO_SOURCE_FLAG_28": null,
+        "CYTO_RESULT_FLAG_1": "N",
+        "CYTO_RESULT_FLAG_2": "N",
+        "CYTO_RESULT_FLAG_3": "N",
+        "CYTO_RESULT_FLAG_4": "Y",
+        "CYTO_RESULT_FLAG_5": "N",
+        "CYTO_RESULT_FLAG_6": "N",
+        "CYTO_RESULT_FLAG_7": "N",
+        "CYTO_RESULT_FLAG_8": "N",
+        "CYTO_RESULT_FLAG_9": "N",
+        "CYTO_RESULT_FLAG_10": "N",
+        "TAKE_DATE": "2021-02-01"
+      },
+      "id": "M21-00528",
+      "chr_no": "16084346",
+      "date": "2021-02-01",
+      "report_date": "2021-02-02",
+      "type": "cyto",
+      "site_code": "W010",
+      "site": "wf",
+      "frozen": false,
+      "status": {
+        "code": "4",
+        "label": "completed"
+      },
+      "tags": [],
+      "title": "Aspiration Cytology Other, abscess drainage",
+      "report": "Inflammation\n\nPresence of numerous neutrophils, macrophages and lymphocytes.\n\n\nClinical Note:\n",
+      "clinical_info": {
+        "note": ""
+      },
+      "doc": {
+        "name": "黃文彰",
+        "license": "病解專醫字第397號"
+      },
+      "reviewer": {}
+    }
+  ],
+  "exam": [
+    {
+      "id": "1.2.840.113820.5500.25252631253329282931.20220423.095121.937",
+      "title": "Upper GI Panendoscopy (上消化道汎內視鏡檢查)",
+      "date": "2022-04-23T10:00",
+      "code": "F28016C",
+      "chr_no": "16084346",
+      "acc_no": "P104211449",
+      "content": "                                            消化內科內視鏡檢查報告\r\n   病患姓名 : 邱國志             年齡 :81     性別 :M         檢查日期 :2022/04/23\r\n   病歷號碼 : 16084346           出生日期 :1941/02/23         檢查時間 :09:51:21\r\n   病床號碼 : 09711              檢查項目 :F28016C            開單日期 :2022/04/21\r\n   報告完成日期 : 2022/04/23     報告完成時間 : 10:08:44      開單醫師 :邱潔娃\r\nPurpose for Endoscopy :\r\n  Naso-duodenal tube insertion\r\nEndoscope :\r\n  Olympus GIF-Q260   No 1  (Machine: D  )\r\nPre-medication :\r\n  Local anesthesia with Xylocain\r\nEsophagus :\r\n  Some ulcers at upper third\r\nStomach :\r\n  Superficial gastritis over antrum and body\r\n  The naso-duodenal tube was in the duodenum\r\nDuodenum :\r\n  Negative down to second portion\r\nEndoscopic diagnosis :\r\n  Esophageal ulcer(食道潰瘍)\r\n  Chronic superficial gastritis(慢性表淺性胃炎)\r\n  Duodenal ulcer(十二指腸潰瘍)\r\n  Naso-duodenal tube insertion\r\nComplication:\r\n  Nil\r\nAdvice :\r\n   \r\n                                                   Reported By : 陳俊男 醫師 \r\n",
+      "schedule": {
+        "id": "P104211449",
+        "title": "上消化道汎內視鏡檢查",
+        "code": "F28016C",
+        "chr_no": "16084346",
+        "fee_no": "I1105728",
+        "apply_doc_id": "108200",
+        "exec_doc_id": "86662",
+        "date": "2022-04-23T10:00",
+        "upd_date": "2022-04-22T10:49",
+        "done": true,
+        "room_no": "2036",
+        "room": "5F 內視鏡中心"
+      },
+      "pac_link": "http://10.66.16.205/DicomWeb/DicomWeb.dll/Login?User=1&Password=1&PTNID=16084346"
+    },
+    {
+      "id": "1.2.840.113820.5500.25252631253329282931.20210127.085229.488",
+      "title": "Abdomem sonography(腹部超音波)",
+      "date": "2021-01-27T11:25",
+      "code": "F19001C",
+      "chr_no": "16084346",
+      "acc_no": "P001250784",
+      "content": "                                            腹部超音波檢查報告\r\n          病患姓名 :邱國志       年齡 :80     性別 :M       檢查日期 :2021/01/27\r\n          病歷號碼 :16084346     出生日期 :1941/02/23       檢查時間 :08:52:29\r\n          病床號碼 :10131        檢查項目 :F19001C          開單日期 :2021/01/25\r\n          報告完成日期 :2021/01/27孎i完成時間 : 09:01:24    開單醫師 :陳甫綸\r\n     Clinical Diagnosis :\r\n       Fever with unknown origine\r\n     Sonographic Findings\r\n      Liver :\r\n       Paraenchyma: Increased brightness and heterogenous echogenicity of \r\n       parenchyma\r\n       Lesion: No space-occupying lesion\r\n       Portal vein : Patent\r\n      Biliary system :\r\n       Gall bladder : Many ill-defined iso-echoic lesions with irregular \r\n       border located at gallbladder. Mild wall thickening with suspected \r\n       emphysematous change without sonographic Murphy's sign were noted\r\n       IHDs : Negative\r\n       CBD: Dilatation with 0.9 cm at diameter \r\n      Pancreas :\r\n       was obscued by bowel gas \r\n      Spleen :\r\n       was obscued by bowel gas \r\n      Kidney :\r\n       Negative\r\n      Others :\r\n       Aorta & inferior vena cava : Essentially normal\r\n     Diagnosis :\r\n       Fatty liver (2/6)(脂肪肝)\r\n       Chronic parenchymal liver disease(慢性肝實質病變)\r\n       Gallbladder lesion, R/O Gallbladder sludge (DDx: Gallbladder tumor)\r\n       Suspected acute cholecystitis\r\n       CBD Dilatation(總膽管擴張)\r\n     Comment :\r\n       MRI if no contraindication \r\n                                                      Reported By : 黃世斌 醫師 \r\n",
+      "schedule": {
+        "id": "P001250784",
+        "title": "腹部超音波(聯檢中心)",
+        "code": "F19001C",
+        "chr_no": "16084346",
+        "fee_no": "I1001464",
+        "apply_doc_id": "96003",
+        "exec_doc_id": "98280",
+        "date": "2021-01-27T11:25",
+        "upd_date": "2021-01-27T08:27",
+        "done": true,
+        "room_no": "2171",
+        "room": "2F 聯合檢查中心 超音波室"
+      },
+      "pac_link": "http://10.66.16.205/DicomWeb/DicomWeb.dll/Login?User=1&Password=1&PTNID=16084346"
+    },
+    {
+      "id": "1.2.840.113820.5500.25252631253329282931.20220421.084245.721",
+      "title": "Upper GI Panendoscopy (上消化道汎內視鏡檢查)",
+      "date": "2022-04-21T10:00",
+      "code": "F28016C",
+      "chr_no": "16084346",
+      "acc_no": "P104181506",
+      "content": "                                            消化內科內視鏡檢查報告\r\n   病患姓名 : 邱國志             年齡 :81     性別 :M         檢查日期 :2022/04/21\r\n   病歷號碼 : 16084346           出生日期 :1941/02/23         檢查時間 :08:42:45\r\n   病床號碼 : 09711              檢查項目 :F28016C            開單日期 :2022/04/19\r\n   報告完成日期 : 2022/04/21     報告完成時間 : 08:57:30      開單醫師 :劉俊毅\r\nPurpose for Endoscopy :\r\n  r/o GI  malingancy \r\nEndoscope :\r\n  Olympus GIF-Q260 No 9 (Machine: C )\r\nPre-medication :\r\n  Local anesthesia with Xylocane\r\n   \r\nEsophagus :\r\n  Some uclers were noted at 18 cm from incisor. A small hole was suspected \r\n  over ulcer after air inflation. Because poor oxygen saturation, no water \r\n  irrigation and scope was withdrawed.\r\nStomach :\r\n  Mild hyperemic change of mucosa at antrum was found.\r\nDuodenum :\r\n  A geography shape A2 ulcer was noed at GCS of bulb  \r\nEndoscopic diagnosis :\r\n  Chronic superficial gastritis(慢性表淺性胃炎)\r\n  Duodenal ulcer(十二指腸潰瘍)\r\n  Esophageal ulcer(食道潰瘍)\r\n  r/o esophageal fistula formation \r\nComplication:\r\n  Nil\r\n                                                   Reported By : 陳永發 醫師 \r\n",
+      "schedule": {
+        "id": "P104181506",
+        "title": "上消化道汎內視鏡檢查",
+        "code": "F28016C",
+        "chr_no": "16084346",
+        "fee_no": "I1105728",
+        "apply_doc_id": "109152",
+        "exec_doc_id": "89117",
+        "date": "2022-04-21T10:00",
+        "upd_date": "2022-04-20T12:06",
+        "done": true,
+        "room_no": "2036",
+        "room": "5F 內視鏡中心"
+      },
+      "pac_link": "http://10.66.16.205/DicomWeb/DicomWeb.dll/Login?User=1&Password=1&PTNID=16084346"
+    },
+    {
+      "id": "1.2.840.113820.5500.25252631253329282931.20220401.134439.7825",
+      "title": "2D Cardiac Echography超音波心電圖( 包括單面.雙面)",
+      "date": "2022-04-01T14:00",
+      "code": "F18005B",
+      "chr_no": "16084346",
+      "acc_no": "P103310809",
+      "content": "                                            Echocardiographic Report   心臟超音波報告\r\n     Cardiovascular Section, Taipei Medical University-Wan Fang Hospital\r\n 病患姓名 :邱國志          性別 :M               年齡 :81       檢查日期 :111/04/01\r\n 病歷號碼 :16084346        病患來源 :09711                       Tape No :360\r\n Clinical Diagnosis：Arrhythmia\r\n 檢查名稱：  ( V ) M2D 05  (   ) Doppler 06( V ) Color 07\r\n    IVS：        12  mm ( 6-12)                 AO：      37  mm (20-39)\r\n LVEDD：         38  mm (36-52)                 LA：      36  mm (19-40)\r\n  LVPW：         12  mm ( 6-12)                 EF：      66  %\r\n LVESD：         24  mm (20-36)            LV Mass：           *         Gm\r\n   RVD：             mm ( 7-23)               LV MI：          *         Gm/m2\r\nRhythm：   Normal sinus rhythm\r\n            \r\n 1. Cardiac chamber and Aorta：             1. Mitral flow：\r\n    Normal chamber size                        E/A=    72  /    86  cm/sec\r\n    Normal wall thickness                      MS：  None           MR： None\r\n 2. Wall motion：                              MVA         cm 2     MVA         cm 2\r\n                                                               PHT                 2D\r\n    Normal                                     MS-Pmax：         mmHg\r\n 3. Aortic valve：                             MR-Pmax：         mmHg\r\n    Sclerosing change                       2. Aortic flow\r\n    Mitral valve：                             AS：  None           AR： None\r\n    Normal                                     AS-PG：     13   mmHg\r\n 4. Pericardial effusion：                     AR-PG：          mmHg\r\n    None                                    3. Tricuspid flow：   4. Pulmonic flow\r\n    Thrombus：                                 TR：  Mild-Mod        PR： None\r\n    None                                       TR-PG：    13  mmHg   ACT：       msec\r\n 5. Others：                                5. Others：\r\n                                               Mitral flow E/A reversed\r\n      Comment :\r\n        1. Normal four chambers size and wall thickness\r\n        2. No regional wall motion abnormality, preserved LV contractility\r\n        3. Aortic valve sclerosis\r\n        4. Mild to moderate TR\r\n        5. LV diastolic dysfunction\r\n        6. No definite intracardiac thrombus or emboli noted\r\n        Conclusion : HCVD, VHD\r\n      結論：  高血壓性心臟病,瓣膜性心臟病\r\n開單日期：20220331 檢查人員： 楊弘宇    負責醫師： 楊弘宇  醫師  列印日期： 2022/4/1\r\n",
+      "schedule": {
+        "id": "P103310809",
+        "title": "1.2D Cardiac Echography2.超音波心電圖(包括單面.雙面)",
+        "code": "F18005B",
+        "chr_no": "16084346",
+        "fee_no": "I1105728",
+        "apply_doc_id": "108222",
+        "exec_doc_id": "91230",
+        "date": "2022-04-01T14:00",
+        "upd_date": "2022-04-01T14:03",
+        "done": true,
+        "room_no": "2039",
+        "room": "2F 心臟超音波室"
+      },
+      "pac_link": "http://10.65.1.46/scripts/rv_www.dll/HISQuery?PTNID=16084346"
+    },
+    {
+      "id": "1.2.840.113820.5500.25252631253329282931.20210428.184408.0096",
+      "title": "肺量測定(含Flow-volume curve及FRC)",
+      "date": "2021-04-28T15:00",
+      "code": "F17004B",
+      "chr_no": "16084346",
+      "acc_no": "P004280123",
+      "content": "                                            肺功能室檢查報告\r\n 病患姓名 :邱國志         性 別 :M     年齡 : 80 歲   檢查日期 :2021/04/28\r\n 病歷號碼 :16084346       出生日期 :1941/02/23        檢查時間 :15:00:00\r\n 病患來源 :09692          保險身份 :健保              報告確認日 :2021/04/28\r\n 申請日期 :2021/04/28     申請醫師 :蔣介雅            列印日期 :2021/4/28 下午 06:45:03\r\n 檢查項目 :F17004B   肺量測定(含Flow-volume curve及FRC)\r\n 檢查報告：\r\n Normal ventilatory function\r\n 結論:\r\n 正常通氣功能\r\n  登打人員 : 林賢君       確認醫師 : 林賢君  醫師\r\n",
+      "schedule": {
+        "id": "P004280123",
+        "title": "肺量測定(含Flow-volume curve及FRC)",
+        "code": "F17004B",
+        "chr_no": "16084346",
+        "fee_no": "I1007489",
+        "apply_doc_id": "108226",
+        "exec_doc_id": "91168",
+        "date": "2021-04-28T15:00",
+        "upd_date": "2021-04-28T15:31",
+        "done": true,
+        "room_no": "2032",
+        "room": "2F 肺功能室"
+      },
+      "pac_link": "http://10.65.1.46/scripts/rv_www.dll/HISQuery?PTNID=16084346"
+    },
+    {
+      "id": "1.2.840.113820.5500.25252631253329282931.20210430.183529.1367",
+      "title": "全身炎症掃描 Whole body inflammation scan",
+      "date": "2021-04-26T16:00",
+      "code": "F26031A",
+      "chr_no": "16084346",
+      "acc_no": "P004200678",
+      "content": "                                           核子醫學檢查報告\r\n          姓    名 :邱國志         年齡 :80    性別 : M     檢查日期 : 20210426\r\n          病歷號碼 :16084346       出生日期 :19410223\r\n          病床號碼 :09692          認證日期 :2021/04/30      認證時間 :18:54:31\r\n          檢查項目 :全身炎症掃描 Whole body inflammation scan\r\n Clinical history :\r\n    fever\r\n Procedures :\r\n    Following the intravenous injection of 3 mCi of Ga-67 \r\n    citrate, an imaging study consisting of whole body and spot \r\n    views of the chest, abdomen and pelvis was obtained through \r\n    72 hours post-injection using a GE Discovery NM630 gamma \r\n    camera.\r\n Findings :\r\n    1. There is increased uptake in the bilateral knees, ankles, \r\n    and distal feet.\r\n    2. There is mildly increased uptake in the medial gluteal \r\n    area.\r\n    3. There are hot spots suggesting physiologic uptake in the \r\n    lacrimal glands, nasal area, liver, intestines, and external \r\n    genitalia.\r\n Conclusions :\r\n    1. Increased uptake in the bilateral knees, ankles, and \r\n    distal feet. Arthritis or other inflammation should be \r\n    considered.\r\n    2. Mildly increased uptake in the medial gluteal area. \r\n    Inflammatory processes cannot be excluded. Recommend clinical \r\n    correlation.\r\n    1. 兩側膝蓋、腳踝、足部遠端有藥物攝取增加。疑似關節炎或其他發\r\n    炎性反應。\r\n    2. 臀部內側區藥物攝取輕度增加，不能排除發炎。建議參酌臨床發現\r\n    。\r\n             Reporter: 張博睿        Supervisor: 張博睿醫師(核專醫字208)\r\n",
+      "schedule": {
+        "id": "P004200678",
+        "title": "1.全身炎症掃描2.Whole body inflammation scan",
+        "code": "F26031A",
+        "chr_no": "16084346",
+        "fee_no": "I1007489",
+        "apply_doc_id": "108236",
+        "exec_doc_id": "109318",
+        "date": "2021-04-26T16:00",
+        "upd_date": "2021-04-26T16:11",
+        "done": true,
+        "room_no": "A045",
+        "room": "B1核醫科檢查室"
+      },
+      "pac_link": "http://10.66.16.204/DicomWeb/DicomWeb.dll/Login?User=1&Password=1&PTNID=16084346"
+    },
+    {
+      "id": "2029212182A0E",
+      "title": "1.CPA(carotid phonoangiography)2.(頸動脈聲圖檢查), 1.頸動脈超音波檢查2.(color duplex)",
+      "code": "F18010A",
+      "chr_no": "16084346",
+      "date": "2021-02-17",
+      "room_no": "2029",
+      "room": "2F 腦血管超音波室",
+      "content": "<p>CONCLUSION : <br> Long segment of moderately echogenic, homogeneous plaques with irregular  surface at bilateral ICAs, carotid bulbs and CCAs, causing 33%/32% diameter stenosis at right ICA/left carotid bulb. <br> Dampened diastolic signals at left VA is noted. <br> The total vertebral flow volume ( R + L = 104+57 =161 ml / min ) <br> INTERPRETATION : <br> The carotid color duplex study showed mild atherosclerotic change . <br>  Possible intracranial stenosis of left vertebral artery is also noted. <br> 顱外頸動脈超音波顯示 輕度異常 <br>  左側椎動脈 血流異常（建議做進一步追蹤檢查）</p>"
+    },
+    {
+      "id": "202922331BC4C",
+      "title": "1.CPA(carotid phonoangiography)2.(頸動脈聲圖檢查), 1.頸動脈超音波檢查2.(color duplex)",
+      "code": "F18010A",
+      "chr_no": "16084346",
+      "date": "2022-03-31",
+      "room_no": "2029",
+      "room": "2F 腦血管超音波室",
+      "content": "<p>Long segment of highly echogenic, partly calcified plaques with irregular surface at bilateral ICA/bulb, causing 42% stenosis at right ICA/39% stenosis at left bulb.</p><p>Dampened diastolic signals at bilateral ICA and VA indicated high grade distal stenosis, possibly in the intracranial portion.</p><p>The total vertebral flow volume ( R + L = 40 + 0 = 40 ml / min) is lower than normal limits.</p><p>INTERPRETATION:</p><p>The carotid color duplex study showed mild atherosclerotic change at bilateral ICA/bulb.</p><p>Possible intracranial stenosis of bilateral ICA and VA is also noted.</p><p>Decreased total vertebral flow is compatible with vertebrobasilar insufficiency.</p><p>顱外頸動脈超音波顯示輕度異常</p><p>兩側內頸動脈/兩側椎動脈 血流異常</p><p>椎動脈基底動脈循環不足.</p><p>（建議做進一步追蹤檢查）</p>"
+    },
+    {
+      "id": "203022329BAE3",
+      "title": "1.MNCV(lower)2.(運動神經傳導速測下肢), 1.SNCV2.(感覺神經傳導速度測定), F波 wave, H反射 reflex",
+      "code": "F20016B",
+      "chr_no": "16084346",
+      "date": "2022-03-25",
+      "room_no": "2030",
+      "room": "2F 神經科神經生理檢查室",
+      "content": "<p>The results of MNCV study were within normal limits.</p><p>The results of SNCV study were within normal limits. </p><p>F wave latency was borderline in left tibial nerve.  </p><p>H reflex revealed prolonged latencies bilaterally. </p><p><br></p><p>Findings suggest bilateral L5-S1 radiculopathies.</p><p>Advise clinical and image correlations.</p><p><br></p><p>雙側腰薦椎神經根病變（請配合臨床症狀診斷）</p>"
+    },
+    {
+      "id": "203022408BF43",
+      "title": "1.EEG-Awake or Sleep2.(腦波檢查-睡眠或清醒)",
+      "code": "F20001C",
+      "chr_no": "16084346",
+      "date": "2022-04-01",
+      "room_no": "2030",
+      "room": "2F 神經科神經生理檢查室",
+      "content": "<p>Background:</p><p>The EEG was recorded when the patient was in confusional state. Background activity consisted of almost continuous 4-7 Hz theta activity over diffuse regions</p><p>Epileptiform Discharges: No definite epileptiform discharge was noted in this recording.</p><p>Hyperventilation was not performed.</p><p>Photic Stimulation: Intermittent photic stimulation produced no photic driving responses.</p><p>Artifact:  Prominent motion and electrode artifacts were noted.</p><p><br></p><p>EEG Classification: MODERATELY ABNORMAL</p><p>Summary of Abnormal Findings: Diffuse Background Slowing</p><p><br></p><p>Interpretation:</p><p>The EEG findings suggest evidence of moderate cortical dysfunction over diffuse regions. And it  can be compatible with cerebrovascular insufficiency, multifocal lesion, degeneration, metabolic encephalopathy, other diffuse encephalopathy, or deep midline lesion.</p><p>Advise further clinical or image correlation.</p><p><br></p><p>中度廣泛性腦病變, 建議做進一步追蹤檢查</p>"
+    },
+    {
+      "id": "1.2.840.10008.5.1.4.1.1.7.1.16084346.20210217.9134452",
+      "acc_no": "",
+      "title": "神經內科-腦血管超音波檢查報告",
+      "chr_no": "16084346",
+      "date": "2021-02-17",
+      "pac_link": "http://10.66.16.204/DicomWeb/DicomWeb.dll/Login?User=1&Password=1&PTNID=16084346"
+    },
+    {
+      "id": "1.2.840.10008.5.1.4.1.1.7.1.16084346.20210428.9152707",
+      "acc_no": "",
+      "title": "胸腔內科-肺功能檢查",
+      "chr_no": "16084346",
+      "date": "2021-04-28",
+      "pac_link": "http://10.66.16.204/DicomWeb/DicomWeb.dll/Login?User=1&Password=1&PTNID=16084346"
+    },
+    {
+      "id": "1.2.840.113619.2.280.2.1.28042021081727242.1027546815",
+      "acc_no": "",
+      "title": "Ga-67 WB",
+      "chr_no": "16084346",
+      "date": "2021-04-28",
+      "pac_link": "http://10.66.16.204/DicomWeb/DicomWeb.dll/Login?User=1&Password=1&PTNID=16084346"
+    },
+    {
+      "id": "1.2.840.10008.5.1.4.1.1.7.1.16084346.20220325.9140827",
+      "acc_no": "",
+      "title": "神經內科-NCV",
+      "chr_no": "16084346",
+      "date": "2022-03-25",
+      "pac_link": "http://10.66.16.204/DicomWeb/DicomWeb.dll/Login?User=1&Password=1&PTNID=16084346"
+    },
+    {
+      "id": "1.2.840.10008.5.1.4.1.1.7.1.16084346.20220331.9153907",
+      "acc_no": "",
+      "title": "神經內科-腦血管超音波檢查報告",
+      "chr_no": "16084346",
+      "date": "2022-03-31",
+      "pac_link": "http://10.66.16.204/DicomWeb/DicomWeb.dll/Login?User=1&Password=1&PTNID=16084346"
+    },
+    {
+      "id": "1.2.840.113820.5070.118.1.180103310810220401000255747",
+      "acc_no": "P103310810",
+      "title": "24hrs.Holter's scan(攜帶式心電圖記錄檢查)",
+      "chr_no": "16084346",
+      "date": "2022-04-02",
+      "pac_link": "http://10.66.16.204/DicomWeb/DicomWeb.dll/Login?User=1&Password=1&PTNID=16084346",
+      "schedule": {
+        "id": "P103310810",
+        "title": "1.24hrs.Holter's scan2.攜帶式心電圖記錄檢查",
+        "code": "F18019B",
+        "chr_no": "16084346",
+        "fee_no": "I1105728",
+        "apply_doc_id": "108222",
+        "exec_doc_id": "96403",
+        "date": "2022-04-01T14:10",
+        "upd_date": "2022-04-01T14:03",
+        "done": true,
+        "room_no": "2057",
+        "room": "2F  24小時心電圖室"
+      }
+    },
+    {
+      "id": "1.2.840.113820.5070.118.1.180104181505220420000316785",
+      "acc_no": "P104181505",
+      "title": "ES",
+      "chr_no": "16084346",
+      "date": "2022-04-21",
+      "pac_link": "http://10.66.16.204/DicomWeb/DicomWeb.dll/Login?User=1&Password=1&PTNID=16084346",
+      "schedule": {
+        "id": "P104181505",
+        "title": "大腸纖維鏡檢查",
+        "code": "F28017C",
+        "chr_no": "16084346",
+        "fee_no": "I1105728",
+        "apply_doc_id": "109152",
+        "exec_doc_id": "105172",
+        "date": "2022-04-25T00:00",
+        "upd_date": "2022-04-25T09:28",
+        "room_no": "2036",
+        "room": "5F 內視鏡中心"
+      }
+    },
+    {
+      "id": "P002160034",
+      "title": "1.CPA(carotid phonoangiography)2.(頸動脈聲圖檢查)",
+      "code": "F18010A",
+      "chr_no": "16084346",
+      "fee_no": "I1001464",
+      "apply_doc_id": "109137",
+      "exec_doc_id": "104240",
+      "date": "2021-02-17T11:00",
+      "upd_date": "2021-02-17T13:36",
+      "done": true,
+      "room_no": "2029",
+      "room": "2F 腦血管超音波室",
+      "pac_link": "http://10.66.16.204/DicomWeb/DicomWeb.dll/Login?User=1&Password=1&PTNID=16084346",
+      "content": "無報告，點選開啟影像"
+    },
+    {
+      "id": "P002160035",
+      "title": "1.頸動脈超音波檢查2.(color duplex)",
+      "code": "F20013A",
+      "chr_no": "16084346",
+      "fee_no": "I1001464",
+      "apply_doc_id": "109137",
+      "exec_doc_id": "104240",
+      "date": "2021-02-17T11:00",
+      "upd_date": "2021-02-17T13:36",
+      "done": true,
+      "room_no": "2029",
+      "room": "2F 腦血管超音波室",
+      "attachments": [
+        {
+          "type": "image",
+          "sys": "local_exam",
+          "id": "P002160035",
+          "code": "F20013A"
+        }
+      ],
+      "pac_link": "http://10.65.1.6/inspect/ReportImage/P002160035_F20013A.jpg",
+      "content": "圖像報告"
+    },
+    {
+      "id": "P003220928",
+      "title": "智能評鑑(包括CDR)(神經科)",
+      "code": "F45052AB",
+      "chr_no": "16084346",
+      "fee_no": "O01501408",
+      "apply_doc_id": "86126",
+      "exec_doc_id": "96317",
+      "date": "2021-08-30T14:00",
+      "upd_date": "2021-06-08T10:15",
+      "room_no": "2238",
+      "room": "臨床心理檢查",
+      "content": "未執行"
+    },
+    {
+      "id": "P003220929",
+      "title": "生理心理功能檢查(包括MMSE)(神經科)",
+      "code": "F45046AB",
+      "chr_no": "16084346",
+      "fee_no": "O01501408",
+      "apply_doc_id": "86126",
+      "exec_doc_id": "96317",
+      "date": "2021-08-30T14:00",
+      "upd_date": "2021-06-08T10:15",
+      "room_no": "2238",
+      "room": "臨床心理檢查",
+      "content": "未執行"
+    },
+    {
+      "id": "P005100466",
+      "title": "1.一氧化碳肺瀰散量測定2.CO diffusing capacity",
+      "code": "F17009A",
+      "chr_no": "16084346",
+      "fee_no": "O00538949",
+      "apply_doc_id": "94401",
+      "exec_doc_id": "94401",
+      "date": "2021-05-17T11:30",
+      "upd_date": "2021-05-10T13:26",
+      "room_no": "2032",
+      "room": "2F 肺功能室",
+      "content": "未執行"
+    },
+    {
+      "id": "P005100467",
+      "title": "1.支氣管擴張劑試驗2.Bronchodilator test",
+      "code": "F17006B",
+      "chr_no": "16084346",
+      "fee_no": "O00538949",
+      "apply_doc_id": "94401",
+      "exec_doc_id": "89132",
+      "date": "2021-05-17T11:45",
+      "upd_date": "2021-05-10T13:26",
+      "room_no": "2032",
+      "room": "2F 肺功能室",
+      "content": "未執行"
+    },
+    {
+      "id": "P005100468",
+      "title": "肺量測定(含Flow-volume curve及FRC)",
+      "code": "F17004B",
+      "chr_no": "16084346",
+      "fee_no": "O00538949",
+      "apply_doc_id": "94401",
+      "exec_doc_id": "94401",
+      "date": "2021-05-17T11:15",
+      "upd_date": "2021-05-10T13:26",
+      "room_no": "2032",
+      "room": "2F 肺功能室",
+      "content": "未執行"
+    },
+    {
+      "id": "P103091698",
+      "title": "H反射 reflex",
+      "code": "F20024A",
+      "chr_no": "16084346",
+      "fee_no": "O10346645",
+      "apply_doc_id": "86126",
+      "exec_doc_id": "108021",
+      "date": "2022-03-25T13:30",
+      "upd_date": "2022-03-25T13:37",
+      "done": true,
+      "room_no": "2030",
+      "room": "2F 神經科神經生理檢查室",
+      "pac_link": "http://10.66.16.204/DicomWeb/DicomWeb.dll/Login?User=1&Password=1&PTNID=16084346",
+      "content": "無報告，點選開啟影像"
+    },
+    {
+      "id": "P103091699",
+      "title": "F波 wave",
+      "code": "F20023A",
+      "chr_no": "16084346",
+      "fee_no": "O10346645",
+      "apply_doc_id": "86126",
+      "exec_doc_id": "108021",
+      "date": "2022-03-25T13:30",
+      "upd_date": "2022-03-25T13:37",
+      "done": true,
+      "room_no": "2030",
+      "room": "2F 神經科神經生理檢查室",
+      "pac_link": "http://10.66.16.204/DicomWeb/DicomWeb.dll/Login?User=1&Password=1&PTNID=16084346",
+      "content": "無報告，點選開啟影像"
+    },
+    {
+      "id": "P103091700",
+      "title": "1.SNCV2.(感覺神經傳導速度測定)",
+      "code": "F20019B",
+      "chr_no": "16084346",
+      "fee_no": "O10346645",
+      "apply_doc_id": "86126",
+      "exec_doc_id": "108021",
+      "date": "2022-03-25T13:30",
+      "upd_date": "2022-03-25T13:37",
+      "done": true,
+      "room_no": "2030",
+      "room": "2F 神經科神經生理檢查室",
+      "pac_link": "http://10.66.16.204/DicomWeb/DicomWeb.dll/Login?User=1&Password=1&PTNID=16084346",
+      "content": "無報告，點選開啟影像"
+    },
+    {
+      "id": "P103091701",
+      "title": "1.MNCV(lower)2.(運動神經傳導速測下肢)",
+      "code": "F20016B",
+      "chr_no": "16084346",
+      "fee_no": "O10346645",
+      "apply_doc_id": "86126",
+      "exec_doc_id": "108021",
+      "date": "2022-03-25T13:30",
+      "upd_date": "2022-03-25T13:37",
+      "done": true,
+      "room_no": "2030",
+      "room": "2F 神經科神經生理檢查室",
+      "pac_link": "http://10.66.16.204/DicomWeb/DicomWeb.dll/Login?User=1&Password=1&PTNID=16084346",
+      "content": "無報告，點選開啟影像"
+    },
+    {
+      "id": "P103301987",
+      "title": "1.頸動脈超音波檢查2.(color duplex)",
+      "code": "F20013A",
+      "chr_no": "16084346",
+      "fee_no": "I1105728",
+      "apply_doc_id": "110167",
+      "exec_doc_id": "98303",
+      "date": "2022-03-31T14:00",
+      "upd_date": "2022-03-31T14:54",
+      "done": true,
+      "room_no": "2029",
+      "room": "2F 腦血管超音波室",
+      "attachments": [
+        {
+          "type": "image",
+          "sys": "local_exam",
+          "id": "P103301987",
+          "code": "F20013A"
+        }
+      ],
+      "pac_link": "http://10.65.1.6/inspect/ReportImage/P103301987_F20013A.jpg",
+      "content": "圖像報告"
+    },
+    {
+      "id": "P103301988",
+      "title": "1.CPA(carotid phonoangiography)2.(頸動脈聲圖檢查)",
+      "code": "F18010A",
+      "chr_no": "16084346",
+      "fee_no": "I1105728",
+      "apply_doc_id": "110167",
+      "exec_doc_id": "98303",
+      "date": "2022-03-31T14:00",
+      "upd_date": "2022-03-31T14:54",
+      "done": true,
+      "room_no": "2029",
+      "room": "2F 腦血管超音波室",
+      "pac_link": "http://10.66.16.204/DicomWeb/DicomWeb.dll/Login?User=1&Password=1&PTNID=16084346",
+      "content": "無報告，點選開啟影像"
+    },
+    {
+      "id": "P103310430",
+      "title": "1.EEG-Awake or Sleep2.(腦波檢查-睡眠或清醒)",
+      "code": "F20001C",
+      "chr_no": "16084346",
+      "fee_no": "I1105728",
+      "apply_doc_id": "108222",
+      "exec_doc_id": "108021",
+      "date": "2022-04-01T11:00",
+      "upd_date": "2022-04-01T14:03",
+      "done": true,
+      "room_no": "2030",
+      "room": "2F 神經科神經生理檢查室",
+      "pac_link": "http://10.66.16.204/DicomWeb/DicomWeb.dll/Login?User=1&Password=1&PTNID=16084346",
+      "content": "無報告，點選開啟影像"
+    }
+  ],
+  "pt": {
+    "no": "16084346",
+    "no_type": "chr_no",
+    "exist": true,
+    "chr_no": "16084346",
+    "id_no": "S102291676",
+    "name": "邱國志",
+    "sex": 1,
+    "birthdate": "1941-02-23",
+    "first_visit_date": "2021-01-21",
+    "blood_type": {
+      "abo": "O",
+      "rh": "+",
+      "date": "2022-04-05"
+    },
+    "contact": {
+      "phone_home": "0933015852",
+      "phone_office": null,
+      "phone_mobile": "0933015852",
+      "distric": "100",
+      "address": "臺北市中正區金門街8號"
+    },
+    "contact_prsn": [
+      {
+        "name": "郭悅治",
+        "rel": "01",
+        "phone": "0925377062"
+      }
+    ],
+    "social": {
+      "marital_status": "single"
+    },
+    "main_chr_no": null,
+    "has_human_exp": false,
+    "death_flag": true,
+    "chr_no_list": [
+      "16084346"
+    ]
+  }
+}

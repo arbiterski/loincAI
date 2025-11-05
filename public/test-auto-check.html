@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>測試自動打勾功能</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .loinc-item {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .loinc-item.selected {
+            border-color: #e74c3c;
+            background: #fdf2f2;
+        }
+        .loinc-checkbox {
+            transform: scale(1.2);
+        }
+        .loinc-code {
+            font-weight: bold;
+            color: #2c3e50;
+            min-width: 80px;
+        }
+        .loinc-details {
+            flex: 1;
+        }
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        .btn:hover {
+            background: #2980b9;
+        }
+        .suggested-loinc {
+            background-color: #e8f5e8 !important;
+            border-left: 4px solid #4CAF50 !important;
+        }
+    </style>
+</head>
+<body>
+    <h1>測試自動打勾功能</h1>
+    
+    <div id="loincList">
+        <div class="loinc-item">
+            <input type="checkbox" class="loinc-checkbox" value="2888-6" onchange="toggleSelection('2888-6')">
+            <div class="loinc-code">2888-6</div>
+            <div class="loinc-details">
+                <div><strong>Protein</strong></div>
+                <div>Protein [Mass/volume] in Urine</div>
+            </div>
+        </div>
+        
+        <div class="loinc-item">
+            <input type="checkbox" class="loinc-checkbox" value="5804-0" onchange="toggleSelection('5804-0')">
+            <div class="loinc-code">5804-0</div>
+            <div class="loinc-details">
+                <div><strong>Protein</strong></div>
+                <div>Protein [Mass/volume] in 24 hour Urine</div>
+            </div>
+        </div>
+        
+        <div class="loinc-item">
+            <input type="checkbox" class="loinc-checkbox" value="33914-3" onchange="toggleSelection('33914-3')">
+            <div class="loinc-code">33914-3</div>
+            <div class="loinc-details">
+                <div><strong>Protein</strong></div>
+                <div>Protein [Mass/volume] in Urine by Test strip</div>
+            </div>
+        </div>
+    </div>
+    
+    <div>
+        <button class="btn" onclick="testAutoSelect('2888-6')">測試選中 2888-6</button>
+        <button class="btn" onclick="testAutoSelect('5804-0')">測試選中 5804-0</button>
+        <button class="btn" onclick="testAutoSelect('33914-3')">測試選中 33914-3</button>
+        <button class="btn" onclick="testAutoSelect('9999-9')">測試不存在的代碼</button>
+        <button class="btn" onclick="clearAll()">清除所有選擇</button>
+    </div>
+    
+    <div id="status" style="margin-top: 20px; padding: 10px; background: #f0f0f0; border-radius: 4px;"></div>
+
+    <!-- 引入自動選中腳本 -->
+    <script src="/auto-select-loinc.js"></script>
+
+    <script>
+        let selectedLoincCodes = new Set();
+
+        function toggleSelection(loincCode) {
+            if (selectedLoincCodes.has(loincCode)) {
+                selectedLoincCodes.delete(loincCode);
+            } else {
+                selectedLoincCodes.add(loincCode);
+            }
+            
+            // 更新視覺效果
+            const checkbox = document.querySelector(`input[value="${loincCode}"]`);
+            const loincItem = checkbox.closest('.loinc-item');
+            if (selectedLoincCodes.has(loincCode)) {
+                loincItem.classList.add('selected');
+            } else {
+                loincItem.classList.remove('selected');
+            }
+            
+            updateStatus();
+        }
+
+        function testAutoSelect(loincCode) {
+            updateStatus(`正在測試自動選中 LOINC 代碼: ${loincCode}`);
+            
+            // 使用自動選中函數
+            if (typeof autoSelectSuggestedLoinc === 'function') {
+                autoSelectSuggestedLoinc(loincCode);
+            } else {
+                updateStatus('錯誤：autoSelectSuggestedLoinc 函數未載入', 'error');
+            }
+        }
+
+        function clearAll() {
+            selectedLoincCodes.clear();
+            document.querySelectorAll('.loinc-checkbox').forEach(checkbox => {
+                checkbox.checked = false;
+                checkbox.closest('.loinc-item').classList.remove('selected', 'suggested-loinc');
+            });
+            updateStatus('已清除所有選擇');
+        }
+
+        function updateStatus(message, type = 'info') {
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = message;
+            statusDiv.style.color = type === 'error' ? '#d32f2f' : '#2e7d32';
+        }
+
+        // 頁面載入時顯示狀態
+        window.onload = function() {
+            updateStatus('頁面載入完成，可以開始測試自動選中功能');
+        };
+    </script>
+</body>
+</html>
+

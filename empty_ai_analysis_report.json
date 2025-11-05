@@ -1,0 +1,97 @@
+{
+  "aaaHospital": {
+    "totalFiles": 202,
+    "withAI": 194,
+    "emptyAI": 8,
+    "emptyAIFiles": [
+      {
+        "file": "loinc_mapping_2025-09-08T14-16-01-884Z.json",
+        "loincCode": "706-2",
+        "labItemName": "Basophil"
+      },
+      {
+        "file": "loinc_mapping_2025-09-08T14-17-05-880Z.json",
+        "loincCode": "1920-8",
+        "labItemName": "GOT(AST)"
+      },
+      {
+        "file": "loinc_mapping_2025-09-11T03-05-12-835Z.json",
+        "loincCode": "1977-8",
+        "labItemName": "Bilirubin"
+      },
+      {
+        "file": "loinc_mapping_2025-09-11T05-13-17-097Z.json",
+        "loincCode": "19258-3",
+        "labItemName": "pO2(vein)"
+      },
+      {
+        "file": "loinc_mapping_2025-09-11T06-49-46-164Z.json",
+        "loincCode": "2039-6",
+        "labItemName": "CEA"
+      },
+      {
+        "file": "loinc_mapping_2025-09-11T07-11-13-666Z.json",
+        "loincCode": "2532-0",
+        "labItemName": "LDH"
+      },
+      {
+        "file": "loinc_mapping_2025-09-11T07-14-55-220Z.json",
+        "loincCode": "35741-8",
+        "labItemName": "Total PSA"
+      },
+      {
+        "file": "loinc_mapping_2025-09-11T07-17-00-534Z.json",
+        "loincCode": "54348-8",
+        "labItemName": "Alpha-Fetoprotein"
+      }
+    ],
+    "emptyLoincCodes": [
+      "706-2",
+      "1920-8",
+      "1977-8",
+      "19258-3",
+      "2039-6",
+      "2532-0",
+      "35741-8",
+      "54348-8"
+    ]
+  },
+  "triService": {
+    "totalFiles": 201,
+    "withAI": 197,
+    "emptyAI": 4,
+    "emptyAIFiles": [
+      {
+        "file": "loinc_mapping_2025-09-13T04-54-00-180Z.json",
+        "loincCode": "1742-6",
+        "labItemName": "ALT"
+      },
+      {
+        "file": "loinc_mapping_2025-09-13T04-56-10-535Z.json",
+        "loincCode": "789-8",
+        "labItemName": "RBC"
+      },
+      {
+        "file": "loinc_mapping_2025-09-13T05-35-05-213Z.json",
+        "loincCode": "21418-9",
+        "labItemName": "Neutrophil"
+      },
+      {
+        "file": "loinc_mapping_2025-09-14T19-37-51-890Z.json",
+        "loincCode": "57803-9",
+        "labItemName": "Urine Occult Blood"
+      }
+    ],
+    "emptyLoincCodes": [
+      "1742-6",
+      "789-8",
+      "21418-9",
+      "57803-9"
+    ]
+  },
+  "other": {
+    "totalFiles": 12,
+    "withAI": 11,
+    "emptyAI": 1
+  }
+}

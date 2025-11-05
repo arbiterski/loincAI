@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分頁測試</title>
+    <style>
+        .file-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .pagination-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .pagination-btn {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background: #1557b0;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+        }
+
+        .pagination-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .file-item {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            background: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <h1>分頁功能測試</h1>
+    <div id="fileList" class="file-list"></div>
+
+    <script>
+        // 分頁變數
+        let currentPage = 0;
+        const itemsPerPage = 5;
+        let allFiles = [];
+
+        // 模擬數據
+        function generateTestData() {
+            const files = [];
+            for (let i = 1; i <= 25; i++) {
+                files.push({
+                    filename: `test_file_${i}.json`,
+                    timestamp: new Date().toISOString(),
+                    searchTerms: `測試搜尋詞 ${i}`,
+                    institution: '測試機構',
+                    size: Math.floor(Math.random() * 10000)
+                });
+            }
+            return files;
+        }
+
+        // 顯示檔案列表
+        function displayFileList(files) {
+            allFiles = files;
+            currentPage = 0;
+            renderFileList();
+        }
+
+        // 渲染檔案列表（分頁）
+        function renderFileList() {
+            const fileListDiv = document.getElementById('fileList');
+            const startIndex = currentPage * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const currentFiles = allFiles.slice(startIndex, endIndex);
+            
+            // 顯示當前頁面的檔案
+            fileListDiv.innerHTML = currentFiles.map(file => {
+                return `
+                    <div class="file-item">
+                        <div><strong>${file.filename}</strong></div>
+                        <div>搜尋詞: ${file.searchTerms}</div>
+                        <div>機構: ${file.institution}</div>
+                        <div>大小: ${file.size} bytes</div>
+                    </div>
+                `;
+            }).join('');
+
+            // 添加分頁控制
+            const totalPages = Math.ceil(allFiles.length / itemsPerPage);
+            if (totalPages > 1) {
+                fileListDiv.innerHTML += `
+                    <div class="pagination-controls">
+                        <button onclick="previousPage()" ${currentPage === 0 ? 'disabled' : ''} class="pagination-btn">
+                            ← 上一頁
+                        </button>
+                        <span class="pagination-info">
+                            第 ${currentPage + 1} 頁，共 ${totalPages} 頁 (${allFiles.length} 個檔案)
+                        </span>
+                        <button onclick="nextPage()" ${currentPage >= totalPages - 1 ? 'disabled' : ''} class="pagination-btn">
+                            下一頁 →
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        // 上一頁
+        function previousPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                renderFileList();
+            }
+        }
+
+        // 下一頁
+        function nextPage() {
+            const totalPages = Math.ceil(allFiles.length / itemsPerPage);
+            if (currentPage < totalPages - 1) {
+                currentPage++;
+                renderFileList();
+            }
+        }
+
+        // 初始化
+        window.onload = function() {
+            const testFiles = generateTestData();
+            displayFileList(testFiles);
+        };
+    </script>
+</body>
+</html>
+

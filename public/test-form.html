@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>URL Parameter Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-field { margin: 10px 0; }
+        input, select { padding: 5px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>URL Parameter Form Test</h1>
+    <div class="test-field">
+        <label for="field1">Search Terms:</label>
+        <input type="text" id="field1" value="initial value">
+    </div>
+    <div class="test-field">
+        <label for="field2">Must Have:</label>
+        <input type="text" id="field2" value="initial value">
+    </div>
+    <div class="test-field">
+        <input type="checkbox" id="orderRankFilter">
+        <label for="orderRankFilter">Order Rank Filter</label>
+    </div>
+    <div class="test-field">
+        <input type="checkbox" id="testRankFilter">
+        <label for="testRankFilter">Test Rank Filter</label>
+    </div>
+    <div class="test-field">
+        <button onclick="testUrlParsing()">Test URL Parsing</button>
+        <button onclick="resetForm()">Reset Form</button>
+    </div>
+    <div id="results"></div>
+
+    <script>
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function populateFormFromUrl() {
+            console.log('populateFormFromUrl called');
+            console.log('Current URL:', window.location.href);
+            console.log('Search params:', window.location.search);
+            
+            const searchTerms = getUrlParameter('searchTerms');
+            const mustHaveTerms = getUrlParameter('mustHaveTerms');
+            const rankFilter1 = getUrlParameter('rankFilter1');
+            const rankFilter2 = getUrlParameter('rankFilter2');
+            
+            console.log('URL parameters:', { searchTerms, mustHaveTerms, rankFilter1, rankFilter2 });
+            
+            if (searchTerms) {
+                const field1 = document.getElementById('field1');
+                if (field1) {
+                    field1.value = searchTerms;
+                    console.log('Set field1 to:', field1.value);
+                }
+            }
+            
+            if (mustHaveTerms) {
+                const field2 = document.getElementById('field2');
+                if (field2) {
+                    field2.value = mustHaveTerms;
+                    console.log('Set field2 to:', field2.value);
+                }
+            }
+            
+            if (rankFilter1 !== null) {
+                const orderRankFilter = document.getElementById('orderRankFilter');
+                if (orderRankFilter) {
+                    orderRankFilter.checked = rankFilter1 === 'true';
+                    console.log('Set orderRankFilter to:', orderRankFilter.checked);
+                }
+            }
+            
+            if (rankFilter2 !== null) {
+                const testRankFilter = document.getElementById('testRankFilter');
+                if (testRankFilter) {
+                    testRankFilter.checked = rankFilter2 === 'true';
+                    console.log('Set testRankFilter to:', testRankFilter.checked);
+                }
+            }
+            
+            updateResults();
+        }
+
+        function updateResults() {
+            const results = document.getElementById('results');
+            if (results) {
+                results.innerHTML = `
+                    <h3>Current Form Values:</h3>
+                    <p>field1: "${document.getElementById('field1')?.value || 'not found'}"</p>
+                    <p>field2: "${document.getElementById('field2')?.value || 'not found'}"</p>
+                    <p>orderRankFilter: ${document.getElementById('orderRankFilter')?.checked || 'not found'}</p>
+                    <p>testRankFilter: ${document.getElementById('testRankFilter')?.checked || 'not found'}</p>
+                `;
+            }
+        }
+
+        function testUrlParsing() {
+            populateFormFromUrl();
+        }
+
+        function resetForm() {
+            document.getElementById('field1').value = '';
+            document.getElementById('field2').value = '';
+            document.getElementById('orderRankFilter').checked = false;
+            document.getElementById('testRankFilter').checked = false;
+            updateResults();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOMContentLoaded fired');
+            populateFormFromUrl();
+        });
+
+        // Also try immediately
+        if (document.readyState !== 'loading') {
+            console.log('Document already loaded');
+            populateFormFromUrl();
+        }
+
+        // Show current state
+        setTimeout(updateResults, 100);
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+{
+  "summary": {
+    "totalFiles": 202,
+    "itemsIn200": 202,
+    "itemsBeyond200": 0,
+    "noRankItems": 0,
+    "duplicateRanks": 2,
+    "correctedTotal": 200
+  },
+  "itemsBeyond200": [],
+  "noRankItems": [],
+  "duplicateRanks": [
+    {
+      "rank": 56,
+      "count": 2,
+      "items": [
+        {
+          "filename": "loinc_mapping_2025-09-11T04-11-18-468Z.json",
+          "labItemName": "PT",
+          "labItemId": "PT",
+          "labUnit": "second",
+          "labSampleType": "Blood",
+          "itemRank": 56,
+          "loincCode": "5964-2",
+          "loincName": "Prothrombin time (PT) in Blood by Coagulation assay",
+          "totalRecords": "760",
+          "uniquePatients": "650",
+          "meanValue": "15.25",
+          "timestamp": "2025-09-11T04:11:18.108Z",
+          "hasLabContext": true,
+          "hasSelectedLoinc": true
+        },
+        {
+          "filename": "loinc_mapping_2025-09-11T04-12-56-929Z.json",
+          "labItemName": "PT",
+          "labItemId": "PT",
+          "labUnit": "second",
+          "labSampleType": "Blood",
+          "itemRank": 56,
+          "loincCode": "5964-2",
+          "loincName": "Prothrombin time (PT) in Blood by Coagulation assay",
+          "totalRecords": "760",
+          "uniquePatients": "650",
+          "meanValue": "15.25",
+          "timestamp": "2025-09-11T04:12:55.917Z",
+          "hasLabContext": true,
+          "hasSelectedLoinc": true
+        }
+      ]
+    },
+    {
+      "rank": 84,
+      "count": 2,
+      "items": [
+        {
+          "filename": "loinc_mapping_2025-09-11T07-11-13-666Z.json",
+          "labItemName": "LDH",
+          "labItemId": "LDH",
+          "labUnit": "U/L",
+          "labSampleType": "Blood",
+          "itemRank": 84,
+          "loincCode": "2532-0",
+          "loincName": "Lactate dehydrogenase [Enzymatic activity/volume] in Serum or Plasma",
+          "totalRecords": "236",
+          "uniquePatients": "233",
+          "meanValue": "181.7",
+          "timestamp": "2025-09-11T07:11:13.007Z",
+          "hasLabContext": true,
+          "hasSelectedLoinc": true
+        },
+        {
+          "filename": "loinc_mapping_2025-09-11T07-11-42-089Z.json",
+          "labItemName": "LDH",
+          "labItemId": "LDH",
+          "labUnit": "U/L",
+          "labSampleType": "Blood",
+          "itemRank": 84,
+          "loincCode": "2532-0",
+          "loincName": "Lactate dehydrogenase [Enzymatic activity/volume] in Serum or Plasma",
+          "totalRecords": "236",
+          "uniquePatients": "233",
+          "meanValue": "181.7",
+          "timestamp": "2025-09-11T07:11:41.664Z",
+          "hasLabContext": true,
+          "hasSelectedLoinc": true
+        }
+      ]
+    }
+  ]
+}

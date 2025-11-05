@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>最終測試 - 自動打勾功能</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #f9f9f9;
+        }
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        .btn:hover {
+            background: #2980b9;
+        }
+        .btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .result-item {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .result-item.selected {
+            border-color: #e74c3c;
+            background: #fdf2f2;
+        }
+        .loinc-checkbox {
+            transform: scale(1.2);
+        }
+        .loinc-code {
+            font-weight: bold;
+            color: #2c3e50;
+            min-width: 80px;
+        }
+        .suggested-loinc {
+            background-color: #e8f5e8 !important;
+            border-left: 4px solid #4CAF50 !important;
+        }
+        .ai-analysis {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>最終測試 - 請萬達人解釋搜尋結果 + 自動打勾</h1>
+        
+        <div class="test-section">
+            <h3>步驟 1: 搜尋 LOINC 代碼</h3>
+            <input type="text" id="searchInput" placeholder="輸入搜尋詞彙" value="protein urine" style="width: 300px; padding: 8px; margin-right: 10px;">
+            <button class="btn" onclick="searchLoinc()">搜尋</button>
+            <div id="searchStatus" class="status" style="display: none;"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>步驟 2: 搜尋結果</h3>
+            <div id="resultsContainer"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>步驟 3: 請萬達人解釋搜尋結果</h3>
+            <button class="btn" id="analyzeBtn" onclick="analyzeResults()" disabled>請萬達人解釋搜尋結果</button>
+            <div id="analyzeStatus" class="status" style="display: none;"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>步驟 4: AI 分析結果</h3>
+            <div id="aiAnalysis" style="display: none;">
+                <div id="aiContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入自動選中腳本 -->
+    <script src="/auto-select-loinc.js"></script>
+
+    <script>
+        let currentSearchResults = [];
+        let selectedLoincCodes = new Set();
+
+        async function searchLoinc() {
+            const searchTerm = document.getElementById('searchInput').value.trim();
+            if (!searchTerm) {
+                showStatus('searchStatus', '請輸入搜尋詞彙', 'error');
+                return;
+            }
+
+            showStatus('searchStatus', '正在搜尋...', 'info');
+            
+            try {
+                const response = await fetch('/api/search', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        field1: searchTerm,
+                        field2: '',
+                        componentField: '',
+                        systemField: '',
+                        useOrderRankFilter: true,
+                        useTestRankFilter: true
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+
+                if (data.tooManyResults) {
+                    showStatus('searchStatus', '搜尋結果太多，請使用更具體的詞彙', 'error');
+                    return;
+                }
+
+                currentSearchResults = data.results || [];
+                displayResults();
+                
+                if (currentSearchResults.length > 0) {
+                    showStatus('searchStatus', `搜尋完成，找到 ${currentSearchResults.length} 個結果`, 'success');
+                    document.getElementById('analyzeBtn').disabled = false;
+                } else {
+                    showStatus('searchStatus', '沒有找到相關結果', 'error');
+                }
+
+            } catch (error) {
+                console.error('搜尋錯誤:', error);
+                showStatus('searchStatus', '搜尋失敗: ' + error.message, 'error');
+            }
+        }
+
+        function displayResults() {
+            const resultsContainer = document.getElementById('resultsContainer');
+            resultsContainer.innerHTML = '';
+            
+            currentSearchResults.forEach(result => {
+                const resultItem = document.createElement('div');
+                resultItem.className = 'result-item';
+                resultItem.innerHTML = `
+                    <input type="checkbox" class="loinc-checkbox" 
+                           value="${result.loincNum}"
+                           onchange="toggleSelection('${result.loincNum}')">
+                    <div class="loinc-code">${result.loincNum}</div>
+                    <div style="flex: 1;">
+                        <div><strong>${result.component.replace(/<[^>]*>/g, '')}</strong></div>
+                        <div style="color: #666; font-size: 14px;">${result.longCommonName}</div>
+                    </div>
+                    <div style="color: #27ae60; font-weight: bold;">
+                        ${result.similarityScore.toFixed(1)}%
+                    </div>
+                `;
+                resultsContainer.appendChild(resultItem);
+            });
+        }
+
+        function toggleSelection(loincCode) {
+            if (selectedLoincCodes.has(loincCode)) {
+                selectedLoincCodes.delete(loincCode);
+            } else {
+                selectedLoincCodes.add(loincCode);
+            }
+            
+            // 更新視覺效果
+            const checkbox = document.querySelector(`input[value="${loincCode}"]`);
+            const resultItem = checkbox.closest('.result-item');
+            if (selectedLoincCodes.has(loincCode)) {
+                resultItem.classList.add('selected');
+            } else {
+                resultItem.classList.remove('selected');
+            }
+        }
+
+        async function analyzeResults() {
+            if (currentSearchResults.length === 0) {
+                showStatus('analyzeStatus', '請先進行搜尋', 'error');
+                return;
+            }
+
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            analyzeBtn.disabled = true;
+            analyzeBtn.textContent = '分析中...';
+            showStatus('analyzeStatus', '正在分析搜尋結果...', 'info');
+
+            try {
+                // 調用 /api/analyze 端點
+                const response = await fetch('/api/analyze', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        sessionId: 'test-session-' + Date.now(),
+                        results: currentSearchResults,
+                        searchTerms: document.getElementById('searchInput').value,
+                        mustHaveTerms: '',
+                        labDataContext: null
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                // 顯示 AI 分析結果
+                displayAnalysis(data.summary);
+                
+                // 如果有建議的 LOINC 代碼，自動選中
+                if (data.suggestedLoincCode) {
+                    showStatus('analyzeStatus', `AI 建議選中 LOINC 代碼: ${data.suggestedLoincCode}`, 'success');
+                    
+                    // 延遲一點時間讓 UI 更新完成
+                    setTimeout(() => {
+                        if (typeof autoSelectSuggestedLoinc === 'function') {
+                            autoSelectSuggestedLoinc(data.suggestedLoincCode);
+                        } else {
+                            showStatus('analyzeStatus', '錯誤：autoSelectSuggestedLoinc 函數未載入', 'error');
+                        }
+                    }, 1000);
+                } else {
+                    showStatus('analyzeStatus', '分析完成，但未找到建議的 LOINC 代碼', 'info');
+                }
+
+            } catch (error) {
+                console.error('分析錯誤:', error);
+                showStatus('analyzeStatus', '分析失敗: ' + error.message, 'error');
+            } finally {
+                analyzeBtn.disabled = false;
+                analyzeBtn.textContent = '請萬達人解釋搜尋結果';
+            }
+        }
+
+        function displayAnalysis(summary) {
+            const aiAnalysis = document.getElementById('aiAnalysis');
+            const aiContent = document.getElementById('aiContent');
+            
+            // 格式化摘要內容
+            const formattedSummary = summary
+                .replace(/\n\n/g, '<br><br>')
+                .replace(/\n/g, '<br>');
+            
+            aiContent.innerHTML = `<div style="line-height: 1.6;">${formattedSummary}</div>`;
+            aiAnalysis.style.display = 'block';
+        }
+
+        function showStatus(elementId, message, type) {
+            const statusDiv = document.getElementById(elementId);
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${type}`;
+            statusDiv.style.display = 'block';
+        }
+
+        // 頁面載入時自動開始測試
+        window.onload = function() {
+            console.log('頁面載入完成，開始測試');
+            searchLoinc();
+        };
+    </script>
+</body>
+</html>
+

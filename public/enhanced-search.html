@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced LOINC Search with URL Parameters</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            margin: 15px 0;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .button-secondary {
+            background-color: #28a745;
+        }
+        .button-secondary:hover {
+            background-color: #1e7e34;
+        }
+        .results {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .result-item {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+        }
+        .loinc-code {
+            font-weight: bold;
+            color: #007bff;
+            font-size: 18px;
+        }
+        .similarity-score {
+            float: right;
+            background-color: #28a745;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        .url-display {
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .section {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .section h3 {
+            margin-top: 0;
+            color: #495057;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔬 Enhanced LOINC Search with URL Parameters</h1>
+        <p>Test the enhanced search endpoint that accepts lab data via URL parameters</p>
+
+        <div class="section">
+            <h3>📋 Lab Information</h3>
+            <div class="grid">
+                <div>
+                    <div class="form-group">
+                        <label for="labItemName">Lab Item Name:</label>
+                        <input type="text" id="labItemName" value="CREA" placeholder="e.g., CREA">
+                    </div>
+                    <div class="form-group">
+                        <label for="labUnit">Lab Unit:</label>
+                        <input type="text" id="labUnit" value="mg/dL" placeholder="e.g., mg/dL">
+                    </div>
+                    <div class="form-group">
+                        <label for="labSampleType">Sample Type:</label>
+                        <input type="text" id="labSampleType" value="Blood" placeholder="e.g., Blood, Urine">
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <label for="itemId">Item ID:</label>
+                        <input type="text" id="itemId" value="CREB" placeholder="Internal item ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="itemRank">Item Rank (項目排名):</label>
+                        <input type="number" id="itemRank" value="1" placeholder="1" title="Lab item ranking in institutional data">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>📊 Statistical Data</h3>
+            <div class="grid">
+                <div>
+                    <div class="form-group">
+                        <label for="labTotalRecords">Total Records:</label>
+                        <input type="number" id="labTotalRecords" value="5018" placeholder="5018">
+                    </div>
+                    <div class="form-group">
+                        <label for="labUniquePatients">Unique Patients:</label>
+                        <input type="number" id="labUniquePatients" value="4562" placeholder="4562">
+                    </div>
+                    <div class="form-group">
+                        <label for="labMissingValues">Missing Values (%):</label>
+                        <input type="text" id="labMissingValues" value="0.0%" placeholder="0.0%">
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <label for="labMeanValue">Mean Value:</label>
+                        <input type="number" step="0.01" id="labMeanValue" value="1.13" placeholder="1.13">
+                    </div>
+                    <div class="form-group">
+                        <label for="labMedianValue">Median Value:</label>
+                        <input type="number" step="0.01" id="labMedianValue" value="0.86" placeholder="0.86">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>🏥 Institution Information</h3>
+            <div class="grid">
+                <div>
+                    <div class="form-group">
+                        <label for="institution">Institution:</label>
+                        <input type="text" id="institution" value="AAA Hospital" placeholder="Hospital/Clinic Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="institutionType">Institution Type:</label>
+                        <input type="text" id="institutionType" value="Medical Center" placeholder="Medical Center, Clinic, etc.">
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <label for="institutionLocation">Location:</label>
+                        <input type="text" id="institutionLocation" value="Taiwan" placeholder="Country/Region">
+                    </div>
+                    <div class="form-group">
+                        <label for="dataSource">Data Source:</label>
+                        <input type="text" id="dataSource" value="Analytics Dashboard" placeholder="Source system">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>🔧 Filter Settings</h3>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" id="rankFilter1" checked> 
+                    Order Rank Filter (≤ 300)
+                </label>
+                <label>
+                    <input type="checkbox" id="rankFilter2" checked> 
+                    Test Rank Filter (≤ 3000)
+                </label>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 30px 0;">
+            <button onclick="performSearch()">🔍 Search LOINC Codes</button>
+            <button onclick="generateURL()" class="button-secondary">📋 Generate URL</button>
+            <button onclick="clearForm()">🗑️ Clear Form</button>
+        </div>
+
+        <div id="generatedURL" class="url-display" style="display: none;">
+            <strong>Generated URL:</strong><br>
+            <span id="urlText"></span>
+        </div>
+
+        <div id="searchResults" class="results" style="display: none;">
+            <h3>🎯 Search Results</h3>
+            <div id="resultsContent"></div>
+        </div>
+    </div>
+
+    <script>
+        function generateURL() {
+            const baseUrl = `${window.location.origin}/api/search-from-url`;
+            const params = new URLSearchParams();
+            
+            // Add all form parameters
+            const fields = [
+                'labItemName', 'labUnit', 'labSampleType', 'labTotalRecords', 
+                'labUniquePatients', 'labMissingValues', 'labMeanValue', 
+                'labMedianValue', 'itemRank', 'institution', 'institutionType', 
+                'institutionLocation', 'itemId', 'dataSource'
+            ];
+            
+            fields.forEach(field => {
+                const value = document.getElementById(field).value;
+                if (value) {
+                    params.append(field, value);
+                }
+            });
+            
+            // Add timestamp
+            params.append('timestamp', new Date().toISOString());
+            
+            // Add filters
+            params.append('rankFilter1', document.getElementById('rankFilter1').checked);
+            params.append('rankFilter2', document.getElementById('rankFilter2').checked);
+            
+            const fullUrl = `${baseUrl}?${params.toString()}`;
+            
+            document.getElementById('urlText').textContent = fullUrl;
+            document.getElementById('generatedURL').style.display = 'block';
+        }
+
+        async function performSearch() {
+            try {
+                document.getElementById('searchResults').style.display = 'none';
+                
+                generateURL();
+                const url = document.getElementById('urlText').textContent;
+                
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                displayResults(data);
+            } catch (error) {
+                console.error('Search error:', error);
+                alert('Search failed: ' + error.message);
+            }
+        }
+
+        function displayResults(data) {
+            const resultsDiv = document.getElementById('resultsContent');
+            
+            if (data.error) {
+                resultsDiv.innerHTML = `<div style="color: red;">Error: ${data.error}</div>`;
+            } else if (data.results && data.results.length > 0) {
+                let html = `
+                    <div style="margin-bottom: 15px;">
+                        <strong>Found ${data.results.length} results</strong>
+                        ${data.enhanced ? '<span style="color: #28a745; margin-left: 10px;">✨ Enhanced Search</span>' : ''}
+                    </div>
+                `;
+                
+                if (data.labData) {
+                    html += `
+                        <div style="background: #e3f2fd; padding: 10px; border-radius: 4px; margin-bottom: 15px;">
+                            <strong>Lab Context:</strong> ${data.labData.labItemName} ${data.labData.labUnit} (${data.labData.labSampleType})
+                            ${data.labData.institution ? ` | ${data.labData.institution}` : ''}
+                        </div>
+                    `;
+                }
+                
+                data.results.slice(0, 10).forEach(result => {
+                    html += `
+                        <div class="result-item">
+                            <div class="loinc-code">${result.loincNum}</div>
+                            <div class="similarity-score">${result.similarityScore.toFixed(1)}%</div>
+                            <div><strong>Component:</strong> ${result.component}</div>
+                            <div><strong>Long Name:</strong> ${result.longCommonName}</div>
+                            ${result.relatedNames2 ? `<div><strong>Related Names:</strong> ${result.relatedNames2}</div>` : ''}
+                            <div><small>Test Rank: ${result.commonTestRank} | Order Rank: ${result.commonOrderRank}</small></div>
+                        </div>
+                    `;
+                });
+            } else {
+                resultsDiv.innerHTML = '<div>No results found. Try adjusting the search parameters.</div>';
+            }
+            
+            document.getElementById('searchResults').style.display = 'block';
+        }
+
+        function clearForm() {
+            document.querySelectorAll('input[type="text"], input[type="number"]').forEach(input => {
+                input.value = '';
+            });
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            document.getElementById('searchResults').style.display = 'none';
+            document.getElementById('generatedURL').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

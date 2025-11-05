@@ -1,0 +1,118 @@
+{
+  "title": "缺失分析項目補充報告",
+  "generatedAt": "2025-09-28T18:21:06.898Z",
+  "summary": {
+    "totalEmptyFiles": 12,
+    "aaaHospitalEmpty": 8,
+    "triServiceEmpty": 4,
+    "supplementedCodes": 12
+  },
+  "detailedAnalysis": [
+    {
+      "loincCode": "706-2",
+      "labItemName": "Basophil",
+      "hospital": "AAA",
+      "category": "血液學檢查",
+      "analysisPreview": "嗜鹼性白血球 (Basophil) 是血液中數量最少的白血球類型，正常值約占白血球總數的0.5-1%。主要功能包括參與過敏反應和發炎反應，釋放組織胺和肝素等介質。臨床意義：嗜鹼性白血球增多常見於過敏性..."
+    },
+    {
+      "loincCode": "1920-8",
+      "labItemName": "GOT(AST)",
+      "hospital": "AAA",
+      "category": "肝功能檢查",
+      "analysisPreview": "天門冬胺酸轉胺酶 (AST/GOT) 是重要的肝功能指標，廣泛存在於肝臟、心肌、骨骼肌等組織中。正常值一般為10-40 U/L（可因實驗室而異）。臨床意義：AST升高主要見於急慢性肝炎、肝硬化、肝癌、..."
+    },
+    {
+      "loincCode": "1977-8",
+      "labItemName": "Bilirubin",
+      "hospital": "AAA",
+      "category": "肝功能檢查",
+      "analysisPreview": "膽紅素 (Bilirubin) 是血紅蛋白代謝的產物，包括直接膽紅素和間接膽紅素。總膽紅素正常值約0.3-1.2 mg/dL (5-21 μmol/L)。臨床意義：膽紅素升高導致黃疸，可分為溶血性黃疸..."
+    },
+    {
+      "loincCode": "19258-3",
+      "labItemName": "pO2(vein)",
+      "hospital": "AAA",
+      "category": "血氣分析",
+      "analysisPreview": "靜脈血氧分壓 (pO2 venous) 反映組織對氧氣的利用程度，正常值約35-40 mmHg。與動脈血氧分壓不同，靜脈血氧分壓較低，反映組織代謝後的血氧狀態。臨床意義：靜脈血氧分壓降低可見於心功能不..."
+    },
+    {
+      "loincCode": "2039-6",
+      "labItemName": "CEA",
+      "hospital": "AAA",
+      "category": "腫瘤標記物",
+      "analysisPreview": "癌胚抗原 (CEA) 是重要的腫瘤標記物，正常人血清濃度極低，通常<2.5 ng/mL（非吸菸者）或<5.0 ng/mL（吸菸者）。CEA主要用於結直腸癌的診斷、分期、療效監測和復發監測。臨床意義：C..."
+    },
+    {
+      "loincCode": "2532-0",
+      "labItemName": "LDH",
+      "hospital": "AAA",
+      "category": "酶學檢查",
+      "analysisPreview": "乳酸脫氫酶 (LDH) 是重要的細胞酶，廣泛存在於心肌、肝臟、骨骼肌、腎臟等組織中。正常值約140-280 U/L（可因實驗室而異）。LDH有五種同工酶，不同組織來源的LDH同工酶比例不同。臨床意義：..."
+    },
+    {
+      "loincCode": "35741-8",
+      "labItemName": "Total PSA",
+      "hospital": "AAA",
+      "category": "腫瘤標記物",
+      "analysisPreview": "前列腺特異性抗原 (Total PSA) 是前列腺特異性的糖蛋白，主要由前列腺上皮細胞產生。正常值一般<4.0 ng/mL，但需考慮年齡因素。臨床意義：PSA主要用於前列腺癌的篩檢、診斷、分期和療效監..."
+    },
+    {
+      "loincCode": "54348-8",
+      "labItemName": "Alpha-Fetoprotein",
+      "hospital": "AAA",
+      "category": "腫瘤標記物",
+      "analysisPreview": "甲型胎兒蛋白 (Alpha-Fetoprotein, AFP) 是重要的腫瘤標記物，主要用於肝癌、生殖細胞腫瘤的診斷和監測。正常成人血清AFP濃度極低（<10 ng/mL），但在肝細胞癌患者中可顯著升..."
+    },
+    {
+      "loincCode": "1742-6",
+      "labItemName": "ALT",
+      "hospital": "Tri-Service",
+      "category": "肝功能檢查",
+      "analysisPreview": "丙胺酸轉胺酶 (ALT/GPT) 是最重要的肝功能指標之一，主要存在於肝細胞中，正常值一般為7-40 U/L（可因實驗室而異）。ALT對肝細胞損傷具有高度敏感性和相對特異性。臨床意義：ALT升高主要見..."
+    },
+    {
+      "loincCode": "789-8",
+      "labItemName": "RBC",
+      "hospital": "Tri-Service",
+      "category": "血液學檢查",
+      "analysisPreview": "紅血球計數 (RBC) 是基本的血液檢查項目，反映血液中紅血球的數量。正常值男性約4.5-5.5 × 10¹²/L，女性約4.0-5.0 × 10¹²/L。紅血球主要功能是攜帶氧氣和二氧化碳。臨床意義..."
+    },
+    {
+      "loincCode": "21418-9",
+      "labItemName": "Neutrophil",
+      "hospital": "Tri-Service",
+      "category": "血液學檢查",
+      "analysisPreview": "中性白血球 (Neutrophil) 是血液中數量最多的白血球類型，約占白血球總數的50-70%。主要功能是吞噬細菌和真菌，是機體重要的防禦細胞。正常絕對計數約2.0-7.5 × 10⁹/L。臨床意義..."
+    },
+    {
+      "loincCode": "57803-9",
+      "labItemName": "Urine Occult Blood",
+      "hospital": "Tri-Service",
+      "category": "尿液檢查",
+      "analysisPreview": "尿潛血 (Urine Occult Blood) 檢測尿液中是否含有肉眼不可見的紅血球或血紅蛋白。正常尿液應為陰性或僅有少量紅血球（<3個/高倍視野）。臨床意義：尿潛血陽性可見於泌尿系統疾病如腎炎、腎..."
+    }
+  ],
+  "categoryBreakdown": {
+    "血液學檢查": [
+      "706-2",
+      "789-8",
+      "21418-9"
+    ],
+    "肝功能檢查": [
+      "1920-8",
+      "1977-8",
+      "1742-6"
+    ],
+    "腫瘤標記物": [
+      "2039-6",
+      "35741-8",
+      "54348-8"
+    ],
+    "其他檢查": [
+      "19258-3",
+      "2532-0",
+      "57803-9"
+    ]
+  }
+}

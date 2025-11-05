@@ -1,0 +1,11 @@
+{
+  "scanTimestamp": "2025-09-28T18:32:28.989Z",
+  "summary": {
+    "totalFiles": 419,
+    "filesWithAnalysis": 405,
+    "mismatchCount": 0,
+    "mismatchRate": "0.00%"
+  },
+  "mismatches": [],
+  "byHospital": {}
+}

@@ -1,0 +1,28 @@
+{
+  "reportDate": "2025-09-28T14:34:16.221Z",
+  "version": "Template-aligned",
+  "hospitals": {
+    "wanFang": {
+      "name": "萬芳醫院",
+      "mappedItems": 200,
+      "totalFiles": 202,
+      "completionRate": "100%",
+      "status": "Perfect"
+    },
+    "triService": {
+      "name": "三軍總醫院",
+      "mappedItems": 200,
+      "totalFiles": 201,
+      "completionRate": "100%",
+      "status": "Perfect"
+    }
+  },
+  "total": {
+    "mappedItems": 400,
+    "totalFiles": 403,
+    "completionRate": "100%",
+    "missingItems": 0,
+    "uniqueLoincCodes": 275,
+    "projectStatus": "Successfully Completed"
+  }
+}

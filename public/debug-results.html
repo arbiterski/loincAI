@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Results Viewer</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .debug-info { background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .error { background: #ffebee; color: #c62828; }
+        .success { background: #e8f5e8; color: #2e7d32; }
+        .file-item { border: 1px solid #ddd; margin: 5px 0; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Debug Results Viewer</h1>
+    <div id="debug-info" class="debug-info">載入中...</div>
+    <div id="file-list"></div>
+
+    <script>
+        async function loadData() {
+            const debugDiv = document.getElementById('debug-info');
+            const fileListDiv = document.getElementById('file-list');
+            
+            try {
+                debugDiv.innerHTML = '正在載入 API 數據...';
+                
+                const response = await fetch('/api/get-saved-mappings');
+                const data = await response.json();
+                
+                debugDiv.innerHTML = `
+                    <div class="success">
+                        <strong>API 載入成功！</strong><br>
+                        檔案數量: ${data.count}<br>
+                        機構數量: ${data.institutions ? data.institutions.length : 0}<br>
+                        機構列表: ${data.institutions ? data.institutions.join(', ') : '無'}<br>
+                        響應時間: ${new Date().toLocaleString()}
+                    </div>
+                `;
+                
+                if (data.files && data.files.length > 0) {
+                    debugDiv.innerHTML += `
+                        <div class="success">
+                            <strong>檔案列表載入成功！</strong><br>
+                            前 5 個檔案:
+                        </div>
+                    `;
+                    
+                    // 顯示前 5 個檔案
+                    const firstFive = data.files.slice(0, 5);
+                    fileListDiv.innerHTML = firstFive.map(file => `
+                        <div class="file-item">
+                            <strong>${file.filename}</strong><br>
+                            機構: ${file.institution}<br>
+                            搜尋詞: ${file.searchTerms}<br>
+                            時間: ${new Date(file.timestamp).toLocaleString()}<br>
+                            大小: ${file.size} bytes
+                        </div>
+                    `).join('');
+                } else {
+                    fileListDiv.innerHTML = '<div class="error">沒有找到檔案</div>';
+                }
+                
+            } catch (error) {
+                debugDiv.innerHTML = `
+                    <div class="error">
+                        <strong>載入失敗！</strong><br>
+                        錯誤: ${error.message}<br>
+                        時間: ${new Date().toLocaleString()}
+                    </div>
+                `;
+                console.error('載入錯誤:', error);
+            }
+        }
+        
+        // 頁面載入時執行
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+</html>
+

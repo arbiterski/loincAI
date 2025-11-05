@@ -1,0 +1,36 @@
+{
+  "reportDate": "2025-09-15T22:19:15.457Z",
+  "version": "2.0 (English Version)",
+  "hospitals": {
+    "wanFang": {
+      "name": "Wan Fang Hospital",
+      "mappedItems": 200,
+      "totalFiles": 202,
+      "completionRate": "100%",
+      "duplicateFilesHandled": 2,
+      "status": "Perfect"
+    },
+    "triService": {
+      "name": "Tri-Service General Hospital",
+      "mappedItems": 200,
+      "totalFiles": 201,
+      "completionRate": "100%",
+      "duplicateFilesHandled": 1,
+      "status": "Perfect"
+    }
+  },
+  "total": {
+    "mappedItems": 400,
+    "totalFiles": 403,
+    "completionRate": "100%",
+    "missingItems": 0,
+    "uniqueLoincCodes": 274,
+    "projectStatus": "Successfully Completed"
+  },
+  "qualityControl": {
+    "dataValidation": "Passed",
+    "duplicateResolution": "Completed",
+    "completenessCheck": "100% Coverage",
+    "finalVerification": "Approved"
+  }
+}

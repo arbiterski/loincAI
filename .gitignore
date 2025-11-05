@@ -100,6 +100,38 @@ logs
 *.csv
 result.csv
 
+# Large document files
+*.pdf
+*.PDF
+*.docx
+*.DOCX
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.zip
+*.ZIP
+*.numbers
+*.pages
+
+# Large analysis results
+saved_mappings/
+final_Report/
+screenshots/
+xml_tri/
+
+# Sensitive credentials and tokens
+*-mcp-wrapper.sh
+gmail-auth-helper.js
+gcal-mcp-wrapper.sh
+gmail-mcp-wrapper.sh
+generate-gmail-token.js
+setup-gmail-mcp.js
+credentials.json
+token.json
+*_token.json
+*_credentials.json
+
 # IDE files
 .vscode/
 .idea/

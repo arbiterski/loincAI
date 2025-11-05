@@ -70,6 +70,92 @@
         .suggestion-item:hover {
             background-color: #f5f5f5;
         }
+        .suggestion-summary {
+            padding: 12px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            border-left: 4px solid #2196f3;
+            border-radius: 6px;
+        }
+        .suggestion-summary h4 {
+            margin: 0 0 8px 0;
+            color: #1976d2;
+            font-size: 14px;
+        }
+        .suggestion-summary > div {
+            margin: 4px 0;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        .suggestion-summary strong {
+            color: #333;
+        }
+        .suggestion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .suggestion-header h4 {
+            margin: 0;
+            color: #333;
+            font-size: 16px;
+        }
+        .close-suggestion-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        .close-suggestion-btn:hover {
+            background: #c82333;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+        .results-header h3 {
+            margin: 0;
+            color: #495057;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .close-results-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .close-results-btn:hover {
+            background: #c82333;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
         .search-field label {
             display: block;
             margin-bottom: 5px;
@@ -186,7 +272,7 @@
         }
         .result-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: 1fr 1.8fr 0.8fr 0.8fr 1fr;
             gap: 10px;
         }
         .result-field {
@@ -200,6 +286,7 @@
         .field-value {
             color: #333;
             font-size: 14px;
+            line-height: 1.4;
         }
         .loading {
             text-align: center;
@@ -237,10 +324,70 @@
         }
         .ai-analysis {
             background: white;
-            padding: 20px;
+            padding: 30px;
             border-radius: 8px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        
+        /* Improve markdown-like formatting with more spacing */
+        .ai-analysis h2 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 12px;
+            margin-top: 40px;
+            margin-bottom: 24px;
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+        
+        .ai-analysis h3 {
+            color: #34495e;
+            margin-top: 32px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding-left: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .ai-analysis p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .ai-analysis ul, .ai-analysis ol {
+            margin-bottom: 24px;
+            padding-left: 32px;
+        }
+        
+        .ai-analysis li {
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+        
+        .ai-analysis strong {
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        
+        /* Add spacing between sections */
+        .ai-analysis > * {
+            margin-bottom: 16px;
+        }
+        
+        /* Improve table spacing */
+        .ai-analysis table {
+            margin: 24px 0;
+            border-collapse: collapse;
+        }
+        
+        .ai-analysis table th,
+        .ai-analysis table td {
+            padding: 12px 8px;
+            text-align: left;
         }
         .ai-header {
             display: flex;
@@ -368,9 +515,10 @@
             background-color: #f9f9f9;
         }
         .user-message, .ai-message {
-            margin-bottom: 15px;
-            padding: 10px;
+            margin-bottom: 20px;
+            padding: 20px;
             border-radius: 8px;
+            line-height: 1.7;
         }
         .user-message {
             background-color: #e8f5e9;
@@ -387,12 +535,13 @@
         }
         .ai-response {
             background-color: #f8f9fa;
-            padding: 15px;
+            padding: 20px;
             border-radius: 8px;
             border-left: 4px solid #34a853;
-            margin-top: 10px;
+            margin-top: 12px;
             white-space: pre-wrap;
-            line-height: 1.3;
+            line-height: 1.8;
+            font-size: 16px;
         }
         .ai-response br {
             display: none;
@@ -464,11 +613,467 @@
             color: white;
             font-weight: bold;
         }
+        .mapping-controls {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: none;
+        }
+        .mapping-controls.show {
+            display: block;
+        }
+        .mapping-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .mapping-header h3 {
+            margin: 0;
+            color: #1a73e8;
+            font-size: 18px;
+        }
+        .mapping-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .ai-provider-selection {
+            display: flex;
+            gap: 15px;
+            margin-right: 15px;
+        }
+        .provider-label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #555;
+        }
+        .provider-label input[type="radio"] {
+            margin: 0;
+        }
+        .provider-label:hover {
+            color: #1a73e8;
+        }
+        .ai-provider-section {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .ai-provider-section h3 {
+            margin: 0 0 10px 0;
+            color: #1a73e8;
+            font-size: 16px;
+        }
+        .provider-description {
+            margin: 10px 0 0 0;
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+        .mapping-btn {
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        .mapping-btn:hover {
+            background-color: #f57c00;
+        }
+        .mapping-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .clear-selection-btn {
+            background-color: #f44336;
+        }
+        .clear-selection-btn:hover {
+            background-color: #d32f2f;
+        }
+        .result-item {
+            position: relative;
+        }
+        .loinc-checkbox {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+        .result-item.selected {
+            border: 2px solid #ff9800;
+            background-color: #fff8e1;
+        }
+        .mapping-analysis {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 16px;
+            display: none;
+        }
+        .mapping-analysis.show {
+            display: block;
+        }
+        .mapping-analysis h2 {
+            color: #2c3e50;
+            border-bottom: 3px solid #ff9800;
+            padding-bottom: 12px;
+            margin-top: 0;
+            margin-bottom: 24px;
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+        .mapping-analysis h3 {
+            color: #34495e;
+            margin-top: 32px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding-left: 8px;
+            border-left: 4px solid #ff9800;
+        }
+        .mapping-analysis p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .mapping-analysis ul, .mapping-analysis ol {
+            margin-bottom: 24px;
+            padding-left: 32px;
+        }
+        .mapping-analysis li {
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+        .mapping-analysis strong {
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        .mapping-analysis table {
+            margin: 24px 0;
+            border-collapse: collapse;
+            width: 100%;
+            border: 2px solid #ff9800;
+            background-color: white;
+        }
+        
+        /* Notes section styles */
+        .notes-container {
+            background: #fff8e1;
+            border: 1px solid #ffcc02;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        
+        .mapping-notes-textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+        
+        .mapping-notes-textarea:focus {
+            outline: none;
+            border-color: #ff9800;
+            box-shadow: 0 0 0 2px rgba(255, 152, 0, 0.2);
+        }
+        
+        .notes-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .notes-status {
+            font-weight: 500;
+        }
+        
+        .notes-timestamp {
+            color: #999;
+        }
+        .mapping-analysis table th,
+        .mapping-analysis table td {
+            padding: 12px 8px;
+            text-align: left;
+            border: 1px solid #dee2e6;
+        }
+        .mapping-analysis table th {
+            background-color: #ff9800;
+            color: white;
+            font-weight: bold;
+        }
+        .mapping-analysis table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .mapping-analysis table tr:hover {
+            background-color: #e9ecef;
+        }
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+        }
+        .popup-overlay.show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-window {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 90%;
+            max-height: 90%;
+            width: 1000px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .popup-header {
+            background: linear-gradient(135deg, #1a73e8, #4285f4);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .popup-header h2 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+        .popup-header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .save-mapping-btn {
+            background-color: #34a853;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        .save-mapping-btn:hover:not(:disabled) {
+            background-color: #2e8b57;
+        }
+        .save-mapping-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .ask-stan-btn {
+            background-color: #9c27b0;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        .ask-stan-btn:hover:not(:disabled) {
+            background-color: #7b1fa2;
+        }
+        .ask-stan-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .popup-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        .popup-close:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .popup-content {
+            padding: 30px;
+            overflow-y: auto;
+            flex: 1;
+        }
+        .mapping-section {
+            margin-bottom: 30px;
+        }
+        .mapping-section h3 {
+            color: #1a73e8;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+        .loinc-item {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .loinc-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .loinc-code {
+            font-weight: bold;
+            color: #1a73e8;
+            font-size: 1.1em;
+        }
+        .loinc-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .detail-label {
+            font-weight: bold;
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+        .detail-value {
+            color: #333;
+            line-height: 1.4;
+        }
+        .ai-suggestions {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .ai-suggestions h4 {
+            color: #2e7d32;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .search-terms-display {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .search-terms-display h4 {
+            color: #1976d2;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .lab-data-display {
+            background-color: #f3e5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #9c27b0;
+        }
+        .lab-data-display h4 {
+            color: #7b1fa2;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .lab-data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .lab-data-item {
+            background-color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #e1bee7;
+            font-size: 14px;
+        }
+        .lab-data-item strong {
+            color: #7b1fa2;
+        }
+        .conversation-display {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .conversation-display .user-message,
+        .conversation-display .ai-message {
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+        .conversation-display .user-message {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+        }
+        .conversation-display .ai-message {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+        }
+        .conversation-display .ai-response {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #34a853;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            line-height: 1.8;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
     <div style="text-align:center;font-size:1.3em;font-weight:bold;margin-bottom:18px;color:#1a73e8;">
         Taiwan Top 100 LOINC 萬達人
+    </div>
+    
+    <!-- Hidden nav per request -->
+    <div style="display:none">
+        <a href="/results-viewer.html">查看已儲存的映射結果</a>
+        <a href="/enhanced-search.html">進階搜尋介面</a>
     </div>
     <div class="search-container">
         <div class="search-field">
@@ -482,6 +1087,25 @@
             <span class="translate-loading" id="translateLoading">轉換中...</span>
             <div class="suggestion-list" id="suggestionList"></div>
         </div>
+        
+        <!-- Component and System fields -->
+        <div class="component-system-fields" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0;">
+            <div class="search-field">
+                <label for="componentField">🧬 Component (specific analyte):</label>
+                <input type="text" id="componentField" placeholder="e.g., Erythrocytes, Glucose, Creatinine">
+                <small style="color: #666; font-size: 12px; display: block; margin-top: 4px;">
+                    指定檢測的特定成分或分析物
+                </small>
+            </div>
+            <div class="search-field">
+                <label for="systemField">🧪 System (specimen type):</label>
+                <input type="text" id="systemField" placeholder="e.g., Blood, Serum, Plasma, Urine">
+                <small style="color: #666; font-size: 12px; display: block; margin-top: 4px;">
+                    指定檢體或系統類型
+                </small>
+            </div>
+        </div>
+        
         <div class="search-field">
             <label for="field2">Must Have Terms (space-separated):</label>
             <input type="text" id="field2" placeholder="e.g., serum creatine plasma">
@@ -489,7 +1113,7 @@
         <div class="filters-container">
             <div class="filters-header">Rank Filters <span class="recommended">Recommended</span></div>
             <div class="search-options">
-                <input type="checkbox" id="orderRankFilter" checked>
+                <input type="checkbox" id="orderRankFilter">
                 <label for="orderRankFilter">Only show Common Order Rank ≤ 300 (hide rank 0)</label>
             </div>
             <div class="search-options">
@@ -504,6 +1128,9 @@
             <button onclick="search()">Search</button>
             <button id="analyzeBtn" onclick="analyze()" disabled>請萬達人解釋搜尋結果</button>
             <button onclick="resetAll()" class="reset-button">Reset All</button>
+            <span id="autoUpdateIndicator" style="margin-left: 15px; color: #28a745; font-size: 0.9em; display: none;">
+                ⚡ Auto-update enabled
+            </span>
         </div>
     </div>
     <div id="aiAnalysis" class="ai-analysis" style="display: none;">
@@ -522,10 +1149,78 @@
             </div>
         </div>
     </div>
+    
+    <!-- AI Provider Selection - Always Visible -->
+    <div class="ai-provider-section">
+        <h3>AI 提供者選擇</h3>
+        <div class="ai-provider-selection">
+            <label class="provider-label">
+                <input type="radio" name="aiProvider" value="openai" checked>
+                <span>GPT-4</span>
+            </label>
+            <label class="provider-label">
+                <input type="radio" name="aiProvider" value="claude">
+                <span>Claude</span>
+            </label>
+            <label class="provider-label">
+                <input type="radio" name="aiProvider" value="grok">
+                <span>Grok</span>
+            </label>
+        </div>
+        <p class="provider-description">選擇 AI 提供者用於生成映射分析建議</p>
+    </div>
+
+    <div id="mappingControls" class="mapping-controls">
+        <div class="mapping-header">
+            <h3>LOINC 代碼映射選擇</h3>
+            <div class="mapping-actions">
+                <button id="generateMappingBtn" class="mapping-btn" onclick="showMappingPopup()" disabled>
+                    儲存選擇
+                </button>
+                <button class="clear-selection-btn" onclick="clearAllSelections()">清除選擇</button>
+            </div>
+        </div>
+        <div id="selectedCount">已選擇 0 個 LOINC 代碼</div>
+    </div>
+    
+    <div id="mappingAnalysis" class="mapping-analysis">
+        <div class="ai-header">
+            <h3>AI 映射分析結果</h3>
+            <button class="close-btn" onclick="document.getElementById('mappingAnalysis').style.display = 'none'">×</button>
+        </div>
+        <div id="mappingContent" class="ai-content">
+            <div class="loading">生成映射分析中...</div>
+        </div>
+    </div>
+    
     <div id="results"></div>
 
+    <!-- Mapping Popup Window -->
+    <div id="mappingPopup" class="popup-overlay">
+        <div class="popup-window">
+            <div class="popup-header">
+                <h2>LOINC 映射選擇結果</h2>
+                <div id="saveMessage" class="save-message" style="display: none; background: #d4edda; color: #155724; padding: 8px 12px; border-radius: 4px; margin: 8px 0; font-size: 14px; border: 1px solid #c3e6cb;">
+                    ✓ 映射結果已成功儲存！
+                </div>
+                <div class="popup-header-actions">
+                    <button id="askStanBtn" class="ask-stan-btn" onclick="askStan()" disabled>
+                        Ask Stan
+                    </button>
+                    <button id="saveMappingBtn" class="save-mapping-btn" onclick="saveMappingResults()" disabled>
+                        儲存映射結果
+                    </button>
+                    <button class="popup-close" onclick="closeMappingPopup()">×</button>
+                </div>
+            </div>
+            <div class="popup-content" id="popupContent">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
     <footer style="text-align:center;color:#888;font-size:1em;margin-top:40px;margin-bottom:10px;">
-        由台灣醫學資訊學會 (TAMI) 維護 - 林明錦 (Mark Lin2)
+        由台灣醫學資訊學會 (TAMI) 維護 - 林明錦 (Mark Lin)
     </footer>
 
     <script>
@@ -533,34 +1228,110 @@
         let currentAnalysis = "";
         let currentSearchTerms = "";
         let currentMustHaveTerms = "";
+        let selectedLoincCodes = new Set();
+        let currentMappingAnalysis = "";
+        let mappingNotes = "";
+        let notesModified = false;
+        let notesSaved = false;
         
         // Function to get URL parameters
         function getUrlParameter(name) {
             const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
+            const value = urlParams.get(name);
+            console.log(`getUrlParameter('${name}') =`, value);
+            return value;
         }
+        
+        // Global variable to store lab data context
+        let labDataContext = {};
         
         // Function to populate form from URL parameters
         function populateFormFromUrl() {
             console.log('populateFormFromUrl called');
+            console.log('Current URL:', window.location.href);
+            console.log('Search params:', window.location.search);
+            console.log('Document ready state:', document.readyState);
+            console.log('Form elements available:', {
+                field1: !!document.getElementById('field1'),
+                field2: !!document.getElementById('field2'),
+                orderRankFilter: !!document.getElementById('orderRankFilter'),
+                testRankFilter: !!document.getElementById('testRankFilter')
+            });
+            
+            // Get all lab data parameters
+            const labItemName = getUrlParameter('labItemName');
+            const labUnit = getUrlParameter('labUnit');
+            const labSampleType = getUrlParameter('labSampleType');
+            const labTotalRecords = getUrlParameter('labTotalRecords');
+            const labUniquePatients = getUrlParameter('labUniquePatients');
+            const labMissingValues = getUrlParameter('labMissingValues');
+            const labMeanValue = getUrlParameter('labMeanValue');
+            const labMedianValue = getUrlParameter('labMedianValue');
+            const itemRank = getUrlParameter('itemRank');
+            const institution = getUrlParameter('institution');
+            const institutionType = getUrlParameter('institutionType');
+            const institutionLocation = getUrlParameter('institutionLocation');
+            const itemId = getUrlParameter('itemId');
+            const dataSource = getUrlParameter('dataSource');
+            const timestamp = getUrlParameter('timestamp');
+            
+            // Standard parameters
             const searchTerms = getUrlParameter('searchTerms');
             const mustHaveTerms = getUrlParameter('mustHaveTerms');
             const rankFilter1 = getUrlParameter('rankFilter1');
             const rankFilter2 = getUrlParameter('rankFilter2');
             
-            console.log('URL parameters:', { searchTerms, mustHaveTerms, rankFilter1, rankFilter2 });
+            // Store lab data context globally for later use
+            labDataContext = {
+                labItemName,
+                labUnit,
+                labSampleType,
+                labTotalRecords,
+                labUniquePatients,
+                labMissingValues,
+                labMeanValue,
+                labMedianValue,
+                itemRank,
+                institution,
+                institutionType,
+                institutionLocation,
+                itemId,
+                dataSource,
+                timestamp,
+                source: 'url_parameters'
+            };
             
-            if (searchTerms) {
+            console.log('Lab data context saved:', labDataContext);
+            
+            // If we have lab data, construct search terms automatically
+            let autoSearchTerms = '';
+            if (labItemName || labUnit || labSampleType) {
+                autoSearchTerms = [labItemName, labUnit, labSampleType].filter(Boolean).join(' ');
+                console.log('Auto-constructed search terms:', autoSearchTerms);
+            }
+            
+            console.log('URL parameters:', { searchTerms, mustHaveTerms, rankFilter1, rankFilter2, autoSearchTerms });
+            
+            // Priority: explicit searchTerms > auto-constructed terms from lab data
+            const finalSearchTerms = searchTerms || autoSearchTerms;
+            
+            if (finalSearchTerms) {
                 // Use a safer decoding approach that handles malformed URIs
                 let decodedTerms;
                 try {
-                    decodedTerms = decodeURIComponent(searchTerms);
+                    decodedTerms = decodeURIComponent(finalSearchTerms);
                 } catch (e) {
                     console.log('decodeURIComponent failed, using raw value:', e.message);
-                    decodedTerms = searchTerms;
+                    decodedTerms = finalSearchTerms;
                 }
                 console.log('Setting field1 to:', decodedTerms);
-                document.getElementById('field1').value = decodedTerms;
+                const field1Element = document.getElementById('field1');
+                if (field1Element) {
+                    field1Element.value = decodedTerms;
+                    console.log('field1 value set to:', field1Element.value);
+                } else {
+                    console.error('field1 element not found!');
+                }
             }
             
             if (mustHaveTerms) {
@@ -573,7 +1344,13 @@
                     decodedMustHave = mustHaveTerms;
                 }
                 console.log('Setting field2 to:', decodedMustHave);
-                document.getElementById('field2').value = decodedMustHave;
+                const field2Element = document.getElementById('field2');
+                if (field2Element) {
+                    field2Element.value = decodedMustHave;
+                    console.log('field2 value set to:', field2Element.value);
+                } else {
+                    console.error('field2 element not found!');
+                }
             }
             
             if (rankFilter1 !== null) {
@@ -603,12 +1380,19 @@
         
         // Reset all fields and results
         function resetAll() {
+            // Clear any pending auto-searches
+            if (typeof searchTimeout !== 'undefined') {
+                clearTimeout(searchTimeout);
+            }
+
             // Clear input fields
             document.getElementById('field1').value = '';
             document.getElementById('field2').value = '';
-            
-            // Reset checkboxes to default (checked)
-            document.getElementById('orderRankFilter').checked = true;
+            document.getElementById('componentField').value = '';
+            document.getElementById('systemField').value = '';
+
+            // Reset checkboxes to default (only testRankFilter checked)
+            document.getElementById('orderRankFilter').checked = false;
             document.getElementById('testRankFilter').checked = true;
             
             // Clear suggestion list
@@ -618,6 +1402,13 @@
             
             // Hide AI analysis
             document.getElementById('aiAnalysis').style.display = 'none';
+            
+            // Hide mapping controls and analysis
+            document.getElementById('mappingControls').classList.remove('show');
+            document.getElementById('mappingAnalysis').style.display = 'none';
+            
+            // Hide mapping popup
+            document.getElementById('mappingPopup').classList.remove('show');
             
             // Clear results
             document.getElementById('results').innerHTML = '';
@@ -633,9 +1424,14 @@
             currentAnalysis = "";
             currentSearchTerms = "";
             currentMustHaveTerms = "";
+            selectedLoincCodes.clear();
+            currentMappingAnalysis = "";
             
             // Disable analyze button
             document.getElementById('analyzeBtn').disabled = true;
+            
+            // Update selection count
+            updateSelectionCount();
             
             console.log('All fields and results have been reset');
         }
@@ -718,12 +1514,21 @@
             document.getElementById('translateLoading').style.display = 'inline';
             
             try {
+                // Prepare request payload with lab metadata if available
+                const requestPayload = { 
+                    userInput: userInput,
+                    // Include lab data context for better AI analysis
+                    labDataContext: labDataContext && Object.keys(labDataContext).length > 0 ? labDataContext : null
+                };
+                
+                console.log('Sending translate request with lab context:', requestPayload);
+                
                 const response = await fetch('/api/translate-input', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ userInput: userInput })
+                    body: JSON.stringify(requestPayload)
                 });
                 
                 if (!response.ok) {
@@ -735,26 +1540,74 @@
                 if (data.error) {
                     alert('Translation error: ' + data.error);
                 } else {
-                    // Update the search field with the translated terms
-                    document.getElementById('field1').value = data.translatedTerms.join(' ');
-                    
-                    // If there are multiple terms, show them in the suggestion list
-                    if (data.translatedTerms.length > 1) {
+                    // Handle the new structured response format
+                    if (data.suggestions) {
+                        // Fill in the component and system fields with suggestions
+                        if (data.suggestions.component) {
+                            const cleanComponent = removePunctuation(data.suggestions.component);
+                            document.getElementById('componentField').value = cleanComponent;
+                            // Auto-fill Must Have Terms with component
+                            document.getElementById('field2').value = cleanComponent;
+                        } else {
+                            // Clear Must Have Terms field if no component
+                            document.getElementById('field2').value = '';
+                        }
+                        
+                        if (data.suggestions.system) {
+                            const cleanSystem = removePunctuation(data.suggestions.system);
+                            document.getElementById('systemField').value = cleanSystem;
+                        }
+                        if (data.suggestions.searchTerms) {
+                            const cleanSearchTerms = removePunctuation(data.suggestions.searchTerms);
+                            document.getElementById('field1').value = cleanSearchTerms;
+                        }
+                        
+                        // Show the suggestions in a formatted way
                         const suggestionList = document.getElementById('suggestionList');
-                        suggestionList.innerHTML = '';
-                        
-                        data.translatedTerms.forEach(term => {
-                            const div = document.createElement('div');
-                            div.className = 'suggestion-item';
-                            div.textContent = term;
-                            div.onclick = function() {
-                                document.getElementById('field1').value = term;
-                                suggestionList.style.display = 'none';
-                            };
-                            suggestionList.appendChild(div);
-                        });
-                        
+                        suggestionList.innerHTML = `
+                            <div class="suggestion-summary">
+                                <div class="suggestion-header">
+                                    <h4>🤖 AI 建議分析：</h4>
+                                    <button class="close-suggestion-btn" onclick="closeSuggestions()" title="關閉建議視窗">
+                                        ✖ 關閉
+                                    </button>
+                                </div>
+                                ${data.suggestions.component ? `<div><strong>🧬 Component:</strong> ${data.suggestions.component}</div>` : ''}
+                                ${data.suggestions.system ? `<div><strong>🧪 System:</strong> ${data.suggestions.system}</div>` : ''}
+                                ${data.suggestions.searchTerms ? `<div><strong>🔍 Search Terms:</strong> ${data.suggestions.searchTerms}</div>` : ''}
+                                ${data.suggestions.explanation ? `<div style="margin-top: 8px; color: #666; font-size: 12px;"><strong>說明:</strong> ${data.suggestions.explanation}</div>` : ''}
+                            </div>
+                        `;
                         suggestionList.style.display = 'block';
+                        
+                        // Hide suggestions after 15 seconds
+                        setTimeout(() => {
+                            suggestionList.style.display = 'none';
+                        }, 15000);
+                    } else {
+                        // Fallback to old format for backward compatibility
+                        const cleanResponse = removePunctuation(data.translatedTerms ? data.translatedTerms.join(' ') : data.response);
+                        document.getElementById('field1').value = cleanResponse;
+                        
+                        // Show old format suggestions if available
+                        if (data.translatedTerms && data.translatedTerms.length > 1) {
+                            const suggestionList = document.getElementById('suggestionList');
+                            suggestionList.innerHTML = '';
+                            
+                            data.translatedTerms.forEach(term => {
+                                const div = document.createElement('div');
+                                div.className = 'suggestion-item';
+                                div.textContent = term;
+                                div.onclick = function() {
+                                    const cleanTerm = removePunctuation(term);
+                                    document.getElementById('field1').value = cleanTerm;
+                                    suggestionList.style.display = 'none';
+                                };
+                                suggestionList.appendChild(div);
+                            });
+                            
+                            suggestionList.style.display = 'block';
+                        }
                     }
                 }
             } catch (error) {
@@ -832,6 +1685,12 @@
             let field1Terms = processSearchTerms(rawField1);
             let field2Terms = processSearchTerms(rawField2);
             
+            // Clear field2Terms if it contains placeholder text
+            if (rawField2.includes('e.g.,') || rawField2.includes('serum creatine plasma')) {
+                field2Terms = [];
+                console.log('Cleared placeholder text from Must Have Terms');
+            }
+            
             // Check if we have valid search terms
             if (field1Terms.length === 0) {
                 alert('Please provide search terms with at least 2 characters');
@@ -849,12 +1708,56 @@
                 return normalizeTerm(term);
             });
             
+            // Get component and system fields
+            const componentField = document.getElementById('componentField').value.trim();
+            const systemField = document.getElementById('systemField').value.trim();
+            
+            // Get filter checkboxes
+            const orderRankFilter = document.getElementById('orderRankFilter').checked;
+            const testRankFilter = document.getElementById('testRankFilter').checked;
+            
+            // Auto-add component to must-have terms if component is specified
+            if (componentField) {
+                console.log(`Before adding component - field2Terms:`, field2Terms);
+                const componentTerms = processSearchTerms(componentField);
+                console.log(`Component terms processed:`, componentTerms);
+                const normalizedComponentTerms = componentTerms.map(term => normalizeTerm(term));
+                console.log(`Normalized component terms:`, normalizedComponentTerms);
+                
+                // Add component terms to field2Terms if not already present
+                normalizedComponentTerms.forEach(term => {
+                    if (!field2Terms.some(existingTerm => 
+                        existingTerm.toLowerCase() === term.toLowerCase())) {
+                        field2Terms.push(term);
+                        console.log(`Added term "${term}" to field2Terms`);
+                    } else {
+                        console.log(`Term "${term}" already exists in field2Terms`);
+                    }
+                });
+                
+                console.log(`After adding component - field2Terms:`, field2Terms);
+                console.log(`Added component "${componentField}" to must-have terms`);
+            }
+            
             // 重新組合搜索詞
             const field1 = field1Terms.join(' ');
             const field2 = field2Terms.join(' ');
             
-            const orderRankFilter = document.getElementById('orderRankFilter').checked;
-            const testRankFilter = document.getElementById('testRankFilter').checked;
+            console.log(`Final field1: "${field1}"`);
+            console.log(`Final field2 (with component): "${field2}"`);
+            console.log(`Component field: "${componentField}"`);
+            console.log(`System field: "${systemField}"`);
+            
+            // Log the complete search payload that will be sent to server
+            const searchPayload = {
+                field1: field1,
+                field2: field2,
+                componentField: componentField,
+                systemField: systemField,
+                useOrderRankFilter: orderRankFilter,
+                useTestRankFilter: testRankFilter
+            };
+            console.log('Complete search payload:', searchPayload);
             
             // Check if both filters are off and search term is too generic
             if (!orderRankFilter && !testRankFilter && field1Terms.length < 2 && field1Terms[0].length < 4) {
@@ -862,9 +1765,9 @@
                 return;
             }
             
-            // Save search terms for later use in AI analysis
+            // Save search terms for later use in AI analysis (including auto-added component)
             currentSearchTerms = rawField1;
-            currentMustHaveTerms = rawField2;
+            currentMustHaveTerms = field2; // Use the processed field2 which includes component
             
             // Clear previous analysis
             currentAnalysis = "";
@@ -875,17 +1778,28 @@
             resultsDiv.innerHTML = '<div class="searching">Searching...</div>';
             
             try {
+                // Include lab data context in the search request if available
+                const searchPayload = {
+                    field1: field1,
+                    field2: field2,
+                    componentField: componentField,
+                    systemField: systemField,
+                    useOrderRankFilter: orderRankFilter,
+                    useTestRankFilter: testRankFilter
+                };
+                
+                // Add lab data context if available
+                if (labDataContext && Object.keys(labDataContext).length > 0) {
+                    searchPayload.labDataContext = labDataContext;
+                    console.log('Including lab data context in search:', labDataContext);
+                }
+                
                 const response = await fetch('/api/search', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
-                        field1: field1,
-                        field2: field2,
-                        useOrderRankFilter: orderRankFilter,
-                        useTestRankFilter: testRankFilter
-                    })
+                    body: JSON.stringify(searchPayload)
                 });
                 
                 const data = await response.json();
@@ -947,6 +1861,9 @@
                     }));
                 }
                 
+                // Get selected AI provider
+                const selectedProvider = document.querySelector('input[name="aiProvider"]:checked').value;
+                
                 const response = fetch('/api/analyze', {
                     method: 'POST',
                     headers: {
@@ -956,7 +1873,10 @@
                         sessionId: sessionId,
                         results: currentSearchResults,
                         searchTerms: currentSearchTerms,
-                        mustHaveTerms: currentMustHaveTerms
+                        mustHaveTerms: currentMustHaveTerms,
+                        provider: selectedProvider,
+                        // Include lab data context for enhanced AI analysis
+                        labDataContext: labDataContext && Object.keys(labDataContext).length > 0 ? labDataContext : null
                     })
                 })
                 .then(response => response.json())
@@ -968,6 +1888,20 @@
                     // Store the analysis
                     currentAnalysis = data.summary;
 
+                    // 如果有建議的 LOINC 代碼，自動選中
+                    if (data.suggestedLoincCode) {
+                        console.log('AI 建議選中 LOINC 代碼:', data.suggestedLoincCode);
+                        
+                        // 延遲一點時間讓 UI 更新完成
+                        setTimeout(() => {
+                            if (typeof autoSelectSuggestedLoinc === 'function') {
+                                autoSelectSuggestedLoinc(data.suggestedLoincCode);
+                            } else {
+                                console.warn('autoSelectSuggestedLoinc 函數未載入');
+                            }
+                        }, 500);
+                    }
+
                     // Display the analysis
                     const aiAnalysis = document.getElementById('aiAnalysis');
                     const aiContent = document.getElementById('aiContent');
@@ -975,9 +1909,13 @@
                     // Show the AI analysis section
                     aiAnalysis.style.display = 'block';
                     
-                    // Update the content with proper table styling
+                    // Update the content with proper table styling and line breaks
+                    const formattedSummary = data.summary
+                        .replace(/\n\n/g, '<br><br>')
+                        .replace(/\n/g, '<br>');
+                    
                     aiContent.innerHTML = `
-                        <div class="ai-explanation">${data.summary}</div>
+                        <div class="ai-explanation">${formattedSummary}</div>
                     `;
 
                     // Apply table styling after adding to DOM
@@ -1106,11 +2044,15 @@
                     return;
                 }
                 
-                // Add the AI response to the conversation history
+                // Add the AI response to the conversation history with proper line breaks
+                const formattedAnswer = data.answer
+                    .replace(/\n\n/g, '<br><br>')
+                    .replace(/\n/g, '<br>');
+                
                 historyDiv.innerHTML += `
                     <div class="ai-message">
                         <strong>AI 回答:</strong>
-                        <div class="ai-response">${data.answer}</div>
+                        <div class="ai-response">${formattedAnswer}</div>
                     </div>
                 `;
                 
@@ -1218,9 +2160,633 @@
             document.getElementById('ai-section').style.display = 'block';
         }
 
+        // Function to remove punctuation and replace with spaces
+        function removePunctuation(text) {
+            if (!text) return '';
+            return text.replace(/[.,;:!?()[\]{}'"`~@#$%^&*+=|\\/<>-]/g, ' ').replace(/\s+/g, ' ').trim();
+        }
+
+        // Mapping-related functions
+        function toggleLoincSelection(loincCode, checkbox) {
+            if (checkbox.checked) {
+                selectedLoincCodes.add(loincCode);
+                checkbox.closest('.result-item').classList.add('selected');
+            } else {
+                selectedLoincCodes.delete(loincCode);
+                checkbox.closest('.result-item').classList.remove('selected');
+            }
+            updateSelectionCount();
+        }
+        
+        function updateSelectionCount() {
+            const count = selectedLoincCodes.size;
+            document.getElementById('selectedCount').textContent = `已選擇 ${count} 個 LOINC 代碼`;
+            
+            const mappingControls = document.getElementById('mappingControls');
+            const generateBtn = document.getElementById('generateMappingBtn');
+            
+            if (count > 0) {
+                mappingControls.classList.add('show');
+                generateBtn.disabled = false;
+            } else {
+                mappingControls.classList.remove('show');
+                generateBtn.disabled = true;
+            }
+        }
+        
+        function clearAllSelections() {
+            selectedLoincCodes.clear();
+            
+            // Uncheck all checkboxes and remove selected class
+            document.querySelectorAll('.loinc-checkbox').forEach(checkbox => {
+                checkbox.checked = false;
+                checkbox.closest('.result-item').classList.remove('selected');
+            });
+            
+            updateSelectionCount();
+        }
+        
+        function showMappingPopup() {
+            if (selectedLoincCodes.size === 0) {
+                alert('請先選擇要映射的 LOINC 代碼');
+                return;
+            }
+            
+            // Show popup
+            const popup = document.getElementById('mappingPopup');
+            const popupContent = document.getElementById('popupContent');
+            const saveBtn = document.getElementById('saveMappingBtn');
+            const askStanBtn = document.getElementById('askStanBtn');
+            
+            // Get selected AI provider
+            const selectedProvider = document.querySelector('input[name="aiProvider"]:checked').value;
+            
+            // Get or generate sessionId
+            let sessionId = currentSearchResults[0]?.sessionId;
+            if (!sessionId) {
+                sessionId = 'temp-' + Date.now();
+                console.log('Using generated sessionId for mapping:', sessionId);
+            }
+            
+            // Get selected LOINC details (needed for both success and error cases)
+            const selectedDetails = currentSearchResults.filter(result => 
+                selectedLoincCodes.has(result.loincNum)
+            );
+            
+            // Show popup immediately without AI API calls
+            popup.classList.add('show');
+            
+            // Use existing analysis or create a simple one
+            const aiAnalysis = currentMappingAnalysis || currentAnalysis || 'No analysis available';
+            const conversationHistoryHtml = document.getElementById('conversationHistory').innerHTML;
+            
+            // Enable buttons
+            saveBtn.disabled = false;
+            saveBtn.textContent = '儲存映射結果';
+            saveBtn.style.backgroundColor = '#34a853';
+            
+            askStanBtn.disabled = false;
+            askStanBtn.textContent = 'Ask Stan';
+            askStanBtn.style.backgroundColor = '#9c27b0';
+            
+            // Display the popup content
+            displayMappingPopupContent(selectedDetails, aiAnalysis, conversationHistoryHtml);
+        }
+        
+        function displayMappingPopupContent(selectedDetails, aiAnalysis, conversationHistoryHtml) {
+            const popupContent = document.getElementById('popupContent');
+            
+            // Create lab data context display
+            let labDataHtml = '';
+            if (labDataContext && Object.keys(labDataContext).length > 0) {
+                labDataHtml = `
+                    <div class="lab-data-display">
+                        <h4>實驗室數據背景資訊</h4>
+                        <div class="lab-data-grid">
+                            ${labDataContext.labItemName ? `<div class="lab-data-item"><strong>檢測項目：</strong>${labDataContext.labItemName}</div>` : ''}
+                            ${labDataContext.labUnit ? `<div class="lab-data-item"><strong>單位：</strong>${labDataContext.labUnit}</div>` : ''}
+                            ${labDataContext.labSampleType ? `<div class="lab-data-item"><strong>檢體類型：</strong>${labDataContext.labSampleType}</div>` : ''}
+                            ${labDataContext.labTotalRecords ? `<div class="lab-data-item"><strong>總記錄數：</strong>${labDataContext.labTotalRecords}</div>` : ''}
+                            ${labDataContext.labUniquePatients ? `<div class="lab-data-item"><strong>獨特患者數：</strong>${labDataContext.labUniquePatients}</div>` : ''}
+                            ${labDataContext.labMeanValue ? `<div class="lab-data-item"><strong>平均值：</strong>${labDataContext.labMeanValue}</div>` : ''}
+                            ${labDataContext.labMedianValue ? `<div class="lab-data-item"><strong>中位數：</strong>${labDataContext.labMedianValue}</div>` : ''}
+                            ${labDataContext.labMissingValues ? `<div class="lab-data-item"><strong>缺失值比例：</strong>${labDataContext.labMissingValues}</div>` : ''}
+                            ${labDataContext.institution ? `<div class="lab-data-item"><strong>機構：</strong>${labDataContext.institution}</div>` : ''}
+                            ${labDataContext.institutionType ? `<div class="lab-data-item"><strong>機構類型：</strong>${labDataContext.institutionType}</div>` : ''}
+                            ${labDataContext.institutionLocation ? `<div class="lab-data-item"><strong>位置：</strong>${labDataContext.institutionLocation}</div>` : ''}
+                            ${labDataContext.itemId ? `<div class="lab-data-item"><strong>項目ID：</strong>${labDataContext.itemId}</div>` : ''}
+                            ${labDataContext.itemRank ? `<div class="lab-data-item"><strong>項目排名：</strong>${labDataContext.itemRank}</div>` : ''}
+                            ${labDataContext.dataSource ? `<div class="lab-data-item"><strong>資料來源：</strong>${labDataContext.dataSource}</div>` : ''}
+                            ${labDataContext.timestamp ? `<div class="lab-data-item"><strong>時間戳記：</strong>${new Date(labDataContext.timestamp).toLocaleString('zh-TW')}</div>` : ''}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Create search terms display
+            const searchTermsHtml = `
+                <div class="search-terms-display">
+                    <h4>原始搜尋查詢</h4>
+                    <p><strong>搜尋詞語：</strong>${currentSearchTerms || '無'}</p>
+                    <p><strong>必須包含詞語：</strong>${currentMustHaveTerms || '無'}</p>
+                </div>
+            `;
+            
+            // Create LOINC details display
+            const loincDetailsHtml = selectedDetails.map(item => {
+                // Extract clean component name (remove HTML formatting)
+                const cleanComponent = item.component.replace(/<[^>]*>/g, '').split(' | ')[0];
+                
+                return `
+                    <div class="loinc-item">
+                        <div class="loinc-item-header">
+                            <span class="loinc-code">${item.loincNum}</span>
+                        </div>
+                        <div class="loinc-details">
+                            <div class="detail-item">
+                                <div class="detail-label">Full Name</div>
+                                <div class="detail-value">${cleanComponent}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Related Names</div>
+                                <div class="detail-value">${item.relatedNames2 || 'N/A'}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Common Test Rank</div>
+                                <div class="detail-value">${item.commonTestRank || 'N/A'}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Common Order Rank</div>
+                                <div class="detail-value">${item.commonOrderRank || 'N/A'}</div>
+                            </div>
+                            <div class="detail-item" style="grid-column: 1 / -1;">
+                                <div class="detail-label">Long Common Name</div>
+                                <div class="detail-value">${item.longCommonName || 'N/A'}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            // Create AI suggestions display
+            const formattedAnalysis = aiAnalysis
+                .replace(/\n\n/g, '<br><br>')
+                .replace(/\n/g, '<br>');
+            
+            const aiSuggestionsHtml = `
+                <div class="ai-suggestions">
+                    <h4>AI 映射建議</h4>
+                    <div class="ai-explanation">${formattedAnalysis}</div>
+                </div>
+            `;
+            
+            // Create conversation history display
+            const conversationHtml = conversationHistoryHtml ? `
+                <div class="mapping-section">
+                    <h3>AI 對話歷史</h3>
+                    <div class="conversation-display">
+                        ${conversationHistoryHtml}
+                    </div>
+                </div>
+            ` : '';
+            
+            // Create notes section
+            const notesHtml = `
+                <div class="mapping-section">
+                    <h3>📝 映射備註</h3>
+                    <div class="notes-container">
+                        <textarea 
+                            id="mappingNotes" 
+                            class="mapping-notes-textarea"
+                            placeholder="在此添加關於此 LOINC 映射的備註、說明或觀察記錄..."
+                            rows="4"
+                        ></textarea>
+                        <div class="notes-footer">
+                            <span class="notes-status" id="notes-status">📝 可添加備註</span>
+                            <span class="notes-timestamp" id="notes-timestamp"></span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Combine all content
+            popupContent.innerHTML = `
+                ${labDataHtml}
+                <div class="mapping-section">
+                    <h3>選擇的 LOINC 代碼詳細資訊</h3>
+                    ${loincDetailsHtml}
+                </div>
+                ${aiSuggestionsHtml}
+                ${conversationHtml}
+                ${notesHtml}
+            `;
+            
+            // Add search terms at the top
+            popupContent.insertAdjacentHTML('afterbegin', searchTermsHtml);
+            
+            // Initialize notes functionality after DOM is updated
+            setTimeout(() => {
+                initializeNotesFunctionality();
+            }, 10);
+            
+            // Apply table styling if any tables exist
+            const tables = popupContent.querySelectorAll('table');
+            tables.forEach(table => {
+                if (!table.classList.contains('ai-table')) {
+                    table.classList.add('ai-table');
+                    if (!table.hasAttribute('border')) {
+                        table.setAttribute('border', '1');
+                    }
+                    if (!table.hasAttribute('cellspacing')) {
+                        table.setAttribute('cellspacing', '0');
+                    }
+                    if (!table.hasAttribute('cellpadding')) {
+                        table.setAttribute('cellpadding', '8');
+                    }
+                }
+                
+                // Add classes to table elements
+                table.querySelectorAll('tr').forEach(tr => {
+                    tr.classList.add('ai-tr');
+                });
+                
+                table.querySelectorAll('th').forEach(th => {
+                    th.classList.add('ai-th');
+                });
+                
+                table.querySelectorAll('td').forEach(td => {
+                    td.classList.add('ai-td');
+                });
+            });
+        }
+        
+        // Initialize notes functionality
+        function initializeNotesFunctionality() {
+            const notesTextarea = document.getElementById('mappingNotes');
+            const notesStatus = document.getElementById('notes-status');
+            const notesTimestamp = document.getElementById('notes-timestamp');
+            
+            console.log('initializeNotesFunctionality called', {
+                textareaFound: !!notesTextarea,
+                statusFound: !!notesStatus,
+                timestampFound: !!notesTimestamp
+            });
+            
+            if (notesTextarea) {
+                // Only reset notes state if this is a new mapping (no existing notes)
+                if (!mappingNotes) {
+                    notesSaved = false;
+                    notesModified = false;
+                    mappingNotes = ''; // Clear previous notes
+                    
+                    console.log('Notes state reset for new mapping:', {
+                        notesSaved: notesSaved,
+                        notesModified: notesModified,
+                        mappingNotes: mappingNotes
+                    });
+                } else {
+                    console.log('Preserving existing notes:', {
+                        mappingNotes: mappingNotes,
+                        notesSaved: notesSaved,
+                        notesModified: notesModified
+                    });
+                }
+                
+                // Load existing notes
+                notesTextarea.value = mappingNotes;
+                updateNotesStatus();
+                
+                // Remove existing event listeners to avoid duplicates
+                const newTextarea = notesTextarea.cloneNode(true);
+                notesTextarea.parentNode.replaceChild(newTextarea, notesTextarea);
+                
+                // Add event listeners to the new element
+                newTextarea.addEventListener('input', function() {
+                    mappingNotes = this.value;
+                    notesModified = true;
+                    notesSaved = false; // Reset saved status when content changes
+                    updateNotesStatus();
+                });
+                
+                newTextarea.addEventListener('blur', function() {
+                    if (notesModified) {
+                        updateNotesTimestamp();
+                        notesModified = false;
+                    }
+                });
+                
+                console.log('Notes functionality initialized successfully');
+            } else {
+                console.error('mappingNotes textarea not found!');
+            }
+        }
+        
+        // Update notes status display
+        function updateNotesStatus() {
+            const notesStatus = document.getElementById('notes-status');
+            if (notesStatus) {
+                console.log('updateNotesStatus called:', {
+                    notesSaved: notesSaved,
+                    mappingNotes: mappingNotes,
+                    hasContent: mappingNotes && mappingNotes.trim()
+                });
+                
+                if (notesSaved && mappingNotes && mappingNotes.trim()) {
+                    notesStatus.textContent = '✅ 已保存備註';
+                    notesStatus.style.color = '#4caf50';
+                } else if (mappingNotes && mappingNotes.trim()) {
+                    notesStatus.textContent = '📝 有未保存的備註';
+                    notesStatus.style.color = '#ff9800';
+                } else {
+                    notesStatus.textContent = '📝 可添加備註';
+                    notesStatus.style.color = '#666';
+                }
+            }
+        }
+        
+        // Update notes timestamp
+        function updateNotesTimestamp() {
+            const notesTimestamp = document.getElementById('notes-timestamp');
+            if (notesTimestamp) {
+                notesTimestamp.textContent = `更新於: ${new Date().toLocaleString('zh-TW')}`;
+            }
+        }
+        
+        function closeMappingPopup() {
+            const popup = document.getElementById('mappingPopup');
+            popup.classList.remove('show');
+        }
+        
+        async function saveMappingResults() {
+            if (selectedLoincCodes.size === 0) {
+                alert('請先選擇要儲存的 LOINC 代碼');
+                return;
+            }
+            
+            const saveBtn = document.getElementById('saveMappingBtn');
+            const originalText = saveBtn.textContent;
+            saveBtn.disabled = true;
+            saveBtn.textContent = '儲存中...';
+            
+            try {
+                // Get selected LOINC details
+                const selectedDetails = currentSearchResults.filter(result => 
+                    selectedLoincCodes.has(result.loincNum)
+                );
+                
+                // Get current notes from textarea
+                const notesTextarea = document.getElementById('mappingNotes');
+                const currentNotes = notesTextarea ? notesTextarea.value : mappingNotes;
+                
+                // Prepare the data to save
+                const mappingData = {
+                    timestamp: new Date().toISOString(),
+                    searchTerms: currentSearchTerms,
+                    mustHaveTerms: currentMustHaveTerms,
+                    selectedLoincCodes: Array.from(selectedLoincCodes),
+                    selectedDetails: selectedDetails,
+                    aiAnalysis: currentMappingAnalysis || currentAnalysis, // Use mapping analysis if available, fallback to old analysis
+                    conversationHistory: document.getElementById('conversationHistory').innerHTML,
+                    // Include notes
+                    mappingNotes: currentNotes || '',
+                    notesTimestamp: currentNotes ? new Date().toISOString() : null,
+                    // Include lab data context if available
+                    labDataContext: labDataContext && Object.keys(labDataContext).length > 0 ? labDataContext : null
+                };
+                
+                console.log('Preparing to save mapping data:', {
+                    selectedCount: mappingData.selectedLoincCodes.length,
+                    searchTerms: mappingData.searchTerms,
+                    hasAnalysis: !!mappingData.aiAnalysis,
+                    currentMappingAnalysis: currentMappingAnalysis ? 'Present' : 'Empty',
+                    currentAnalysis: currentAnalysis ? 'Present' : 'Empty',
+                    aiAnalysisLength: mappingData.aiAnalysis ? mappingData.aiAnalysis.length : 0,
+                    conversationHistoryLength: mappingData.conversationHistory ? mappingData.conversationHistory.length : 0,
+                    mappingNotesLength: mappingData.mappingNotes ? mappingData.mappingNotes.length : 0
+                });
+                
+                // Performance timing
+                const startTime = performance.now();
+                console.log('Starting save operation at:', startTime);
+                
+                // Send to server to save
+                // Construct the API URL properly, ignoring any query parameters
+                const baseUrl = window.location.protocol + '//' + window.location.host;
+                const apiUrl = baseUrl + '/api/save-mapping';
+                console.log('Making request to:', apiUrl);
+                console.log('Current location:', window.location.href);
+                console.log('Base URL:', baseUrl);
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(mappingData)
+                });
+                
+                const fetchTime = performance.now();
+                console.log('Fetch completed at:', fetchTime, 'Duration:', (fetchTime - startTime).toFixed(2), 'ms');
+                
+                console.log('Response received:', {
+                    status: response.status,
+                    statusText: response.statusText,
+                    contentType: response.headers.get('content-type')
+                });
+                
+                // Check if response is ok
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                // Check if response is JSON
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    const text = await response.text();
+                    console.error('Non-JSON response:', text);
+                    throw new Error('Server returned non-JSON response');
+                }
+                
+                const result = await response.json();
+                
+                const parseTime = performance.now();
+                console.log('JSON parsing completed at:', parseTime, 'Duration:', (parseTime - fetchTime).toFixed(2), 'ms');
+                console.log('Total save operation time:', (parseTime - startTime).toFixed(2), 'ms');
+                
+                if (result.success) {
+                    // Show inline success message instead of alert
+                    const saveMessage = document.getElementById('saveMessage');
+                    saveMessage.style.display = 'block';
+                    
+                    // Hide message after 3 seconds
+                    setTimeout(() => {
+                        saveMessage.style.display = 'none';
+                    }, 3000);
+                    
+                    saveBtn.textContent = '已儲存';
+                    saveBtn.style.backgroundColor = '#2e8b57';
+                    
+                    // Mark notes as saved
+                    notesSaved = true;
+                    updateNotesStatus();
+                } else {
+                    throw new Error(result.error || '儲存失敗');
+                }
+            } catch (error) {
+                console.error('Save error:', error);
+                console.error('Error details:', {
+                    name: error.name,
+                    message: error.message,
+                    stack: error.stack
+                });
+                
+                // Show inline error message instead of alert
+                const saveMessage = document.getElementById('saveMessage');
+                saveMessage.textContent = '✗ 儲存失敗: ' + error.message;
+                saveMessage.style.background = '#f8d7da';
+                saveMessage.style.color = '#721c24';
+                saveMessage.style.border = '1px solid #f5c6cb';
+                saveMessage.style.display = 'block';
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    saveMessage.style.display = 'none';
+                    // Reset to success message style
+                    saveMessage.textContent = '✓ 映射結果已成功儲存！';
+                    saveMessage.style.background = '#d4edda';
+                    saveMessage.style.color = '#155724';
+                    saveMessage.style.border = '1px solid #c3e6cb';
+                }, 5000);
+                
+                saveBtn.textContent = originalText;
+                saveBtn.disabled = false;
+            }
+        }
+        
+        async function askStan() {
+            if (selectedLoincCodes.size === 0) {
+                alert('請先選擇要詢問 Stan 的 LOINC 代碼');
+                return;
+            }
+            
+            const askStanBtn = document.getElementById('askStanBtn');
+            const originalText = askStanBtn.textContent;
+            askStanBtn.disabled = true;
+            askStanBtn.textContent = '準備中...';
+            
+            try {
+                // Get selected LOINC details
+                const selectedDetails = currentSearchResults.filter(result => 
+                    selectedLoincCodes.has(result.loincNum)
+                );
+                
+                // Get current notes from textarea
+                const notesTextarea = document.getElementById('mappingNotes');
+                const currentNotes = notesTextarea ? notesTextarea.value : mappingNotes;
+                
+                // Prepare the data for Stan
+                const stanData = {
+                    timestamp: new Date().toISOString(),
+                    searchTerms: currentSearchTerms,
+                    mustHaveTerms: currentMustHaveTerms,
+                    selectedLoincCodes: Array.from(selectedLoincCodes),
+                    selectedDetails: selectedDetails,
+                    aiAnalysis: currentMappingAnalysis || currentAnalysis, // Use mapping analysis if available, fallback to old analysis
+                    conversationHistory: document.getElementById('conversationHistory').innerHTML,
+                    mappingNotes: currentNotes || '',
+                    labDataContext: labDataContext && Object.keys(labDataContext).length > 0 ? labDataContext : null
+                };
+                
+                console.log('Preparing to ask Stan:', {
+                    selectedCount: stanData.selectedLoincCodes.length,
+                    searchTerms: stanData.searchTerms,
+                    hasAnalysis: !!stanData.aiAnalysis
+                });
+                
+                // Send to server to process and request immediate PDF download
+                const baseUrl = window.location.protocol + '//' + window.location.host;
+                const apiUrl = baseUrl + '/api/ask-stan?download=1';
+                console.log('Making request to:', apiUrl);
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ...stanData, download: true })
+                });
+
+                console.log('Response received:', {
+                    status: response.status,
+                    statusText: response.statusText,
+                    contentType: response.headers.get('content-type')
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const contentType = response.headers.get('content-type') || '';
+                if (contentType.includes('application/pdf')) {
+                    // Auto download the PDF
+                    const blob = await response.blob();
+                    const disp = response.headers.get('content-disposition') || '';
+                    const m = /filename=\"?([^\";]+)\"?/i.exec(disp);
+                    const filename = m ? m[1] : `ask_stan_${Date.now()}.pdf`;
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = filename;
+                    document.body.appendChild(link);
+                    link.click();
+                    link.remove();
+                    URL.revokeObjectURL(link.href);
+                    askStanBtn.textContent = '已下載 PDF';
+                    askStanBtn.style.backgroundColor = '#7b1fa2';
+                } else {
+                    // Fallback JSON handling
+                    const result = await response.json();
+                    if (result.success) {
+                        alert(`已成功發送給 Stan 並生成 PDF 報告！\n\nJSON 檔案: ${result.jsonFilename}\nPDF 檔案: ${result.pdfFilename || 'N/A'}`);
+                        askStanBtn.textContent = '已發送';
+                        askStanBtn.style.backgroundColor = '#7b1fa2';
+                    } else {
+                        throw new Error(result.error || '發送失敗');
+                    }
+                }
+            } catch (error) {
+                console.error('Ask Stan error:', error);
+                console.error('Error details:', {
+                    name: error.name,
+                    message: error.message,
+                    stack: error.stack
+                });
+                alert('發送給 Stan 失敗: ' + error.message);
+                askStanBtn.textContent = originalText;
+                askStanBtn.disabled = false;
+            }
+        }
+        
+        // Close popup when clicking outside
+        document.getElementById('mappingPopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeMappingPopup();
+            }
+        });
+
         function displayResults(results) {
             const resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = results.map(item => {
+            
+            // Add close button at the top of results
+            let closeButtonHtml = `
+                <div class="results-header">
+                    <h3>搜尋結果 (${results.length} 項)</h3>
+                    <button class="close-results-btn" onclick="closeResults()" title="關閉搜尋結果">
+                        ✖ 關閉結果
+                    </button>
+                </div>
+            `;
+            
+            const resultsHtml = results.map(item => {
                 // Format order rank with color tags
                 let orderRankDisplay = '';
                 const orderRank = parseInt(item.commonOrderRank);
@@ -1249,13 +2815,17 @@
                 
                 return `
                 <div class="result-item">
+                    <input type="checkbox" class="loinc-checkbox" 
+                           value="${item.loincNum}"
+                           onchange="toggleLoincSelection('${item.loincNum}', this)"
+                           title="選擇此 LOINC 代碼進行映射">
                     <div class="result-header">
                         <span class="loinc-code">${item.loincNum}</span>
                         <span class="similarity-score">${item.similarityScore.toFixed(2)}% match</span>
                     </div>
                     <div class="result-content">
                         <div class="result-field">
-                            <div class="field-label">Component</div>
+                            <div class="field-label">Full Name</div>
                             <div class="field-value">${item.component}</div>
                         </div>
                         <div class="result-field">
@@ -1278,18 +2848,123 @@
                 </div>
                 `;
             }).join('');
+            
+            // Combine close button and results
+            resultsDiv.innerHTML = closeButtonHtml + resultsHtml;
         }
         
+        // Function to close AI suggestions
+        function closeSuggestions() {
+            const suggestionList = document.getElementById('suggestionList');
+            suggestionList.style.display = 'none';
+            suggestionList.innerHTML = '';
+            
+            console.log('AI suggestions closed');
+        }
+        
+        // Function to close search results
+        function closeResults() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+            
+            // Also disable the analyze button since there are no results to analyze
+            document.getElementById('analyzeBtn').disabled = true;
+            
+            // Clear current search results
+            currentSearchResults = [];
+            
+            console.log('Search results closed');
+        }
+        
+        // Auto-update functionality
+        let searchTimeout;
+        const AUTO_SEARCH_DELAY = 1500; // 1.5 seconds delay after user stops typing
+
+        function setupAutoUpdate() {
+            // Show auto-update indicator
+            const indicator = document.getElementById('autoUpdateIndicator');
+            if (indicator) {
+                indicator.style.display = 'inline';
+            }
+
+            // Add input event listeners to all search fields
+            const searchFields = ['field1', 'field2', 'componentField', 'systemField'];
+
+            searchFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field) {
+                    field.addEventListener('input', function() {
+                        // Clear previous timeout
+                        clearTimeout(searchTimeout);
+
+                        // Check if field1 has at least 2 characters
+                        const field1Value = document.getElementById('field1').value.trim();
+                        if (field1Value.length >= 2) {
+                            // Show loading indicator
+                            const resultsDiv = document.getElementById('results');
+                            if (resultsDiv && !resultsDiv.querySelector('.searching')) {
+                                resultsDiv.innerHTML = '<div class="searching" style="color: #666; font-style: italic;">準備搜尋...</div>';
+                            }
+
+                            // Set new timeout for auto-search
+                            searchTimeout = setTimeout(() => {
+                                console.log('Auto-searching after input change');
+                                search();
+                            }, AUTO_SEARCH_DELAY);
+                        } else if (field1Value.length === 0) {
+                            // Clear results if field1 is empty
+                            const resultsDiv = document.getElementById('results');
+                            if (resultsDiv) {
+                                resultsDiv.innerHTML = '';
+                            }
+                        }
+                    });
+                }
+            });
+
+            // Also add listeners to checkboxes
+            const checkboxes = ['orderRankFilter', 'testRankFilter'];
+            checkboxes.forEach(checkboxId => {
+                const checkbox = document.getElementById(checkboxId);
+                if (checkbox) {
+                    checkbox.addEventListener('change', function() {
+                        // Only auto-search if there's already search text
+                        const field1Value = document.getElementById('field1').value.trim();
+                        if (field1Value.length >= 2) {
+                            clearTimeout(searchTimeout);
+                            searchTimeout = setTimeout(() => {
+                                console.log('Auto-searching after checkbox change');
+                                search();
+                            }, 500); // Shorter delay for checkboxes
+                        }
+                    });
+                }
+            });
+        }
+
         // Final initialization - ensure this runs after everything is loaded
         window.addEventListener('load', function() {
             console.log('Window load event fired');
             populateFormFromUrl();
+            setupAutoUpdate(); // Initialize auto-update functionality
         });
-        
+
         // Also try one more time after a short delay
         setTimeout(function() {
             console.log('Timeout initialization');
             populateFormFromUrl();
+            setupAutoUpdate(); // Ensure auto-update is initialized
+
+            // Final check of form values
+            setTimeout(function() {
+                console.log('=== FINAL FORM VALUES CHECK ===');
+                console.log('field1 value:', document.getElementById('field1')?.value);
+                console.log('field2 value:', document.getElementById('field2')?.value);
+                console.log('orderRankFilter checked:', document.getElementById('orderRankFilter')?.checked);
+                console.log('testRankFilter checked:', document.getElementById('testRankFilter')?.checked);
+                console.log('labDataContext:', labDataContext);
+                console.log('Auto-update enabled:', typeof setupAutoUpdate === 'function');
+            }, 50);
         }, 100);
         
         // Debug function to test URL parameters
@@ -1323,5 +2998,8 @@
             populateFormFromUrl();
         }
     </script>
+    
+    <!-- 引入自動選中腳本 -->
+    <script src="/auto-select-loinc.js"></script>
 </body>
 </html>

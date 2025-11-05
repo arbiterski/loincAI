@@ -1,0 +1,404 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-TW">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>缺失分析補充報告</title>
+        <style>
+            @page {
+                size: A4;
+                margin: 1.5cm;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Microsoft JhengHei', 'PingFang TC', sans-serif;
+                line-height: 1.6;
+                color: #333;
+                width: 80%;
+                margin: 0 auto;
+                background: white;
+            }
+
+            .header {
+                text-align: center;
+                margin-bottom: 30px;
+                border-bottom: 3px solid #2c5aa0;
+                padding-bottom: 20px;
+            }
+
+            .title {
+                font-size: 28px;
+                font-weight: bold;
+                color: #2c5aa0;
+                margin-bottom: 10px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+                color: #666;
+                margin-bottom: 5px;
+            }
+
+            .summary-section {
+                background: #f8f9fa;
+                padding: 20px;
+                border-radius: 8px;
+                margin-bottom: 30px;
+            }
+
+            .summary-title {
+                font-size: 20px;
+                font-weight: bold;
+                color: #2c5aa0;
+                margin-bottom: 15px;
+            }
+
+            .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                margin-bottom: 20px;
+            }
+
+            .stat-card {
+                background: white;
+                padding: 15px;
+                border-radius: 6px;
+                border-left: 4px solid #2c5aa0;
+            }
+
+            .stat-number {
+                font-size: 24px;
+                font-weight: bold;
+                color: #2c5aa0;
+                margin-bottom: 5px;
+            }
+
+            .stat-label {
+                color: #666;
+                font-size: 14px;
+            }
+
+            .category-section {
+                margin-bottom: 30px;
+            }
+
+            .category-title {
+                font-size: 18px;
+                font-weight: bold;
+                color: #2c5aa0;
+                margin-bottom: 15px;
+                border-bottom: 2px solid #e3f2fd;
+                padding-bottom: 5px;
+            }
+
+            .code-item {
+                background: white;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                padding: 15px;
+                margin-bottom: 15px;
+                page-break-inside: avoid;
+            }
+
+            .code-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+            }
+
+            .loinc-code {
+                font-family: 'Courier New', monospace;
+                font-weight: bold;
+                background: #e3f2fd;
+                color: #1976d2;
+                padding: 4px 8px;
+                border-radius: 4px;
+                font-size: 14px;
+            }
+
+            .lab-name {
+                font-weight: bold;
+                font-size: 16px;
+                color: #333;
+            }
+
+            .hospital-tag {
+                background: #ff9800;
+                color: white;
+                padding: 2px 8px;
+                border-radius: 12px;
+                font-size: 12px;
+                font-weight: bold;
+            }
+
+            .analysis-content {
+                background: #fff3e0;
+                border-left: 4px solid #ff9800;
+                padding: 12px;
+                margin-top: 10px;
+                border-radius: 4px;
+                line-height: 1.7;
+                font-size: 14px;
+                color: #e65100;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            .footer {
+                margin-top: 40px;
+                text-align: center;
+                font-size: 12px;
+                color: #666;
+                border-top: 1px solid #ddd;
+                padding-top: 20px;
+            }
+
+            @media print {
+                body {
+                    width: 80% !important;
+                }
+
+                .code-item {
+                    page-break-inside: avoid;
+                }
+
+                .page-break {
+                    page-break-before: always;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <div class="title">LOINC 分析補充報告</div>
+            <div class="subtitle">缺失分析項目專業內容補充</div>
+            <div class="subtitle">生成時間: 2025/9/29 上午2:22:36</div>
+        </div>
+
+        <div class="summary-section">
+            <div class="summary-title">📊 補充統計摘要</div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">總補充項目</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">AAA醫院補充項目</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">三軍總醫院補充項目</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3.0%</div>
+                    <div class="stat-label">補充比例</div>
+                </div>
+            </div>
+
+            <div style="background: white; padding: 15px; border-radius: 6px; margin-top: 15px;">
+                <strong>補充說明：</strong>本報告針對兩家醫院LOINC對照系統中缺少分析內容的12個重要檢驗項目，
+                提供專業的臨床解釋和分析內容，確保每個LOINC碼都有完整的醫學專業說明。
+            </div>
+        </div>
+
+        
+          <div class="category-section">
+            <div class="category-title">血液學檢查</div>
+            
+                <div class="code-item">
+                  <div class="code-header">
+                    <div>
+                      <span class="loinc-code">706-2</span>
+                      <span class="lab-name">Basophil</span>
+                    </div>
+                    <span class="hospital-tag">AAA</span>
+                  </div>
+                  <div class="analysis-content">
+                    嗜鹼性白血球 (Basophil) 是血液中數量最少的白血球類型，正常值約占白血球總數的0.5-1%。主要功能包括參與過敏反應和發炎反應，釋放組織胺和肝素等介質。臨床意義：嗜鹼性白血球增多常見於過敏性疾病（如氣喘、過敏性鼻炎）、血液疾病（如慢性粒細胞白血病、真性紅血球增多症）、感染（特別是寄生蟲感染）、內分泌疾病（如甲狀腺功能低下）等。檢測方法通常使用自動血球計數器進行全血細胞計數。需注意某些藥物如抗甲狀腺藥物可能影響數值。
+                  </div>
+                </div>
+              
+                <div class="code-item">
+                  <div class="code-header">
+                    <div>
+                      <span class="loinc-code">789-8</span>
+                      <span class="lab-name">RBC</span>
+                    </div>
+                    <span class="hospital-tag">Tri-Service</span>
+                  </div>
+                  <div class="analysis-content">
+                    紅血球計數 (RBC) 是基本的血液檢查項目，反映血液中紅血球的數量。正常值男性約4.5-5.5 × 10¹²/L，女性約4.0-5.0 × 10¹²/L。紅血球主要功能是攜帶氧氣和二氧化碳。臨床意義：RBC減少見於各種貧血（缺鐵性、巨球性、再生不良性貧血等）、慢性失血、慢性疾病等。RBC增加見於真性紅血球增多症、慢性肺病、高原居住等。檢測使用自動血球計數器，需與血紅蛋白、血球容積比等指標一併評估。是貧血診斷和分類的重要依據。
+                  </div>
+                </div>
+              
+                <div class="code-item">
+                  <div class="code-header">
+                    <div>
+                      <span class="loinc-code">21418-9</span>
+                      <span class="lab-name">Neutrophil</span>
+                    </div>
+                    <span class="hospital-tag">Tri-Service</span>
+                  </div>
+                  <div class="analysis-content">
+                    中性白血球 (Neutrophil) 是血液中數量最多的白血球類型，約占白血球總數的50-70%。主要功能是吞噬細菌和真菌，是機體重要的防禦細胞。正常絕對計數約2.0-7.5 × 10⁹/L。臨床意義：中性白血球增多常見於細菌感染、急性發炎、組織壞死、惡性腫瘤、藥物反應等。減少則見於病毒感染、藥物副作用、放化療、自體免疫疾病等。檢測使用自動血球計數器，可提供絕對計數和百分比。中性白血球計數對感染診斷和免疫功能評估具重要價值。
+                  </div>
+                </div>
+              
+          </div>
+        
+          <div class="category-section">
+            <div class="category-title">肝功能檢查</div>
+            
+                <div class="code-item">
+                  <div class="code-header">
+                    <div>
+                      <span class="loinc-code">1920-8</span>
+                      <span class="lab-name">GOT(AST)</span>
+                    </div>
+                    <span class="hospital-tag">AAA</span>
+                  </div>
+                  <div class="analysis-content">
+                    天門冬胺酸轉胺酶 (AST/GOT) 是重要的肝功能指標，廣泛存在於肝臟、心肌、骨骼肌等組織中。正常值一般為10-40 U/L（可因實驗室而異）。臨床意義：AST升高主要見於急慢性肝炎、肝硬化、肝癌、心肌梗塞、肌肉損傷等。當肝細胞受損時，AST會釋放入血，導致血清濃度升高。通常與ALT一併檢測，AST/ALT比值有助於鑑別診斷：比值>2提示酒精性肝病或肝硬化，比值<1多見於病毒性肝炎。檢測採用酶法，需空腹採血。
+                  </div>
+                </div>
+              
+                <div class="code-item">
+                  <div class="code-header">
+                    <div>
+                      <span class="loinc-code">1977-8</span>
+                      <span class="lab-name">Bilirubin</span>
+                    </div>
+                    <span class="hospital-tag">AAA</span>
+                  </div>
+                  <div class="analysis-content">
+                    膽紅素 (Bilirubin) 是血紅蛋白代謝的產物，包括直接膽紅素和間接膽紅素。總膽紅素正常值約0.3-1.2 mg/dL (5-21 μmol/L)。臨床意義：膽紅素升高導致黃疸，可分為溶血性黃疸（間接膽紅素↑）、肝細胞性黃疸（兩者皆↑）、阻塞性黃疸（直接膽紅素↑）。常見原因包括溶血性貧血、肝炎、膽道阻塞、新生兒生理性黃疸等。檢測方法使用重氮法或酶法。需注意飲食、藥物、光照等因素可能影響結果。膽紅素檢測對肝膽疾病診斷具重要價值。
+                  </div>
+                </div>
+              
+                <div class="code-item">
+                  <div class="code-header">
+                    <div>
+                      <span class="loinc-code">1742-6</span>
+                      <span class="lab-name">ALT</span>
+                    </div>
+                    <span class="hospital-tag">Tri-Service</span>
+                  </div>
+                  <div class="analysis-content">
+                    丙胺酸轉胺酶 (ALT/GPT) 是最重要的肝功能指標之一，主要存在於肝細胞中，正常值一般為7-40 U/L（可因實驗室而異）。ALT對肝細胞損傷具有高度敏感性和相對特異性。臨床意義：ALT升高主要見於急慢性肝炎、脂肪肝、肝硬化、藥物性肝損傷、肝癌等。與AST相比，ALT對肝細胞損傷更敏感，常作為肝炎診斷的首選指標。檢測採用酶法，建議空腹採血。ALT升高超過正常值上限2倍通常提示肝細胞損傷，需進一步檢查確定病因。
+                  </div>
+                </div>
+              
+          </div>
+        
+          <div class="category-section">
+            <div class="category-title">腫瘤標記物</div>
+            
+                <div class="code-item">
+                  <div class="code-header">
+                    <div>
+                      <span class="loinc-code">2039-6</span>
+                      <span class="lab-name">CEA</span>
+                    </div>
+                    <span class="hospital-tag">AAA</span>
+                  </div>
+                  <div class="analysis-content">
+                    癌胚抗原 (CEA) 是重要的腫瘤標記物，正常人血清濃度極低，通常<2.5 ng/mL（非吸菸者）或<5.0 ng/mL（吸菸者）。CEA主要用於結直腸癌的診斷、分期、療效監測和復發監測。臨床意義：CEA升高常見於消化道腫瘤（特別是結直腸癌）、肺癌、乳腺癌、卵巢癌等。但也可見於良性疾病如肝硬化、胰腺炎、炎症性腸病等。檢測方法通常使用化學發光免疫分析法(CLIA)。需注意吸菸、年齡等因素可能影響基準值。CEA不適合作為篩檢工具，主要用於已確診癌症患者的監測。
+                  </div>
+                </div>
+              
+                <div class="code-item">
+                  <div class="code-header">
+                    <div>
+                      <span class="loinc-code">35741-8</span>
+                      <span class="lab-name">Total PSA</span>
+                    </div>
+                    <span class="hospital-tag">AAA</span>
+                  </div>
+                  <div class="analysis-content">
+                    前列腺特異性抗原 (Total PSA) 是前列腺特異性的糖蛋白，主要由前列腺上皮細胞產生。正常值一般<4.0 ng/mL，但需考慮年齡因素。臨床意義：PSA主要用於前列腺癌的篩檢、診斷、分期和療效監測。PSA升高可見於前列腺癌、良性前列腺增生、前列腺炎等。需注意前列腺按摩、導尿、射精等可能暫時性升高PSA。檢測包括總PSA和游離PSA，游離PSA/總PSA比值有助於鑑別良惡性病變。採用化學發光免疫分析法，是目前前列腺癌最重要的血清標記物。
+                  </div>
+                </div>
+              
+                <div class="code-item">
+                  <div class="code-header">
+                    <div>
+                      <span class="loinc-code">54348-8</span>
+                      <span class="lab-name">Alpha-Fetoprotein</span>
+                    </div>
+                    <span class="hospital-tag">AAA</span>
+                  </div>
+                  <div class="analysis-content">
+                    甲型胎兒蛋白 (Alpha-Fetoprotein, AFP) 是重要的腫瘤標記物，主要用於肝癌、生殖細胞腫瘤的診斷和監測。正常成人血清AFP濃度極低（<10 ng/mL），但在肝細胞癌患者中可顯著升高。AFP也可用於產前篩檢，檢測神經管缺陷等胎兒異常。此LOINC碼特指臍帶血中的AFP檢測，常用於新生兒相關檢查。檢測方法通常使用化學發光免疫分析法(CLIA)或酶聯免疫吸附法(ELISA)。臨床意義包括：肝癌診斷與監測、生殖細胞腫瘤篩檢、產前診斷輔助指標。需注意某些良性肝病如肝炎、肝硬化也可能導致AFP輕度升高。
+                  </div>
+                </div>
+              
+          </div>
+        
+          <div class="category-section">
+            <div class="category-title">其他專科檢查</div>
+            
+                <div class="code-item">
+                  <div class="code-header">
+                    <div>
+                      <span class="loinc-code">19258-3</span>
+                      <span class="lab-name">pO2(vein)</span>
+                    </div>
+                    <span class="hospital-tag">AAA</span>
+                  </div>
+                  <div class="analysis-content">
+                    靜脈血氧分壓 (pO2 venous) 反映組織對氧氣的利用程度，正常值約35-40 mmHg。與動脈血氧分壓不同，靜脈血氧分壓較低，反映組織代謝後的血氧狀態。臨床意義：靜脈血氧分壓降低可見於心功能不全、休克、嚴重貧血、組織代謝亢進等情況。升高則可能表示組織氧利用障礙或動靜脈分流。檢測通常使用血氣分析儀，需嚴格厭氧採集和及時檢測。常與血氧飽和度、血紅蛋白等指標一併評估，對重症監護、心肺功能評估具重要價值。
+                  </div>
+                </div>
+              
+                <div class="code-item">
+                  <div class="code-header">
+                    <div>
+                      <span class="loinc-code">2532-0</span>
+                      <span class="lab-name">LDH</span>
+                    </div>
+                    <span class="hospital-tag">AAA</span>
+                  </div>
+                  <div class="analysis-content">
+                    乳酸脫氫酶 (LDH) 是重要的細胞酶，廣泛存在於心肌、肝臟、骨骼肌、腎臟等組織中。正常值約140-280 U/L（可因實驗室而異）。LDH有五種同工酶，不同組織來源的LDH同工酶比例不同。臨床意義：LDH升高見於心肌梗塞、肝病、溶血、肌肉損傷、惡性腫瘤等。由於LDH廣泛存在，其升高缺乏器官特異性，需結合其他指標判讀。在腫瘤學中，LDH常作為預後指標。檢測採用酶法，室溫下不穩定，需及時檢測或冷藏保存。
+                  </div>
+                </div>
+              
+                <div class="code-item">
+                  <div class="code-header">
+                    <div>
+                      <span class="loinc-code">57803-9</span>
+                      <span class="lab-name">Urine Occult Blood</span>
+                    </div>
+                    <span class="hospital-tag">Tri-Service</span>
+                  </div>
+                  <div class="analysis-content">
+                    尿潛血 (Urine Occult Blood) 檢測尿液中是否含有肉眼不可見的紅血球或血紅蛋白。正常尿液應為陰性或僅有少量紅血球（<3個/高倍視野）。臨床意義：尿潛血陽性可見於泌尿系統疾病如腎炎、腎結石、泌尿道感染、膀胱癌、前列腺疾病等，也可能由劇烈運動、月經污染等非病理因素引起。檢測方法包括試紙法和顯微鏡檢查。試紙法快速但可能有偽陽性，顯微鏡檢查更準確。需注意採集中段尿，避免外生殖器污染。持續尿潛血陽性需進一步檢查明確病因。
+                  </div>
+                </div>
+              
+          </div>
+        
+
+        <div class="footer">
+            <p><strong>補充完成統計：</strong></p>
+            <p>已為 12 個LOINC碼補充專業分析內容</p>
+            <p>AAA醫院：706-2, 1920-8, 1977-8, 19258-3, 2039-6, 2532-0, 35741-8, 54348-8</p>
+            <p>三軍總醫院：1742-6, 789-8, 21418-9, 57803-9</p>
+            <br>
+            <p>所有補充內容已整合至主要LOINC對照系統中</p>
+        </div>
+    </body>
+    </html>
+    

@@ -1,0 +1,41 @@
+{
+  "description": "Saved variables from LOINC LLM interface integration",
+  "timestamp": "2025-09-06T12:49:05.559Z",
+  "source": "https://loinc-llm.ngrok.io",
+  "extracted_variables": {
+    "labItemName": "CREA",
+    "labUnit": "mg/dL",
+    "labSampleType": "Blood",
+    "labTotalRecords": 5018,
+    "labUniquePatients": 4562,
+    "labMissingValues": "0.0%",
+    "labMeanValue": 1.13,
+    "labMedianValue": 0.86,
+    "itemRank": 1,
+    "institution": "AAA Hospital",
+    "institutionType": "Medical Center",
+    "institutionLocation": "Taiwan",
+    "itemId": "CREB",
+    "dataSource": "Analytics Dashboard",
+    "rankFilter1": true,
+    "rankFilter2": true
+  },
+  "integration_status": {
+    "url_parameter_parsing": "completed",
+    "ui_integration": "completed",
+    "server_storage": "completed",
+    "database_logging": "completed"
+  },
+  "usage_examples": {
+    "main_page_with_params": "http://localhost:3002/?labItemName=CREA&labUnit=mg%2FdL&labSampleType=Blood&labTotalRecords=5018&labUniquePatients=4562&institution=AAA+Hospital&rankFilter1=true&rankFilter2=true",
+    "api_endpoint": "http://localhost:3002/api/search-from-url?labItemName=CREA&labUnit=mg%2FdL&labSampleType=Blood&rankFilter1=true&rankFilter2=true",
+    "enhanced_search_interface": "http://localhost:3002/enhanced-search.html"
+  },
+  "storage_locations": {
+    "client_side": "labDataContext global variable in index.html",
+    "server_side": "search_sessions table filters column in MySQL database",
+    "file_system": "extracted-variables.js and saved-variables.json"
+  }
+}
+
+

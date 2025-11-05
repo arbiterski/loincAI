@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>請萬達人解釋搜尋結果 - 自動選中範例</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .search-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .btn:hover {
+            background: #2980b9;
+        }
+        .btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+        .btn.secondary {
+            background: #95a5a6;
+        }
+        .btn.secondary:hover {
+            background: #7f8c8d;
+        }
+        .results-section {
+            margin-top: 30px;
+        }
+        .loinc-item {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .loinc-item.selected {
+            border-color: #e74c3c;
+            background: #fdf2f2;
+        }
+        .loinc-checkbox {
+            transform: scale(1.2);
+        }
+        .loinc-code {
+            font-weight: bold;
+            color: #2c3e50;
+            min-width: 80px;
+        }
+        .loinc-details {
+            flex: 1;
+        }
+        .loinc-component {
+            font-weight: bold;
+            color: #34495e;
+        }
+        .loinc-name {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .similarity-score {
+            color: #27ae60;
+            font-weight: bold;
+            min-width: 60px;
+            text-align: right;
+        }
+        .ai-analysis {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        .ai-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .ai-content {
+            line-height: 1.6;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { background: #fff3cd; }
+            50% { background: #ffeaa7; }
+            100% { background: #fff3cd; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>請萬達人解釋搜尋結果 - 自動選中範例</h1>
+        
+        <div class="search-section">
+            <h3>搜尋 LOINC 代碼</h3>
+            <input type="text" id="searchInput" class="search-input" placeholder="輸入搜尋詞彙，例如：protein urine" value="protein urine">
+            <button class="btn" onclick="searchLoinc()">搜尋</button>
+            <button class="btn secondary" onclick="simulateAnalyze()">請萬達人解釋搜尋結果</button>
+        </div>
+
+        <div id="statusDiv" class="status" style="display: none;"></div>
+
+        <div id="resultsSection" class="results-section" style="display: none;">
+            <h3>搜尋結果</h3>
+            <div id="resultsContainer"></div>
+        </div>
+
+        <div id="aiAnalysis" class="ai-analysis" style="display: none;">
+            <div class="ai-header">
+                <h3>AI 分析結果</h3>
+                <button class="btn secondary" onclick="closeAnalysis()">關閉</button>
+            </div>
+            <div id="aiContent" class="ai-content"></div>
+        </div>
+    </div>
+
+    <!-- 引入自動選中腳本 -->
+    <script src="/auto-select-loinc.js"></script>
+
+    <script>
+        let currentSearchResults = [];
+        let selectedLoincCodes = new Set();
+
+        // 模擬搜尋結果
+        function searchLoinc() {
+            const searchTerm = document.getElementById('searchInput').value.trim();
+            if (!searchTerm) {
+                alert('請輸入搜尋詞彙');
+                return;
+            }
+
+            // 模擬搜尋結果
+            currentSearchResults = [
+                {
+                    loincNum: "2888-6",
+                    component: "Protein",
+                    longCommonName: "Protein [Mass/volume] in Urine",
+                    relatedNames2: "Protein, Urine",
+                    commonTestRank: "1",
+                    commonOrderRank: "1",
+                    similarityScore: 0.95,
+                    sessionId: "test-session-" + Date.now()
+                },
+                {
+                    loincNum: "5804-0",
+                    component: "Protein",
+                    longCommonName: "Protein [Mass/volume] in 24 hour Urine",
+                    relatedNames2: "Protein, 24h Urine",
+                    commonTestRank: "2",
+                    commonOrderRank: "2",
+                    similarityScore: 0.90,
+                    sessionId: "test-session-" + Date.now()
+                },
+                {
+                    loincNum: "33914-3",
+                    component: "Protein",
+                    longCommonName: "Protein [Mass/volume] in Urine by Test strip",
+                    relatedNames2: "Protein, Urine, Strip",
+                    commonTestRank: "3",
+                    commonOrderRank: "3",
+                    similarityScore: 0.85,
+                    sessionId: "test-session-" + Date.now()
+                }
+            ];
+
+            displayResults();
+            showStatus('搜尋完成，找到 ' + currentSearchResults.length + ' 個結果', 'success');
+        }
+
+        function displayResults() {
+            const resultsContainer = document.getElementById('resultsContainer');
+            const resultsSection = document.getElementById('resultsSection');
+            
+            resultsContainer.innerHTML = '';
+            
+            currentSearchResults.forEach(result => {
+                const loincItem = document.createElement('div');
+                loincItem.className = 'loinc-item';
+                loincItem.innerHTML = `
+                    <input type="checkbox" class="loinc-checkbox" value="${result.loincNum}" 
+                           onchange="toggleSelection('${result.loincNum}')">
+                    <div class="loinc-code">${result.loincNum}</div>
+                    <div class="loinc-details">
+                        <div class="loinc-component">${result.component}</div>
+                        <div class="loinc-name">${result.longCommonName}</div>
+                    </div>
+                    <div class="similarity-score">${(result.similarityScore * 100).toFixed(1)}%</div>
+                `;
+                resultsContainer.appendChild(loincItem);
+            });
+            
+            resultsSection.style.display = 'block';
+        }
+
+        function toggleSelection(loincCode) {
+            if (selectedLoincCodes.has(loincCode)) {
+                selectedLoincCodes.delete(loincCode);
+            } else {
+                selectedLoincCodes.add(loincCode);
+            }
+            
+            // 更新視覺效果
+            const checkbox = document.querySelector(`input[value="${loincCode}"]`);
+            const loincItem = checkbox.closest('.loinc-item');
+            if (selectedLoincCodes.has(loincCode)) {
+                loincItem.classList.add('selected');
+            } else {
+                loincItem.classList.remove('selected');
+            }
+        }
+
+        async function simulateAnalyze() {
+            if (currentSearchResults.length === 0) {
+                alert('請先進行搜尋');
+                return;
+            }
+
+            const statusDiv = document.getElementById('statusDiv');
+            statusDiv.style.display = 'block';
+            statusDiv.textContent = '正在分析搜尋結果...';
+            statusDiv.className = 'status info';
+
+            try {
+                // 模擬 /api/analyze 請求
+                const response = await fetch('/api/analyze', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        sessionId: currentSearchResults[0].sessionId,
+                        results: currentSearchResults,
+                        searchTerms: document.getElementById('searchInput').value,
+                        mustHaveTerms: '',
+                        labDataContext: null
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                // 顯示 AI 分析結果
+                displayAnalysis(data.summary);
+                
+                // 如果有建議的 LOINC 代碼，自動選中
+                if (data.suggestedLoincCode) {
+                    showStatus(`AI 建議選中 LOINC 代碼: ${data.suggestedLoincCode}`, 'success');
+                    
+                    // 自動選中建議的代碼
+                    setTimeout(() => {
+                        autoSelectSuggestedLoinc(data.suggestedLoincCode);
+                    }, 1000);
+                } else {
+                    showStatus('分析完成，但未找到建議的 LOINC 代碼', 'info');
+                }
+
+            } catch (error) {
+                console.error('分析錯誤:', error);
+                showStatus('分析失敗: ' + error.message, 'error');
+            }
+        }
+
+        function displayAnalysis(summary) {
+            const aiAnalysis = document.getElementById('aiAnalysis');
+            const aiContent = document.getElementById('aiContent');
+            
+            // 格式化摘要內容
+            const formattedSummary = summary
+                .replace(/\n\n/g, '<br><br>')
+                .replace(/\n/g, '<br>');
+            
+            aiContent.innerHTML = `<div class="ai-explanation">${formattedSummary}</div>`;
+            aiAnalysis.style.display = 'block';
+        }
+
+        function closeAnalysis() {
+            document.getElementById('aiAnalysis').style.display = 'none';
+        }
+
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('statusDiv');
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${type}`;
+            statusDiv.style.display = 'block';
+            
+            // 3秒後隱藏狀態訊息
+            setTimeout(() => {
+                statusDiv.style.display = 'none';
+            }, 3000);
+        }
+
+        // 頁面載入時自動搜尋
+        window.onload = function() {
+            searchLoinc();
+        };
+    </script>
+</body>
+</html>
+
