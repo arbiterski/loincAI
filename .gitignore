@@ -100,6 +100,9 @@ logs
 *.csv
 result.csv
 
+# Exception: Include main LOINC database
+!Loinc.csv
+
 # Large document files
 *.pdf
 *.PDF
